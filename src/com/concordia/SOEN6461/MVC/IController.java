@@ -24,48 +24,12 @@ package com.concordia.SOEN6461.MVC;
 /**
  * @author Mathieu Nayrolles
  * 
- * This abstract defines the bases of all Controller
+ * This interface defines the bases of all Controller
+ * This technic is called the Marker interface Pattern.
+ * More ref here: http://en.wikipedia.org/wiki/Marker_interface_pattern
  */
-public  abstract class AbstractController {
-    /**
-     * Reference to the model
-     */
-    private AbsractModel model;
-    /**
-     * Reference to the view
-     */
-    private IView view;
+public interface IController { 
 
-    /**
-     *
-     * @return model
-     */
-    public AbsractModel getModel() {
-        return model;
-    }
+    public void start();
 
-    /**
-     * Set private model instance
-     * @param model 
-     */
-    public void setModel(AbsractModel model) {
-        this.model = model;
-    }
-
-    /**
-     * 
-     * @return view
-     */
-    public IView getView() {
-        return view;
-    }
-
-    /**
-     * set private view
-     * @param view 
-     */
-    public void setView(IView view) {
-        this.view = view;
-    }
-    
 }

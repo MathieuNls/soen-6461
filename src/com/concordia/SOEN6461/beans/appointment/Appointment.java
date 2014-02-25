@@ -32,8 +32,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  * Defines an Appointment
@@ -48,21 +52,28 @@ public class Appointment  implements POJO{
     @Column(name="APPOINTMENT_ID")
     private int id;
     
-    @OneToMany(mappedBy="EMPLOYED_ID")
+    @ManyToOne
+    @JoinColumn(name = "EMPLOYEE_ID")
     private Doctor doctor;
     
-    @OneToMany(mappedBy="HUMAN_ID")
+    @OneToOne
+    @JoinColumn(name="PATIENT_ID")
     private Patient patient;
     
-    @OneToMany(mappedBy="ROOM_ID")
+    @OneToOne
+    @JoinColumn(name="ROOM_ID")
     private Room room;
     
-    @Column(name="START")
+    @Column(name="START_DATE")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date start;
     
     @Column(name="TYPE") 
     @Enumerated(EnumType.ORDINAL) 
     private AppointmentDetails appointmentDetails;
+
+    public Appointment() {
+    }
 
     /**
      * Default constructor

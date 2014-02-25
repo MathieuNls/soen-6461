@@ -25,16 +25,17 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 /**
  * @author Mathieu Nayrolles
  */
 @Entity
-@Table(name="EMPLOYED")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("NURSE")
-public class Nurse extends AEmployedHumain{
+public class Nurse extends AEmployee{
+
+    public Nurse() {
+    }
 
     /**
      * Default NurseConstructor

@@ -25,10 +25,10 @@ import com.concordia.SOEN6461.beans.POJO;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,12 +45,16 @@ public class Paiement implements POJO{
     @Column(name="PAIEMENT_ID")
     private int id;
     
-    @Column(name="TYPE") 
-    @Enumerated(EnumType.ORDINAL) 
+    @ManyToOne
+    @JoinColumn(name = "PAIEMENTMETHOD_ID")
     private PaiementMethod paiementMethod;
     
-    @OneToOne(mappedBy="APPOINTMENT_ID")
+    @OneToOne
+    @JoinColumn(name = "APPOINTMENT_ID")
     private Appointment appointment;
+
+    public Paiement() {
+    }
 
     /**
      * Default Constructor

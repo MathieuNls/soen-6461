@@ -21,24 +21,49 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.human;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Mathieu Nayrolles
  */
-public class Adresse {
+@Entity
+@Table(name = "ADDRESS")
+public class Adresse implements Serializable {
     
+    @Id
+    @GeneratedValue
+    @Column(name = "ADDRESS_ID")
+    private int id;
+    
+    @Column(name = "STREET_NUMBER")
     private int streetNumber;
     
+    @Column(name = "APP_NUMBER")
     private int appNumber;
     
+    @Column(name = "STREET")
     private String street;
     
+    @Column(name = "CITY")
     private String city;
     
+    @Column(name = "ZIPCODE")
     private String zipCode;
     
+    @Column(name = "STATE")
     private String state;
     
+    @Column(name = "COUNTRY")
     private String country;
+
+    public Adresse() {
+    }
+
 
     /**
      * Global constructor for adresses.
@@ -236,6 +261,22 @@ public class Adresse {
      */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
     

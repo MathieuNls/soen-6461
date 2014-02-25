@@ -22,26 +22,38 @@
 package com.concordia.SOEN6461.beans.human;
 
 import com.concordia.SOEN6461.beans.POJO;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Mathieu Nayrolles
  */
-public class Planning  implements POJO{
+@Entity
+@Table(name = "PLANNING")
+public class Planning  implements Serializable{
     
     @Id
     @GeneratedValue
     @Column(name="PLANNING_ID")
     private int id;
     
-    @Column(name="FROM")
+    @Column(name="FROM_DATE")
+    @Temporal(TemporalType.DATE)
     private Date from;
     
     @Column(name="TO")
+    @Temporal(TemporalType.DATE)
     private Date to;
+
+    public Planning() {
+    }
 
     /**
      * Default constructor

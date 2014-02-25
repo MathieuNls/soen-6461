@@ -21,14 +21,13 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461;
 
-import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.Room;
-import com.concordia.SOEN6461.beans.human.Planning;
+import com.concordia.SOEN6461.MVC.controller.LoginController;
+import com.concordia.SOEN6461.beans.human.AEmployee;
+import com.concordia.SOEN6461.beans.human.Adresse;
+import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.database.HibernateUtil;
-import java.util.Date;
-import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
+
 
 /**
  *
@@ -36,23 +35,17 @@ import org.hibernate.Transaction;
  */
 public class CMS {
 
-    private List<Clinic> clinics;
     
     public static void main(String[] args) {
-       
-       Session session = HibernateUtil.getSessionFactory().openSession();
-       Transaction transaction = session.beginTransaction();
-	Room course = new Room("H", "E.V", 5, 215);
-        course.setPlanning(new Planning(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-	
-	Integer courseId = (Integer) session.save(course);
-         
-        System.out.println(courseId);
-        course = new Room("H", "E.V", 5, 215);
-        course.setPlanning(new Planning(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-        session.save(course);
         
-	transaction.commit();
+        
+        AEmployee doctor = new Doctor("math", "math", "nayrolles", "mathieu", 
+                new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA"));
+        
+        HibernateUtil.getSessionFactory().openSession().save(doctor);
+         HibernateUtil.getSessionFactory().close();
+        
+        //new LoginController().start();
         
     }
 }

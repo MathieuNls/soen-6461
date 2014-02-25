@@ -22,27 +22,68 @@
 package com.concordia.SOEN6461.beans.paiement;
 
 import com.concordia.SOEN6461.beans.POJO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * DifferentPaiementMethods. Paiement Method has fixed Fees (2$ per transaction)
  * and variableFees (5% of the amount)
  * @author Mathieu Nayrolles
  */
-public enum PaiementMethod  implements POJO{
-    CREDIT(2, 5), DEBIT(0, 0), CHECK(0, 0);
+@Entity
+@Table(name = "PAIEMENTMETHOD")
+public class PaiementMethod  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name = "PAIEMENTMETHOD_ID")
+    private int id;
+
+    @Column(name = "NAME")
+    private String name;
+    
+    @Column(name = "FEES")
     private double fixedFess;
+    
+    @Column(name = "VARIABLE")
     private double variableFees;
+    
+    
+
+    public PaiementMethod() {
+    }
 
     /**
      * Default Constructor
      * @param fixedFess
      * @param variableFees 
      */
-    private PaiementMethod(double fixedFess, double variableFees) {
+    private PaiementMethod(String name, double fixedFess, double variableFees) {
         this.fixedFess = fixedFess;
+        this.name = name;
         this.variableFees = variableFees;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 
+     * @param name 
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 
     /**
      * 
@@ -74,6 +115,14 @@ public enum PaiementMethod  implements POJO{
      */
     public void setVariableFees(double variableFees) {
         this.variableFees = variableFees;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

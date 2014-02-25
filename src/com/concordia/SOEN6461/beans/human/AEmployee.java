@@ -22,7 +22,6 @@
 package com.concordia.SOEN6461.beans.human;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -33,25 +32,31 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Emploted Humain extends humain with credentials & planning
+ * employed Human extends human with credentials & planning
  * @author Mathieu Nayrolles
  */
 @Entity
-@Table(name="EMPLOYED")
+@Table(name="EMPLOYEE")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
     name="EMPLOYEE_TYPE",
     discriminatorType=DiscriminatorType.STRING
 )
-public abstract class AEmployedHumain extends AHuman{
+public abstract class AEmployee{
 
-    @Id
-    @GeneratedValue
-    @Column(name="EMPLOYEE_ID")
-    private int id;
+    @Column(name="NAME")
+    private String familyName;
+    
+    @Column(name="GIVEN_NAME")
+    private String givenName;
+    
+    @OneToOne
+    @JoinColumn(name = "ADDRESS_ID")
+    private Adresse adresse;
     
     @Column(name="LOGIN")
     private String login;
@@ -59,10 +64,21 @@ public abstract class AEmployedHumain extends AHuman{
     @Column(name="PASSWORD")
     private String password;
       
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name="PLANNING_ID")
     private List<Planning> plannings;
+    
+    @Id
+    @GeneratedValue
+    @Column(name = "EMPLOYEE_ID")
+    private int id;
 
+    /**
+     * Default constructor
+     */
+    protected AEmployee() {
+    }
+   
     /**
      * Surcharged constructor
      * @param login
@@ -71,11 +87,13 @@ public abstract class AEmployedHumain extends AHuman{
      * @param givenName
      * @param adresse 
      */
-    public AEmployedHumain(String login, String password, String familyName, 
+    public AEmployee(String login, String password, String familyName, 
             String givenName, Adresse adresse) {
-        super(familyName, givenName, adresse);
         this.login = login;
         this.password = password;
+        this.familyName = familyName;
+        this.givenName = givenName;
+        this.adresse = adresse;
     }
     
     @Override
@@ -86,7 +104,7 @@ public abstract class AEmployedHumain extends AHuman{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AEmployedHumain other = (AEmployedHumain) obj;
+        final AEmployee other = (AEmployee) obj;
         if ((this.login == null) ? (other.login != null) : !this.login.equals(other.login)) {
             return false;
         }
@@ -103,6 +121,56 @@ public abstract class AEmployedHumain extends AHuman{
         hash = 97 * hash + (this.password != null ? this.password.hashCode() : 0);
         return hash;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    /**
+     * 
+     * @param familyName 
+     */
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public String getGivenName() {
+        return givenName;
+    }
+
+    /**
+     * 
+     * @param givenName 
+     */
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    /**
+     * 
+     * @param adresse 
+     */
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+    
+    
 
     /**
      * 
@@ -150,6 +218,14 @@ public abstract class AEmployedHumain extends AHuman{
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

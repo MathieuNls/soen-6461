@@ -22,26 +22,14 @@
 package com.concordia.SOEN6461.MVC;
 
 import com.concordia.SOEN6461.beans.POJO;
+import java.util.List;
 
 /**
  * @author Mathieu Nayrolles
- * Defines the model part of MVC
+ * This interface defines the bases of all Model
+ * This technic is called the Marker interface Pattern.
+ * More ref here: http://en.wikipedia.org/wiki/Marker_interface_pattern
  */
-public abstract class  AbsractModel {
-    
-    /**
-     * Private instance of Plain old java object
-     */
-    private POJO pojo;
-    /**
-     * retrieve a POJO from the databse
-     * @return POJO
-     */
-    public abstract POJO getFromDatabase();
-    
-    /**
-     * Update the POJO to database
-     * @param pojo 
-     */
-    public abstract void updateToDatabase(POJO pojo);
+public interface IModel {
+
 }

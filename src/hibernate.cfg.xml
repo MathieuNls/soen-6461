@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class"> org.hsqldb.jdbc.JDBCDriver</property>
-        <property name="hibernate.connection.url"> jdbc:hsqldb:hsql://localhost</property>
-        <property name="hibernate.connection.username">SA</property>
-        <property name="connection.password"></property>
-        <property name="connection.pool_size">1</property>
-        <property name="hibernate.dialect"> org.hibernate.dialect.HSQLDialect</property>
-        <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
-        <mapping class="com.concordia.SOEN6461.beans.Room" />
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.connection.driver_class"> org.hsqldb.jdbc.JDBCDriver</property>
+    <property name="hibernate.connection.url"> jdbc:hsqldb:hsql://localhost</property>
+    <property name="hibernate.connection.username">SA</property>
+    <property name="connection.password"/>
+    <property name="connection.pool_size">1</property>
+    <property name="hibernate.dialect"> org.hibernate.dialect.HSQLDialect</property>
+    <property name="show_sql">true</property>
+    <property name="hbm2ddl.auto">create</property>
+    <mapping class="com.concordia.SOEN6461.beans.Room"/>
+    <mapping class="com.concordia.SOEN6461.beans.Clinic"/>
+    <mapping class="com.concordia.SOEN6461.beans.appointment.Appointment"/>
+    <mapping class="com.concordia.SOEN6461.beans.appointment.AppointmentDetails"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.AEmployee"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.Adresse"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.Doctor"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.Nurse"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.Patient"/>
+    <mapping class="com.concordia.SOEN6461.beans.human.Planning"/>
+    <mapping class="com.concordia.SOEN6461.beans.paiement.Paiement"/>
+    <mapping class="com.concordia.SOEN6461.beans.paiement.PaiementMethod"/>
+  </session-factory>
 </hibernate-configuration>

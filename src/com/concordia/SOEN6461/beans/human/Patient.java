@@ -26,6 +26,8 @@ import com.concordia.SOEN6461.beans.paiement.Paiement;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,19 +36,32 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="PATIENT")
-public class Patient extends AHuman{
+public class Patient{
     
     @Column(name="age")
     private int age;
-     
-    @Column(name="sin")
+    
+    @Column(name="NAME")
+    private String familyName;
+    
+    @Column(name="GIVEN_NAME")
+    private String givenName;
+    
+    @Id
+    @Column(name="PATIENT_SIN")
     private int sin;
       
-    @OneToMany(mappedBy="APPOINTMENT_ID")
+    @OneToMany
+    @JoinColumn(name = "APPOINTMENT_ID")
     private List<Appointment> appointments;
     
-    @OneToMany(mappedBy="PAIEMENT_ID")
+    @OneToMany
+    @JoinColumn(name = "PAIEMENT_ID")
     private List<Paiement> paiements;
+    
+
+    public Patient() {
+    }
 
     /**
      * Default Constructor
@@ -54,10 +69,10 @@ public class Patient extends AHuman{
      * @param sin
      * @param familyName
      * @param givenName
-     * @param adresse 
      */
-    public Patient(int age, int sin, String familyName, String givenName, Adresse adresse) {
-        super(familyName, givenName, adresse);
+    public Patient(int age, int sin, String familyName, String givenName) {
+        this.familyName = familyName;
+        this.givenName = givenName;
         this.age = age;
         this.sin = sin;
     }
@@ -77,7 +92,38 @@ public class Patient extends AHuman{
    public void addPaiement(Paiement paiement){
        this.paiements.add(paiement);
    }
-   
+
+   /**
+    * 
+    * @return 
+    */
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    /**
+     * 
+     * @param familyName 
+     */
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public String getGivenName() {
+        return givenName;
+    }
+
+    /**
+     * 
+     * @param givenName 
+     */
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
+    }
 
     /**
      * 
@@ -174,5 +220,5 @@ public class Patient extends AHuman{
         hash = 41 * hash + this.sin;
         return hash + super.hashCode();
     }
-    
+
 }
