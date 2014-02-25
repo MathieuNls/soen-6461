@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
  */
 public abstract class AbstractView extends javax.swing.JFrame {
     
-    void showMessage(String errMessage) {
+    public void showMessage(String errMessage) {
         JOptionPane.showMessageDialog(this, errMessage);
     }
     

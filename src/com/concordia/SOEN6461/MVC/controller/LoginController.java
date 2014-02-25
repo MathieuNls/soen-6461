@@ -61,7 +61,11 @@ public class LoginController  implements IController{
         public void actionPerformed(ActionEvent ae) {
             System.out.println("In");
             List<String> userInputs = view.userInputs();
-           ((LoginModel) model).login(userInputs.get(0), userInputs.get(1));
+            if(model.login(userInputs.get(0), userInputs.get(1)) != null){
+                view.showMessage("Loggin Sucess");
+            }else{
+                view.showMessage("Loggin Fail");
+            }
         }
         
     }

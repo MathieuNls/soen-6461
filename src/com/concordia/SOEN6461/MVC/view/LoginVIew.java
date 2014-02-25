@@ -62,7 +62,7 @@ public class LoginVIew extends AbstractView {
 
         jLabel2.setText("Password");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("LOGIN");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,13 +70,12 @@ public class LoginVIew extends AbstractView {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(82, 82, 82)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButton1)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(jLabel2)
-                        .add(jLabel1)
-                        .add(Password, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                        .add(Login)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(jLabel2)
+                    .add(jLabel1)
+                    .add(Password, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .add(Login)
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import static org.hsqldb.lib.tar.TarHeaderField.name;
 
 /**
  * @author Mathieu Nayrolles
@@ -65,7 +64,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     @Override
     public AEmployee login(String login, String password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String SQL_QUERY = " from Users u where u.uname='" + name + "' and u.pwd='" + password + "'";
+        String SQL_QUERY = " from AEmployee e where e.login='" + login + "' and e.password='" + password + "'";
         System.out.println(SQL_QUERY);
         Query query = session.createQuery(SQL_QUERY);
         Iterator<AEmployee> it = query.iterate();

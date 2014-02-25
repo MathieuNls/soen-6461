@@ -48,7 +48,7 @@ import javax.persistence.Table;
 )
 public abstract class AEmployee{
 
-    @Column(name="NAME")
+    @Column(name="FAMILY_NAME")
     private String familyName;
     
     @Column(name="GIVEN_NAME")

@@ -26,6 +26,8 @@ import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.database.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 
@@ -38,14 +40,24 @@ public class CMS {
     
     public static void main(String[] args) {
         
+        Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
         
-        AEmployee doctor = new Doctor("math", "math", "nayrolles", "mathieu", 
-                new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA"));
         
-        HibernateUtil.getSessionFactory().openSession().save(doctor);
-         HibernateUtil.getSessionFactory().close();
+        AEmployee doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
         
-        //new LoginController().start();
+    
+//          Session session = null;
+//    	Transaction tx = null;
+//         session = HibernateUtil.getSessionFactory().openSession();
+//    		tx = session.beginTransaction();
+//    		tx.setTimeout(5);
+//                
+//                session.save(a);
+//    		session.save(doctor);
+// 
+//    		tx.commit();
+        
+        new LoginController().start();
         
     }
 }
