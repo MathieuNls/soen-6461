@@ -58,7 +58,7 @@ public class Clinic  implements POJO{
     @ManyToOne(targetEntity=Nurse.class)
     private List<Nurse> nurses;
     
-    @ManyToMany(targetEntity=Patient.class, mappedBy="PATIENT_ID")
+    @ManyToMany(targetEntity=Patient.class)
     private List<Patient> patients;
     
     @ManyToOne(targetEntity=PaiementMethod.class)

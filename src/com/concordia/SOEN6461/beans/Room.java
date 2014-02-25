@@ -36,9 +36,7 @@ import javax.persistence.UniqueConstraint;
  * @author Mathieu Nayrolles
  */
 @Entity
-@Table(name="Room",
-    uniqueConstraints = {@UniqueConstraint(columnNames={"BUILDING", "FLOOR", "NUMBER"})}
-)
+@Table(name="Room")
 public class Room  implements POJO{
     
     @Id
@@ -61,6 +59,8 @@ public class Room  implements POJO{
     @OneToOne
     @JoinColumn(name = "PLANNING_ID")
     private Planning planning;
+    
+    protected Room(){};
 
     /**
      * default constructor
