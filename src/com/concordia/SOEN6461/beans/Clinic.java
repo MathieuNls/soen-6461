@@ -42,7 +42,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CLINIC")
-public class Clinic  implements POJO{
+public class Clinic{
     
     @Id
     @GeneratedValue

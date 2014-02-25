@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.paiement;
 
-import com.concordia.SOEN6461.beans.POJO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +34,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PAIEMENTMETHOD")
-public class PaiementMethod  implements POJO{
+public class PaiementMethod {
     
     @Id
     @GeneratedValue

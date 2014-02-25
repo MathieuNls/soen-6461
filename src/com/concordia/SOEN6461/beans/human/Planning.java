@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.human;
 
-import com.concordia.SOEN6461.beans.POJO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -37,7 +36,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "PLANNING")
-public class Planning  implements Serializable{
+public class Planning implements Serializable{
     
     @Id
     @GeneratedValue

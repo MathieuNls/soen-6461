@@ -22,7 +22,6 @@
 package com.concordia.SOEN6461.MVC.model;
 
 import com.concordia.SOEN6461.MVC.IModel;
-import com.concordia.SOEN6461.beans.POJO;
 
 /**
  * @author Mathieu Nayrolles

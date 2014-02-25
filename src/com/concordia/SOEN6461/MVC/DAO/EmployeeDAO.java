@@ -31,7 +31,7 @@ import java.util.List;
  * Interface for specifying the Employee data management
  * @author Mathieu Nayrolles
  */
-public interface EmployeeDAO {
+public interface EmployeeDAO extends DAO {
 
     /**
      * 

@@ -21,8 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC;
 
-import com.concordia.SOEN6461.beans.POJO;
-import java.util.List;
 
 /**
  * @author Mathieu Nayrolles

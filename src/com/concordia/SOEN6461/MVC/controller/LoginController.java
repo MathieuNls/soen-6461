@@ -55,7 +55,7 @@ public class LoginController  implements IController{
      * LoginListener inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-    class LoginListener implements ActionListener{
+     private class LoginListener implements ActionListener{
             
         @Override
         public void actionPerformed(ActionEvent ae) {

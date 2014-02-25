@@ -29,7 +29,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  * Defines a room
@@ -37,7 +36,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name="Room")
-public class Room  implements POJO{
+public class Room {
     
     @Id
     @GeneratedValue

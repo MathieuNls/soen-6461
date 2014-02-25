@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.appointment;
 
-import com.concordia.SOEN6461.beans.POJO;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
@@ -45,7 +44,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="APPOINTMENT")
-public class Appointment  implements POJO{
+public class Appointment{
     
     @Id
     @GeneratedValue
