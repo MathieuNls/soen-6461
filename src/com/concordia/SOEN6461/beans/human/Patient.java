@@ -24,15 +24,28 @@ package com.concordia.SOEN6461.beans.human;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.paiement.Paiement;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * @author Mathieu Nayrolles
  */
+@Entity
+@Table(name="PATIENT")
 public class Patient extends AHuman{
     
+    @Column(name="age")
     private int age;
+     
+    @Column(name="sin")
     private int sin;
+      
+    @OneToMany(mappedBy="APPOINTMENT_ID")
     private List<Appointment> appointments;
+    
+    @OneToMany(mappedBy="PAIEMENT_ID")
     private List<Paiement> paiements;
 
     /**
@@ -64,6 +77,7 @@ public class Patient extends AHuman{
    public void addPaiement(Paiement paiement){
        this.paiements.add(paiement);
    }
+   
 
     /**
      * 

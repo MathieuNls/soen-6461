@@ -22,15 +22,37 @@
 package com.concordia.SOEN6461.beans.human;
 
 import com.concordia.SOEN6461.beans.POJO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * @author Mathieu Nayrolles
  * Defines every humans in the system
  */
+@Entity
+@Table(name="HUMAN")
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public abstract class AHuman  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="HUMAN_ID")
+    private int id;
+    
+    @Column(name="NAME")
     private String familyName;
+    
+    @Column(name="GIVEN_NAME")
     private String givenName;
+    
+    @OneToOne
+    @Column(name="GIVEN_NAME")
     private Adresse adresse;
 
     /**
@@ -45,6 +67,24 @@ public abstract class AHuman  implements POJO{
         this.adresse = adresse;
     }
 
+    /**
+     * 
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return familyName + " " + givenName + " " + adresse;

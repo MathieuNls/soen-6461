@@ -23,15 +23,92 @@ package com.concordia.SOEN6461.beans.human;
 
 import com.concordia.SOEN6461.beans.POJO;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * @author Mathieu Nayrolles
  */
 public class Planning  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="PLANNING_ID")
+    private int id;
+    
+    @Column(name="FROM")
     private Date from;
+    
+    @Column(name="TO")
     private Date to;
-    
-    
-    
+
+    /**
+     * Default constructor
+     * @param from
+     * @param to 
+     */
+    public Planning(Date from, Date to) {
+        this.from = from;
+        this.to = to;
+    }
+   
+
+    /**
+     * 
+     * @return 
+     */
+    public Date getFrom() {
+        return from;
+    }
+
+    /**
+     * 
+     * @param from 
+     */
+    public void setFrom(Date from) {
+        this.from = from;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Date getTo() {
+        return to;
+    }
+
+    /**
+     * 
+     * @param to 
+     */
+    public void setTo(Date to) {
+        this.to = to;
+    }
+
+    /**
+     * 
+     * @return formatted String
+     */
+    @Override
+    public String toString() {
+        return "Planning{" + "id=" + id + ", from=" + from + ", to=" + to + '}';
+    }
+
 }

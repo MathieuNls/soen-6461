@@ -26,17 +26,42 @@ import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Defines an Appointment
  * @author Mathieu Nayrolles
  */
+@Entity
+@Table(name="APPOINTMENT")
 public class Appointment  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="APPOINTMENT_ID")
+    private int id;
+    
+    @OneToMany(mappedBy="EMPLOYED_ID")
     private Doctor doctor;
+    
+    @OneToMany(mappedBy="HUMAN_ID")
     private Patient patient;
+    
+    @OneToMany(mappedBy="ROOM_ID")
     private Room room;
+    
+    @Column(name="START")
     private Date start;
+    
+    @Column(name="TYPE") 
+    @Enumerated(EnumType.ORDINAL) 
     private AppointmentDetails appointmentDetails;
 
     /**
@@ -53,6 +78,24 @@ public class Appointment  implements POJO{
         this.start = start;
         this.appointmentDetails = appointmentDetails;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+ 
 
     @Override
     public boolean equals(Object obj) {

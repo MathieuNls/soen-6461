@@ -26,21 +26,40 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Defines a room
  * @author Mathieu Nayrolles
  */
 @Entity
-@Table(name="Room")
+@Table(name="Room",
+    uniqueConstraints = {@UniqueConstraint(columnNames={"BUILDING", "FLOOR", "NUMBER"})}
+)
 public class Room  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="ROOM_ID")
     private int id;
+    
+    @Column(name="GIVEN_NAME")
     private String givenName;
+    
+    @Column(name="BUILDING")
     private String building;
+    
+    @Column(name="FLOOR")
     private int floor;
+    
+    @Column(name="NUMBER")
     private int number;
+    
+    @OneToOne
+    @JoinColumn(name = "PLANNING_ID")
     private Planning planning;
 
     /**
@@ -57,22 +76,27 @@ public class Room  implements POJO{
         this.number = number;
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name="ID")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-   
     /**
      * 
      * @return 
      */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    
     public Planning getPlanning() {
         return planning;
     }

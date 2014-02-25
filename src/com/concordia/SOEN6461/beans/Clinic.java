@@ -26,8 +26,13 @@ import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
 import java.util.List;
-import javax.persistence.FetchType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -35,57 +40,124 @@ import javax.persistence.Table;
  * Defines a clinic
  * @author Mathieu Nayrolles
  */
-@Table(name="Clinic")
+@Entity
+@Table(name="CLINIC")
 public class Clinic  implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="CLINIC_ID")
+    private int id;
     
+    @Column(name="name")
     private String name;
+    
+    @ManyToOne(targetEntity=Doctor.class)
     private List<Doctor> doctors;
+    
+    @ManyToOne(targetEntity=Nurse.class)
     private List<Nurse> nurses;
+    
+    @ManyToMany(targetEntity=Patient.class, mappedBy="PATIENT_ID")
     private List<Patient> patients;
+    
+    @ManyToOne(targetEntity=PaiementMethod.class)
+    @Enumerated(EnumType.ORDINAL) 
     private List<PaiementMethod> paiementMethods;
 
     /**
      * 
      * @return 
      */
-    @ManyToOne(fetch= FetchType.LAZY)
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    /**
+     * 
+     * @return 
+     */
     public List<Doctor> getDoctors() {
         return doctors;
     }
 
+    /**
+     * 
+     * @param doctors 
+     */
     public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Nurse> getNurses() {
         return nurses;
     }
 
+    /**
+     * 
+     * @param nurses 
+     */
     public void setNurses(List<Nurse> nurses) {
         this.nurses = nurses;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<PaiementMethod> getPaiementMethods() {
         return paiementMethods;
     }
 
+    /**
+     * 
+     * @param paiementMethods 
+     */
     public void setPaiementMethods(List<PaiementMethod> paiementMethods) {
         this.paiementMethods = paiementMethods;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Patient> getPatients() {
         return patients;
     }
 
+    /**
+     * 
+     * @param patients 
+     */
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }

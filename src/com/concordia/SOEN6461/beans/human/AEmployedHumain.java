@@ -22,15 +22,45 @@
 package com.concordia.SOEN6461.beans.human;
 
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Emploted Humain extends humain with credentials & planning
  * @author Mathieu Nayrolles
  */
-public class AEmployedHumain extends AHuman{
+@Entity
+@Table(name="EMPLOYED")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+    name="EMPLOYEE_TYPE",
+    discriminatorType=DiscriminatorType.STRING
+)
+public abstract class AEmployedHumain extends AHuman{
 
+    @Id
+    @GeneratedValue
+    @Column(name="EMPLOYEE_ID")
+    private int id;
+    
+    @Column(name="LOGIN")
     private String login;
+     
+    @Column(name="PASSWORD")
     private String password;
+      
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="PLANNING_ID")
     private List<Planning> plannings;
 
     /**

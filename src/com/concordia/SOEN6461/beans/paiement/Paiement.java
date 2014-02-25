@@ -23,14 +23,33 @@ package com.concordia.SOEN6461.beans.paiement;
 
 import com.concordia.SOEN6461.beans.POJO;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Represents the paiements of an appointment
  * @author Mathieu Nayrolles
  */
+@Entity
+@Table(name="PAIEMENT")
 public class Paiement implements POJO{
     
+    @Id
+    @GeneratedValue
+    @Column(name="PAIEMENT_ID")
+    private int id;
+    
+    @Column(name="TYPE") 
+    @Enumerated(EnumType.ORDINAL) 
     private PaiementMethod paiementMethod;
+    
+    @OneToOne(mappedBy="APPOINTMENT_ID")
     private Appointment appointment;
 
     /**
@@ -42,6 +61,23 @@ public class Paiement implements POJO{
         this.paiementMethod = paiementMethod;
         this.appointment = appointment;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     /**
      * 

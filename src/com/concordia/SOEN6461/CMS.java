@@ -23,7 +23,9 @@ package com.concordia.SOEN6461;
 
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
+import com.concordia.SOEN6461.beans.human.Planning;
 import com.concordia.SOEN6461.database.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -41,9 +43,16 @@ public class CMS {
        Session session = HibernateUtil.getSessionFactory().openSession();
        Transaction transaction = session.beginTransaction();
 	Room course = new Room("H", "E.V", 5, 215);
+        course.setPlanning(new Planning(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
 	
 	Integer courseId = (Integer) session.save(course);
-	transaction.commit();
+         
         System.out.println(courseId);
+        course = new Room("H", "E.V", 5, 215);
+        course.setPlanning(new Planning(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
+        session.save(course);
+        
+	transaction.commit();
+        
     }
 }
