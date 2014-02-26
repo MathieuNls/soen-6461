@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.view;
 
-import com.concordia.SOEN6461.MVC.AbstractView;
 import com.concordia.SOEN6461.MVC.model.LoginModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

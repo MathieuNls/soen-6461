@@ -21,8 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.model;
 
-import com.concordia.SOEN6461.MVC.IModel;
-
 /**
  * @author Mathieu Nayrolles
  */

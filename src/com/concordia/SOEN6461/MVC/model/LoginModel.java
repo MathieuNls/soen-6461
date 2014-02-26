@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.model;
 
-import com.concordia.SOEN6461.MVC.IModel;
 import com.concordia.SOEN6461.DAO.EmployeeDAO;
 import com.concordia.SOEN6461.DAO.EmployeeDAOImpl;
 import com.concordia.SOEN6461.beans.human.AEmployee;

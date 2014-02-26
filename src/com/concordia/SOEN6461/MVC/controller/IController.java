@@ -19,15 +19,17 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-package com.concordia.SOEN6461.MVC;
-
+package com.concordia.SOEN6461.MVC.controller;
 
 /**
  * @author Mathieu Nayrolles
- * This interface defines the bases of all Model
+ * 
+ * This interface defines the bases of all Controller
  * This technic is called the Marker interface Pattern.
  * More ref here: http://en.wikipedia.org/wiki/Marker_interface_pattern
  */
-public interface IModel {
+public interface IController { 
+
+    public void start();
 
 }

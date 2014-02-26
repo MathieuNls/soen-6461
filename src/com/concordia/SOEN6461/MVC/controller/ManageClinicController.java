@@ -21,8 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
-import com.concordia.SOEN6461.MVC.IController;
-
 /**
  * @author Mathieu Nayrolles
  */

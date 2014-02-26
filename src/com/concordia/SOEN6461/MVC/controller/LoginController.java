@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
-import com.concordia.SOEN6461.MVC.IController;
 import com.concordia.SOEN6461.MVC.model.LoginModel;
 import com.concordia.SOEN6461.MVC.view.LoginVIew;
 import java.awt.event.ActionEvent;
