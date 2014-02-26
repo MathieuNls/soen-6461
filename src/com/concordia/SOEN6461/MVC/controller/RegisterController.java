@@ -44,6 +44,7 @@ public class RegisterController implements IController{
     /**
      * Initialize the controller. Bind view & model, show the view
      */
+    @Override
     public void start(){
         this.view.setModel(model);
         this.view.addRegisterListener(new RegisterListener());

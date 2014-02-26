@@ -44,16 +44,18 @@ public class WelcomeController implements IController{
     /**
      * Initialize the controller. Bind view & model, show the view
      */
+    @Override
     public void start(){
         this.view.setModel(model);
-        this.view.addRegisterListener(new RegisterListener());
+        this.view.addRegisterListener(new RegisterListener());        
+        this.view.addLoginListener(new LoginListener());
         this.view.run();
     }
     
     
     
     /**
-     * LoginListener inner class. This is the most elegant way to delegate
+     * RegisterListener inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
      private class RegisterListener implements ActionListener{
@@ -65,6 +67,26 @@ public class WelcomeController implements IController{
         }
         
     }
+     
+     /**
+     * LoginListener inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class LoginListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            List<String> userInputs = view.userInputs();
+            if(model.login(userInputs.get(0), userInputs.get(1)) != null){
+                view.showMessage("Loggin Sucess");
+            }else{
+                view.showMessage("Loggin Fail");
+            }
+        }
+        
+    }
+     
+     
     
     
     

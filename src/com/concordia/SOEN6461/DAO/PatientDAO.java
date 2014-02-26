@@ -34,5 +34,7 @@ public interface PatientDAO {
     
     public String registerPatient(String sin, String familyName,
             String givernName, String birthdate, String phoneNumber, String gender);
+    
+    public Patient login(String sin, String lastname);
 
 }

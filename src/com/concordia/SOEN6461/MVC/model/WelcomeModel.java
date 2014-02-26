@@ -22,9 +22,19 @@
 
 package com.concordia.SOEN6461.MVC.model;
 
+import com.concordia.SOEN6461.DAO.PatientDAO;
+import com.concordia.SOEN6461.DAO.PatientDAOImpl;
+import com.concordia.SOEN6461.beans.human.Patient;
+
 /**
  * @author Mathieu Nayrolles
  */
 public class WelcomeModel implements IModel{
+    
+    PatientDAO patientDAO = new PatientDAOImpl();
+    
+    public Patient login(String sin, String lastName){
+        return patientDAO.login(sin, lastName);
+    }
 
 }

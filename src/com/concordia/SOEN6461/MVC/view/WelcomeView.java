@@ -56,8 +56,6 @@ public class WelcomeView extends AbstractView{
         jLabel1 = new javax.swing.JLabel();
         Name = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        birthdata = new javax.swing.JTextField();
         Login = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         RegisterButton = new javax.swing.JButton();
@@ -67,8 +65,6 @@ public class WelcomeView extends AbstractView{
         jLabel1.setText("SIN");
 
         jLabel2.setText("Family Name");
-
-        jLabel3.setText("BirthDate");
 
         Login.setText("LOGIN");
 
@@ -82,8 +78,6 @@ public class WelcomeView extends AbstractView{
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                     .add(jSeparator1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, birthdata)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, SIN)
@@ -103,11 +97,7 @@ public class WelcomeView extends AbstractView{
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(Name, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jLabel3)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(birthdata, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(12, 12, 12)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(Login)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -125,10 +115,8 @@ public class WelcomeView extends AbstractView{
     private javax.swing.JTextField Name;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JTextField SIN;
-    private javax.swing.JTextField birthdata;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
     
@@ -140,8 +128,8 @@ public class WelcomeView extends AbstractView{
      */
     public List<String> userInputs() {
         return new ArrayList<String>() {{
-            add("Stuff");
-            add("Things");
+            add(SIN.getText());
+            add(Name.getText());
         }};
     }
 

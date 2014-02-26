@@ -22,6 +22,7 @@
 
 package com.concordia.SOEN6461.DAO;
 
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.Date;
@@ -79,6 +80,22 @@ public class PatientDAOImpl implements PatientDAO{
         } catch (HibernateException e) {
             return e.getMessage();
         }
+    }
+
+    @Override
+    public Patient login(String sin, String lastname) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from Patient p where p.sin='" + sin + "' and p.familyName='" + lastname + "'";
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        Iterator<Patient> it = query.iterate();
+        List<Patient> list = query.list();
+        if (list.size() > 0) {
+            session.close();
+            return list.get(0);
+        }
+        session.close();
+        return null;
     }
 
 }
