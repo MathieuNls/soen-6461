@@ -32,6 +32,10 @@ public class CMS {
 
     
     public static void main(String[] args) {
+        // TO START THE DATABASE GO TO LIB/HSQDL-2.3.2/hsqldb/bin and 
+        // run runServer.bat
+        
+        // Login is math / math.
         
         new LoginController().start();
         

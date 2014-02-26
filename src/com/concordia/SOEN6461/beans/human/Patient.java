@@ -23,6 +23,7 @@ package com.concordia.SOEN6461.beans.human;
 
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.paiement.Paiement;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  * @author Mathieu Nayrolles
@@ -38,8 +40,9 @@ import javax.persistence.Table;
 @Table(name="PATIENT")
 public class Patient{
     
-    @Column(name="age")
-    private int age;
+    @Column(name="BIRTH_DATE")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date birthdate;
     
     @Column(name="NAME")
     private String familyName;
@@ -70,10 +73,10 @@ public class Patient{
      * @param familyName
      * @param givenName
      */
-    public Patient(int age, int sin, String familyName, String givenName) {
+    public Patient(int age, int sin, String familyName, String givenName, Date birthdate) {
         this.familyName = familyName;
         this.givenName = givenName;
-        this.age = age;
+        this.birthdate = birthdate;
         this.sin = sin;
     }
     
@@ -156,23 +159,23 @@ public class Patient{
     public void setPaiements(List<Paiement> paiements) {
         this.paiements = paiements;
     }
-    
-   /**
+
+    /**
      * 
      * @return 
      */
-    public int getAge() {
-        return age;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
     /**
      * 
-     * @param age 
+     * @param birthdate 
      */
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
-
+    
     /**
      * 
      * @return 
@@ -191,7 +194,7 @@ public class Patient{
     
      @Override
     public String toString() {
-        return "Patient{" + "age=" + age + ", sin=" + sin + '}';
+        return "Patient{" + "date=" + birthdate + ", sin=" + sin + '}';
     }
    
 
@@ -204,7 +207,7 @@ public class Patient{
             return false;
         }
         final Patient other = (Patient) obj;
-        if (this.age != other.age) {
+        if (this.birthdate != other.birthdate) {
             return false;
         }
         if (this.sin != other.sin) {
@@ -216,7 +219,7 @@ public class Patient{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + this.age;
+        hash = 41 * hash + this.birthdate;
         hash = 41 * hash + this.sin;
         return hash + super.hashCode();
     }
