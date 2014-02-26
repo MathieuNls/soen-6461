@@ -21,13 +21,50 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
+import com.concordia.SOEN6461.MVC.model.RegisterModel;
+import com.concordia.SOEN6461.MVC.view.RegisterView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 /**
  * @author Mathieu Nayrolles
  */
-public class RegisterController  implements IController{
+public class RegisterController implements IController{
+    
+    /**
+     * Reference to the model
+     */
+    protected RegisterModel model = new RegisterModel();
+    /**
+     * Reference to the view
+     */
+    protected RegisterView view = new RegisterView();
 
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Initialize the controller. Bind view & model, show the view
+     */
+    public void start(){
+        this.view.setModel(model);
+        this.view.addRegisterListener(new RegisterListener());
+        this.view.run();
+    }
+    
+    /**
+     * RegisterListener inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class RegisterListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            List<String> userInputs = view.userInputs();
+           String result = model.registerPatient(userInputs.get(0), userInputs.get(1),
+                   userInputs.get(2),  userInputs.get(3), userInputs.get(4), userInputs.get(5));
+           view.showMessage(result);
+           view.setVisible(false);
+           new WelcomeController().start();
+        }
+        
     }
 }

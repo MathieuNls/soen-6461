@@ -19,17 +19,12 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-package com.concordia.SOEN6461.MVC.controller;
+
+package com.concordia.SOEN6461.MVC.model;
 
 /**
  * @author Mathieu Nayrolles
  */
-public class MakeAppointmentController  implements IController{
+public class WelcomeModel implements IModel{
 
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }

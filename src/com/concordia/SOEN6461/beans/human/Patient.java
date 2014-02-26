@@ -23,6 +23,7 @@ package com.concordia.SOEN6461.beans.human;
 
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.paiement.Paiement;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="PATIENT")
-public class Patient{
+public class Patient implements Serializable{
     
     @Column(name="BIRTH_DATE")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -62,21 +63,30 @@ public class Patient{
     @JoinColumn(name = "PAIEMENT_ID")
     private List<Paiement> paiements;
     
+    @Column(name = "GENDER")
+    private String gender;
+    
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
     public Patient() {
     }
 
     /**
      * Default Constructor
-     * @param age
+     * @param birthdate
      * @param sin
      * @param familyName
+     * @param phoneNumber 
+     * @param gender
      * @param givenName
      */
-    public Patient(int age, int sin, String familyName, String givenName, Date birthdate) {
+    public Patient(int sin, String familyName, String givenName, Date birthdate, String gender, String phoneNumber) {
         this.familyName = familyName;
         this.givenName = givenName;
         this.birthdate = birthdate;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
         this.sin = sin;
     }
     
@@ -95,6 +105,38 @@ public class Patient{
    public void addPaiement(Paiement paiement){
        this.paiements.add(paiement);
    }
+
+   /**
+    * 
+    * @return 
+    */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * 
+     * @param phoneNumber 
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+   /**
+    * 
+    * @return 
+    */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * 
+     * @param gender 
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
    /**
     * 
@@ -219,7 +261,7 @@ public class Patient{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + this.birthdate;
+        hash = 41 * hash + this.birthdate.hashCode();
         hash = 41 * hash + this.sin;
         return hash + super.hashCode();
     }

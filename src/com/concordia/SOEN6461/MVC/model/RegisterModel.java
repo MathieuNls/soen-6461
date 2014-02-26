@@ -21,9 +21,20 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.model;
 
+import com.concordia.SOEN6461.DAO.PatientDAO;
+import com.concordia.SOEN6461.DAO.PatientDAOImpl;
+
+
 /**
  * @author Mathieu Nayrolles
  */
-public class RegisterModel {
+public class RegisterModel implements IModel{
     
+    PatientDAO patientDAO = new PatientDAOImpl();
+    
+     public String registerPatient(String sin, String familyName,
+            String givernName, String birthdate, String phoneNumber, String gender) {
+         return this.patientDAO.registerPatient(sin, familyName, givernName, 
+                 birthdate, phoneNumber, gender);
+     }
 }

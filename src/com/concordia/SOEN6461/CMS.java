@@ -22,6 +22,13 @@
 package com.concordia.SOEN6461;
 
 import com.concordia.SOEN6461.MVC.controller.LoginController;
+import com.concordia.SOEN6461.MVC.controller.WelcomeController;
+import com.concordia.SOEN6461.beans.human.AEmployee;
+import com.concordia.SOEN6461.beans.human.Adresse;
+import com.concordia.SOEN6461.beans.human.Doctor;
+import com.concordia.SOEN6461.database.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -37,24 +44,28 @@ public class CMS {
         
         // Login is math / math.
         
-        new LoginController().start();
+
+        new WelcomeController().start();
+        //new LoginController().start();
         
     }
+    
 }
 
-//        Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
+//                Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
 //        
 //        
 //        AEmployee doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
 //        
 //    
-////          Session session = null;
-////    	Transaction tx = null;
-////         session = HibernateUtil.getSessionFactory().openSession();
-////    		tx = session.beginTransaction();
-////    		tx.setTimeout(5);
-////                
-////                session.save(a);
-////    		session.save(doctor);
-//// 
-////    		tx.commit();
+//          Session session = null;
+//    	Transaction tx = null;
+//         session = HibernateUtil.getSessionFactory().openSession();
+//    		tx = session.beginTransaction();
+//    		tx.setTimeout(5);
+//                
+//                session.save(a);
+//    		session.save(doctor);
+// 
+//    		tx.commit();
+

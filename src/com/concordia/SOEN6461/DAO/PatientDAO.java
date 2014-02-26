@@ -19,17 +19,20 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-package com.concordia.SOEN6461.MVC.controller;
+
+package com.concordia.SOEN6461.DAO;
+
+import com.concordia.SOEN6461.beans.human.Patient;
 
 /**
+ *
  * @author Mathieu Nayrolles
  */
-public class DeleteAppointmentController implements IController{
-
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+public interface PatientDAO {
     
+    public Patient getPatient(String sin, String name, String birthdate);
+    
+    public String registerPatient(String sin, String familyName,
+            String givernName, String birthdate, String phoneNumber, String gender);
+
 }

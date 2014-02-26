@@ -21,15 +21,51 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
+import com.concordia.SOEN6461.MVC.model.WelcomeModel;
+import com.concordia.SOEN6461.MVC.view.WelcomeView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 /**
  * @author Mathieu Nayrolles
  */
-public class ManagePlanningController  implements IController{
-
+public class WelcomeController implements IController{
     
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Reference to the model
+     */
+    protected WelcomeModel model = new WelcomeModel();
+    /**
+     * Reference to the view
+     */
+    protected WelcomeView view = new WelcomeView();
+
+    /**
+     * Initialize the controller. Bind view & model, show the view
+     */
+    public void start(){
+        this.view.setModel(model);
+        this.view.addRegisterListener(new RegisterListener());
+        this.view.run();
     }
+    
+    
+    
+    /**
+     * LoginListener inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class RegisterListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            view.setVisible(false);
+            new RegisterController().start();
+        }
+        
+    }
+    
+    
     
 }
