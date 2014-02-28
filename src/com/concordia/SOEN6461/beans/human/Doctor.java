@@ -49,4 +49,9 @@ public class Doctor extends AEmployee{
         super(login, password, familyName, givenName, adresse);
     }
     
+    @Override
+    public int getId(){
+        return super.getId();
+    }
+    
 }

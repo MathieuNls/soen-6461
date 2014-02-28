@@ -64,14 +64,14 @@ public abstract class AEmployee{
     @Column(name="PASSWORD")
     private String password;
       
-    @OneToMany
+    @OneToOne
     @JoinColumn(name="PLANNING_ID")
-    private List<Planning> plannings;
+    private Planning planning;
     
     @Id
     @GeneratedValue
     @Column(name = "EMPLOYEE_ID")
-    private int id;
+    protected int id;
 
     /**
      * Default constructor
@@ -176,16 +176,16 @@ public abstract class AEmployee{
      * 
      * @return 
      */
-    public List<Planning> getPlannings() {
-        return plannings;
+    public Planning getPlanning() {
+        return planning;
     }
 
     /**
      * 
      * @param plannings 
      */
-    public void setPlannings(List<Planning> plannings) {
-        this.plannings = plannings;
+    public void setPlanning(Planning planning) {
+        this.planning = planning;
     }
     
     /**
@@ -220,10 +220,18 @@ public abstract class AEmployee{
         this.password = password;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(int id) {
         this.id = id;
     }

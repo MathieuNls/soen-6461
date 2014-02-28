@@ -23,10 +23,19 @@ package com.concordia.SOEN6461;
 
 import com.concordia.SOEN6461.MVC.controller.LoginController;
 import com.concordia.SOEN6461.MVC.controller.WelcomeController;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.Room;
+import com.concordia.SOEN6461.beans.appointment.Appointment;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
+import com.concordia.SOEN6461.beans.human.Nurse;
+import com.concordia.SOEN6461.beans.human.Patient;
+import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
 import com.concordia.SOEN6461.database.HibernateUtil;
+import java.util.ArrayList;
+import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -44,10 +53,65 @@ public class CMS {
         
         // Login is math / math.
         
-
-        new WelcomeController().start();
+        
+        
+        
+        
+        //new WelcomeController().start();
         //new LoginController().start();
         
+    }
+    
+    public static void init(){
+        Session session = null;
+    	Transaction tx = null;
+         session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+         Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
+      
+         session.save(a);
+         
+       final Doctor doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
+       doctor.setId(1);
+        
+        session.save(doctor);
+        
+         final Nurse nurse = new Nurse("math_nurse", "math_nurse", "math_nurse", "math_nurse", a);
+        
+        session.save(nurse);
+        
+        final Patient p = new Patient(1, "math", "math", new Date(1989, 8, 2), "male", "5146902063");
+        
+        session.save(p);
+        
+        final Room room = new Room("Rose", "Ev", 5, 514);
+        
+        
+        session.save(room);
+        
+        final PaiementMethod paiementMethod = new PaiementMethod("Credit", 2, 0);
+        
+        session.save(paiementMethod);
+        
+        Clinic c = new Clinic("HFClinic", 
+                new ArrayList<Room>(){{add(room);}}, 
+                new ArrayList<AEmployee>(){{add(doctor);add(nurse);}}, 
+                new ArrayList<Patient>(){{add(p);}}, 
+                new ArrayList<PaiementMethod>(){{add(paiementMethod);}});
+       
+
+     
+        session.save(c);
+      
+        
+        
+        Appointment app = new Appointment(doctor, p, room , new Date(2014, 3, 5, 10, 0, 0), AppointmentDetails.NORMAL);
+        
+        session.save(app);
+        
+        tx.setTimeout(5);
+                
+    	tx.commit();
     }
     
 }

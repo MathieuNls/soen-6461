@@ -21,13 +21,10 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans;
 
-import com.concordia.SOEN6461.beans.human.Planning;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -54,10 +51,6 @@ public class Room {
     
     @Column(name="NUMBER")
     private int number;
-    
-    @OneToOne
-    @JoinColumn(name = "PLANNING_ID")
-    private Planning planning;
     
     protected Room(){};
 
@@ -90,24 +83,7 @@ public class Room {
     public void setId(int id) {
         this.id = id;
     }
-    
-    /**
-     * 
-     * @return 
-     */
-    
-    public Planning getPlanning() {
-        return planning;
-    }
-
-    /**
-     * 
-     * @param planning 
-     */
-    public void setPlanning(Planning planning) {
-        this.planning = planning;
-    }
-    
+   
     
     /**
      * 

@@ -225,12 +225,5 @@ public class RegisterView extends AbstractView{
     public void addRegisterListener(ActionListener register){
         this.registerBtn.addActionListener(register);
     }
-    
-    // EXAMPLE ON HOW TO ADD LISTENER
-    //    public void addLoginListener(ActionListener login) {
-    //        jButton1.addActionListener(login);
-    //    }
-
-
 
 }

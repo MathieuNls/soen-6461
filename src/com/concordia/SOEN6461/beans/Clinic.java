@@ -21,10 +21,12 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans;
 
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +35,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,7 +44,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CLINIC")
-public class Clinic{
+public class Clinic implements Serializable{
     
     @Id
     @GeneratedValue
@@ -52,19 +54,41 @@ public class Clinic{
     @Column(name="name")
     private String name;
     
-    @ManyToOne(targetEntity=Doctor.class)
-    private List<Doctor> doctors;
+    @OneToMany(targetEntity=Room.class)
+    private List<Room> rooms;
     
-    @ManyToOne(targetEntity=Nurse.class)
-    private List<Nurse> nurses;
+    @OneToMany(targetEntity=AEmployee.class)
+    private List<AEmployee> employees;
     
     @ManyToMany(targetEntity=Patient.class)
     private List<Patient> patients;
     
-    @ManyToOne(targetEntity=PaiementMethod.class)
+    @OneToMany(targetEntity=PaiementMethod.class)
     @Enumerated(EnumType.ORDINAL) 
     private List<PaiementMethod> paiementMethods;
 
+    public Clinic() {
+    }
+
+    /**
+     * Default COnstuctor
+     * @param id
+     * @param name
+     * @param rooms
+     * @param doctors
+     * @param nurses
+     * @param patients
+     * @param paiementMethods 
+     */
+    public Clinic(String name, List<Room> rooms,List<AEmployee> employees, List<Patient> patients, List<PaiementMethod> paiementMethods) {
+        this.name = name;
+        this.rooms = rooms;
+        this.employees = employees;
+        this.patients = patients;
+        this.paiementMethods = paiementMethods;
+    }
+
+    
     /**
      * 
      * @return 
@@ -80,23 +104,24 @@ public class Clinic{
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
     /**
      * 
      * @return 
      */
-    public List<Doctor> getDoctors() {
-        return doctors;
+    public List<AEmployee> getEmployees() {
+        return employees;
     }
 
     /**
      * 
-     * @param doctors 
+     * @param employees 
      */
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
+    public void setEmployees(List<AEmployee> employees) {
+        this.employees = employees;
     }
+    
+   
 
     /**
      * 
@@ -114,24 +139,7 @@ public class Clinic{
         this.name = name;
     }
 
-    /**
-     * 
-     * @return 
-     */
-    public List<Nurse> getNurses() {
-        return nurses;
-    }
-
-    /**
-     * 
-     * @param nurses 
-     */
-    public void setNurses(List<Nurse> nurses) {
-        this.nurses = nurses;
-    }
-
-    /**
-     * 
+     /* 
      * @return 
      */
     public List<PaiementMethod> getPaiementMethods() {
@@ -161,9 +169,21 @@ public class Clinic{
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }
-    
-    
-    
-    
+
+    /**
+     * 
+     * @return 
+     */
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    /**
+     * 
+     * @param rooms 
+     */
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
     
 }

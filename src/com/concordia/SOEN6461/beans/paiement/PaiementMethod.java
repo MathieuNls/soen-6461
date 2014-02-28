@@ -21,6 +21,7 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.paiement;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PAIEMENTMETHOD")
-public class PaiementMethod {
+public class PaiementMethod implements Serializable {
     
     @Id
     @GeneratedValue
@@ -47,7 +48,7 @@ public class PaiementMethod {
     @Column(name = "FEES")
     private double fixedFess;
     
-    @Column(name = "VARIABLE")
+    @Column(name = "VARIABLE_FEES")
     private double variableFees;
     
     
@@ -57,10 +58,11 @@ public class PaiementMethod {
 
     /**
      * Default Constructor
+     * @param name
      * @param fixedFess
      * @param variableFees 
      */
-    private PaiementMethod(String name, double fixedFess, double variableFees) {
+    public PaiementMethod(String name, double fixedFess, double variableFees) {
         this.fixedFess = fixedFess;
         this.name = name;
         this.variableFees = variableFees;
