@@ -47,7 +47,7 @@ public class Planning implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date from;
     
-    @Column(name="TO")
+    @Column(name="TO_DATE")
     @Temporal(TemporalType.DATE)
     private Date to;
 

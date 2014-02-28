@@ -3,6 +3,7 @@
  */
 package com.concordia.SOEN6461.MVC.view.calendar;
 
+import com.concordia.SOEN6461.MVC.model.IModel;
 import java.util.Date;
 import java.util.Vector;
 
@@ -15,7 +16,7 @@ import com.concordia.SOEN6461.MVC.model.calendar.CalendarModel;
 
 
 public class CalendarVector extends AbstractCalendarModel
-    implements CalendarModel
+    implements CalendarModel, IModel
 {
     private static final long serialVersionUID = 1L;
 

@@ -21,6 +21,7 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.appointment;
 
+import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
@@ -60,6 +61,10 @@ public class Appointment{
     private Patient patient;
     
     @OneToOne
+    @JoinColumn(name="CLINIC_ID")
+    private Clinic clinic;
+    
+    @OneToOne
     @JoinColumn(name="ROOM_ID")
     private Room room;
     
@@ -80,12 +85,15 @@ public class Appointment{
      * @param patient
      * @param room
      * @param start 
+     * @param appointmentDetails 
+     * @param clinic 
      */
-    public Appointment(Doctor doctor, Patient patient, Room room, Date start, AppointmentDetails appointmentDetails) {
+    public Appointment(Doctor doctor, Patient patient, Room room, Date start, AppointmentDetails appointmentDetails, Clinic clinic) {
         this.doctor = doctor;
         this.patient = patient;
         this.room = room;
         this.start = start;
+        this.clinic = clinic;
         this.appointmentDetails = appointmentDetails;
     }
 
@@ -139,6 +147,22 @@ public class Appointment{
         hash = 97 * hash + (this.room != null ? this.room.hashCode() : 0);
         hash = 97 * hash + (this.start != null ? this.start.hashCode() : 0);
         return hash;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Clinic getClinic() {
+        return clinic;
+    }
+
+    /**
+     * 
+     * @param clinic 
+     */
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
     }
 
    /**
@@ -221,6 +245,13 @@ public class Appointment{
     public void setStart(Date start) {
         this.start = start;
     }
+
+    @Override
+    public String toString() {
+        return "Appointment{" + "id=" + id + ", doctor=" + doctor + ", patient=" + patient + ", clinic=" + clinic + ", room=" + room + ", start=" + start + ", appointmentDetails=" + appointmentDetails + '}';
+    }
+    
+    
     
    
 }

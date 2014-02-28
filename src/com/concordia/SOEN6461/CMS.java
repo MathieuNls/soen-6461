@@ -21,8 +21,7 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461;
 
-import com.concordia.SOEN6461.MVC.controller.LoginController;
-import com.concordia.SOEN6461.MVC.controller.WelcomeController;
+import com.concordia.SOEN6461.DAO.AppointmentDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
@@ -32,6 +31,7 @@ import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
+import com.concordia.SOEN6461.beans.human.Planning;
 import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
@@ -53,8 +53,8 @@ public class CMS {
         
         // Login is math / math.
         
-        
-        
+        //init();
+        System.out.println(new AppointmentDAOImpl().getAppointmentsByClinic(1).get(0).toString());
         
         
         //new WelcomeController().start();
@@ -73,10 +73,18 @@ public class CMS {
          
        final Doctor doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
        doctor.setId(1);
+       Planning pla = new Planning();
+       
+       session.save(pla);
+        doctor.setPlanning(pla);
         
         session.save(doctor);
         
          final Nurse nurse = new Nurse("math_nurse", "math_nurse", "math_nurse", "math_nurse", a);
+                 pla = new Planning();
+       
+       session.save(pla);
+        nurse.setPlanning(pla);
         
         session.save(nurse);
         
@@ -105,7 +113,7 @@ public class CMS {
       
         
         
-        Appointment app = new Appointment(doctor, p, room , new Date(2014, 3, 5, 10, 0, 0), AppointmentDetails.NORMAL);
+        Appointment app = new Appointment(doctor, p, room , new Date(2014, 3, 5, 10, 0, 0), AppointmentDetails.NORMAL, c);
         
         session.save(app);
         
