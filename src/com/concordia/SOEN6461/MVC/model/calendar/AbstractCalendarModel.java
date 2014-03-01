@@ -51,6 +51,10 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
         }
         return null;
     }
+    
+    public abstract void init(int clinic_id);
+    
+    
     /**
      *  Returns Object.class by default
      */

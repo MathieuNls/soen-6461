@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.model;
 
-import com.concordia.SOEN6461.DAO.EmployeeDAO;
 import com.concordia.SOEN6461.DAO.EmployeeDAOImpl;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 
@@ -30,10 +29,10 @@ import com.concordia.SOEN6461.beans.human.AEmployee;
  */
 public class LoginModel implements IModel{
     
-    EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+  
     
     public AEmployee login(String login, String password){
-        return employeeDAO.login(login, password);
+        return EmployeeDAOImpl.getInstance().login(login, password);
     }
     
 }

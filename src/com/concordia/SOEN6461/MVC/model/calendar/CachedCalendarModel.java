@@ -122,4 +122,9 @@ public class CachedCalendarModel extends AbstractCalendarModel
     {
         return itemList.indexOf(item);
     }
+
+    @Override
+    public void init(int clinic_id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

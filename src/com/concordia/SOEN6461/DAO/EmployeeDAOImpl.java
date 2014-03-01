@@ -22,6 +22,7 @@
 
 package com.concordia.SOEN6461.DAO;
 
+import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
@@ -30,11 +31,37 @@ import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * @author Mathieu Nayrolles
  */
 public class EmployeeDAOImpl implements EmployeeDAO{
+    
+     /**
+     * Singleton Design Pattern
+     */
+    private static EmployeeDAOImpl instance;
+    
+    /**
+     * private constructor. Singleton DP
+     */
+    private EmployeeDAOImpl(){}
+    
+    /**
+     * Synchronized getInstance method. 
+     * Multi thread proof singleton
+     * @return 
+     */
+    public static EmployeeDAOImpl getInstance(){
+        synchronized(AppointmentDAOImpl.class){
+            if (instance == null){
+                instance = new EmployeeDAOImpl();
+            }      
+        }
+        return instance;
+    }
 
     @Override
     public List<AEmployee> getAllEmployee() {
@@ -76,6 +103,31 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         session.close();
         return null;
     }
+    
+    @Override
+    public int countDoctorsByClinic(int clinic_id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from AEmployee where EMPLOYEE_TYPE = 'DOCTOR' and DOCTORS_CLINIC_ID = " + clinic_id;
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        int count = query.list().size();
+        session.close();
+        return count;
+    }
+    
+    public List<Doctor> freeDoctorFromAClinicAtaGivenTime(int clinic_id, long givenTime){
+        
+//         Session session = HibernateUtil.getSessionFactory().openSession();
+//       Integer count = new Integer(session.createCriteria(Clinic.class)
+//               .setProjection(Projections.count("rooms"))
+//               .add(Restrictions.eq("id", clinic_id))
+//       .list().get(0).toString());
+//                    
+//        session.close();
+//        return count;
+        
+        return null;
+    }
 
     @Override
     public AEmployee updateEmployee(AEmployee aEmployee) {
@@ -86,5 +138,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     public void deleteEmployee(AEmployee aEmployee) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 
 }

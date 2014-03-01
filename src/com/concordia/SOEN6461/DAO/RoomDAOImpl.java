@@ -22,75 +22,55 @@
 
 package com.concordia.SOEN6461.DAO;
 
-import com.concordia.SOEN6461.beans.human.AEmployee;
-import com.concordia.SOEN6461.beans.human.Doctor;
-import com.concordia.SOEN6461.beans.human.Nurse;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+
 
 /**
- * Interface for specifying the Employee data management
  * @author Mathieu Nayrolles
  */
-public interface EmployeeDAO extends DAO {
+public class RoomDAOImpl{
+    
+    /**
+     * Singleton Design Pattern
+     */
+    private static RoomDAOImpl instance;
+    
+    /**
+     * private constructor. Singleton DP
+     */
+    private RoomDAOImpl(){}
+    
+    /**
+     * Synchronized getInstance method. 
+     * Multi thread proof singleton
+     * @return RoomDAOImpl
+     */
+    public static RoomDAOImpl getInstance(){
+        synchronized(RoomDAOImpl.class){
+            if (instance == null){
+                instance = new RoomDAOImpl();
+            }      
+        }
+        return instance;
+    }
+    
+    public int countRoomBy(int clinic_id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+       Integer count = new Integer(session.createCriteria(Clinic.class)
+               .setProjection(Projections.count("rooms"))
+               .add(Restrictions.eq("id", clinic_id))
+       .list().get(0).toString());
+                    
+        session.close();
+        return count;
+        
+    }
+    
 
-    /**
-     * 
-     * @return list of all employee
-     */
-    public List<AEmployee> getAllEmployee();
-    
-    /**
-     * 
-     * @return getAllDoctor
-     */
-    public List<Doctor> getAllDoctor();
-    
-    /**
-     * 
-     * @return getAllNurses
-     */
-    public List<Nurse> getAllNurses();
-    
-    /**
-     * 
-     * @param id
-     * @return getDoctor
-     */
-    public Doctor getDoctor(int id);
-    
-    /**
-     * 
-     * @param id
-     * @return getNurse
-     */
-    public Nurse getNurse(int id);
-    
-    /**
-     * 
-     * @param login
-     * @param password
-     * @return AEmployee
-     */
-    public AEmployee login(String login, String password);
-    
-    /**
-     * 
-     * @param aEmployee
-     * @return updatedEmployee
-     */
-    public AEmployee updateEmployee(AEmployee aEmployee);
-    
-    /**
-     * 
-     * @param aEmployee 
-     */
-    public void deleteEmployee(AEmployee aEmployee);    
-    
-    /**
-     * 
-     * @param clinic_id
-     * @return 
-     */
-     public int countDoctorsByClinic(int clinic_id);
-    
 }

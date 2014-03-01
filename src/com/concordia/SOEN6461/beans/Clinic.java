@@ -34,6 +34,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -57,8 +58,13 @@ public class Clinic implements Serializable{
     @OneToMany(targetEntity=Room.class)
     private List<Room> rooms;
     
-    @OneToMany(targetEntity=AEmployee.class)
-    private List<AEmployee> employees;
+    @OneToMany(targetEntity=Doctor.class)
+    @JoinColumn(nullable=true)
+    private List<Doctor> doctors;
+    
+    @OneToMany(targetEntity=Nurse.class)
+    @JoinColumn(nullable=true)
+    private List<Nurse> nurses;
     
     @ManyToMany(targetEntity=Patient.class)
     private List<Patient> patients;
@@ -80,10 +86,12 @@ public class Clinic implements Serializable{
      * @param patients
      * @param paiementMethods 
      */
-    public Clinic(String name, List<Room> rooms,List<AEmployee> employees, List<Patient> patients, List<PaiementMethod> paiementMethods) {
+    public Clinic(String name, List<Room> rooms, List<Doctor> doctors, List<Nurse> nurses,
+            List<Patient> patients, List<PaiementMethod> paiementMethods) {
         this.name = name;
         this.rooms = rooms;
-        this.employees = employees;
+        this.doctors = doctors;
+        this.nurses = nurses;        
         this.patients = patients;
         this.paiementMethods = paiementMethods;
     }
@@ -109,19 +117,35 @@ public class Clinic implements Serializable{
      * 
      * @return 
      */
-    public List<AEmployee> getEmployees() {
-        return employees;
+    public List<Doctor> getDoctors() {
+        return doctors;
     }
 
     /**
      * 
-     * @param employees 
+     * @param doctors 
      */
-    public void setEmployees(List<AEmployee> employees) {
-        this.employees = employees;
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public List<Nurse> getNurses() {
+        return nurses;
+    }
+
+    /**
+     * 
+     * @param nurses 
+     */
+    public void setNurses(List<Nurse> nurses) {
+        this.nurses = nurses;
     }
     
-   
+    
 
     /**
      * 

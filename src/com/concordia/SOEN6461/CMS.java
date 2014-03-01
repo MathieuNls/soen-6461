@@ -21,12 +21,11 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461;
 
-import com.concordia.SOEN6461.DAO.AppointmentDAOImpl;
+import com.concordia.SOEN6461.MVC.controller.CalendarController;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
@@ -54,8 +53,9 @@ public class CMS {
         // Login is math / math.
         
         //init();
-        System.out.println(new AppointmentDAOImpl().getAppointmentsByClinic(1).get(0).toString());
+       // System.out.println(new AppointmentDAOImpl().getAppointmentsByClinic(1).get(0).toString());
         
+       new CalendarController(1).start();
         
         //new WelcomeController().start();
         //new LoginController().start();
@@ -103,17 +103,14 @@ public class CMS {
         
         Clinic c = new Clinic("HFClinic", 
                 new ArrayList<Room>(){{add(room);}}, 
-                new ArrayList<AEmployee>(){{add(doctor);add(nurse);}}, 
+                new ArrayList<Doctor>(){{add(doctor);}}, 
+                new ArrayList<Nurse>(){{add(nurse);}}, 
                 new ArrayList<Patient>(){{add(p);}}, 
                 new ArrayList<PaiementMethod>(){{add(paiementMethod);}});
        
-
-     
         session.save(c);
-      
-        
-        
-        Appointment app = new Appointment(doctor, p, room , new Date(2014, 3, 5, 10, 0, 0), AppointmentDetails.NORMAL, c);
+
+        Appointment app = new Appointment(doctor, p, room , 1952760000, AppointmentDetails.NORMAL, c);
         
         session.save(app);
         

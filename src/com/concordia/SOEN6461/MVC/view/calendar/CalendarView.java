@@ -35,42 +35,52 @@ public class CalendarView extends AbstractView
     public CalendarView()
     {
         super();
+       
+        
     }
     /**
      * For Stand-alone.
      */
-    public static void main(String[] args)
-    {
-        JFrame frame;
-        CalendarView applet = new CalendarView();
-        try {
-            frame = new JFrame("Calendar");
-        } catch (java.lang.Throwable ivjExc) {
-            frame = null;
-            System.out.println(ivjExc.getMessage());
-            ivjExc.printStackTrace();
-        }
-        frame.getContentPane().add(BorderLayout.CENTER, applet);
-        Dimension size = applet.getSize();
-        if ((size == null) || ((size.getHeight() < 100) | (size.getWidth() < 100)))
-            size = new Dimension(640, 400);
-        frame.setSize(size);
-
-        applet.init(); 
-        frame.setTitle("Sample calendar application");
-
-        frame.setVisible(true);
-    }
+//    public static void main(String[] args)
+//    {
+//        JFrame frame;
+//        CalendarView applet = new CalendarView();
+//        try {
+//            frame = new JFrame("Calendar");
+//        } catch (java.lang.Throwable ivjExc) {
+//            frame = null;
+//            System.out.println(ivjExc.getMessage());
+//            ivjExc.printStackTrace();
+//        }
+//        frame.getContentPane().add(BorderLayout.CENTER, applet);
+//        Dimension size = applet.getSize();
+//        if ((size == null) || ((size.getHeight() < 100) | (size.getWidth() < 100)))
+//            size = new Dimension(640, 400);
+//        frame.setSize(size);
+//
+//        applet.init(); 
+//        frame.setTitle("Sample calendar application");
+//
+//        frame.setVisible(true);
+//    }
     /**
      * Initialize this applet.
      */
     public void init()
     {
+//        JFrame frame = new JFrame("Calendar");
+//        this.getContentPane().add(BorderLayout.CENTER, frame);
+        Dimension size = this.getSize();
+        if ((size == null) || ((size.getHeight() < 100) | (size.getWidth() < 100)))
+            size = new Dimension(640, 400);
+        this.setSize(size);
+        
         this.getContentPane().setLayout(new BorderLayout());
         JPanel panel = new JPanel();
         this.getContentPane().add(panel);
         this.addSubPanels(panel);
     }
+    
     /**
      * Add any applet sub-panel(s) now.
      */
@@ -84,9 +94,9 @@ public class CalendarView extends AbstractView
         scroller.setAlignmentX(LEFT_ALIGNMENT);
         scroller.setAlignmentY(TOP_ALIGNMENT);
 
-        CalendarModel model = this.setupTestModel();
+      //  CalendarModel model = this.setupTestModel();
 
-        CalendarPanel panel = new CalendarPanel(model, true, null);
+        CalendarPanel panel = new CalendarPanel(_calenderModel, true, null);
         panel.setAlignmentY(TOP_ALIGNMENT);
         
         scroller.setViewportView(panel);
@@ -105,60 +115,60 @@ public class CalendarView extends AbstractView
         bottom.add(left);
         left.setAlignmentX(LEFT_ALIGNMENT);        
         left.setBorder(new LineBorder(Color.BLACK));
-        model.addMySelectionListener(left);
-        model.addTableModelListener(left);
+        _calenderModel.addMySelectionListener(left);
+        _calenderModel.addTableModelListener(left);
         
         JScrollPane middle = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-        JTable table = new CalendarTable(model, null, null);
+        JTable table = new CalendarTable(_calenderModel, null, null);
         middle.getViewport().add(table);
         bottom.add(middle);
         middle.setAlignmentX(0);
         middle.setBorder(new LineBorder(Color.BLACK));
         
-        CalendarPanel right = new CalendarPanel(model, false, null);
+        CalendarPanel right = new CalendarPanel(_calenderModel, false, null);
         bottom.add(right);
         right.setAlignmentX(RIGHT_ALIGNMENT);        
         right.setBorder(new LineBorder(Color.BLACK));
         return true;
     }
-
-    public CalendarModel setupTestModel()
-    {
-        CalendarVector model = new CalendarVector(null);
-
-        Calendar calendar = Calendar.getInstance();
-        Date lStartTime;
-        Date lEndTime;
-        
-        
-       
-        lStartTime = calendar.getTime();
-        calendar.add(Calendar.DATE, 3);
-        lEndTime = calendar.getTime();
-
-        int colorHotel = 0x00c0ffff;
-        int colorSelectHotel = 0x00e0ffff;
-        int colorLand = 0x00c0c0ff;
-        int colorSelectLand = 0x00e0e0ff;
-        int colorAir = 0x00ffc0c0;
-        int colorSelectAir = 0x00ffe0e0;
-
-        lStartTime = calendar.getTime();
-        calendar.add(Calendar.HOUR, 24);
-        lEndTime = calendar.getTime();
-        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 8:30-9:00", 
-                null, null, null, colorHotel, colorSelectHotel, 1));
-        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 9-9:30", 
-                null, null, null, colorHotel, colorSelectHotel, 1));
-        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 10-10:30", 
-                null, null, null, colorHotel, colorSelectHotel, 1));
-        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Not Available", 
-               null, null, null, colorAir, colorSelectAir, 1));
-         model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Not Available", 
-                null, null, null, colorAir, colorSelectAir, 1));
-
-        return model;
-    }
+//
+//    public CalendarModel setupTestModel()
+//    {
+//        CalendarVector model = new CalendarVector(null);
+//
+//        Calendar calendar = Calendar.getInstance();
+//        Date lStartTime;
+//        Date lEndTime;
+//        
+//        
+//       
+//        lStartTime = calendar.getTime();
+//        calendar.add(Calendar.DATE, 3);
+//        lEndTime = calendar.getTime();
+//
+//        int colorHotel = 0x00c0ffff;
+//        int colorSelectHotel = 0x00e0ffff;
+//        int colorLand = 0x00c0c0ff;
+//        int colorSelectLand = 0x00e0e0ff;
+//        int colorAir = 0x00ffc0c0;
+//        int colorSelectAir = 0x00ffe0e0;
+//
+//        lStartTime = calendar.getTime();
+//        calendar.add(Calendar.HOUR, 24);
+//        lEndTime = calendar.getTime();
+//        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 8:30-9:00", 
+//                null, null, null, colorHotel, colorSelectHotel, 1));
+//        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 9-9:30", 
+//                null, null, null, colorHotel, colorSelectHotel, 1));
+//        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Available 10-10:30", 
+//                null, null, null, colorHotel, colorSelectHotel, 1));
+//        model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Not Available", 
+//               null, null, null, colorAir, colorSelectAir, 1));
+//         model.addElement(new CalendarProduct(model, lStartTime, lEndTime, "Not Available", 
+//                null, null, null, colorAir, colorSelectAir, 1));
+//
+//        return model;
+//    }
 
     
     
@@ -173,6 +183,7 @@ public class CalendarView extends AbstractView
 
     @Override
     public void setVisible() {
+        init();
         this.setVisible(true);
     }
 

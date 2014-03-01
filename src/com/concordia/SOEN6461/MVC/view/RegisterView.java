@@ -203,6 +203,7 @@ public class RegisterView extends AbstractView{
             add(phoneNumber.getText());
         }};
         
+        
         if(male.isSelected()){
             userInput.add("male");
         }else{

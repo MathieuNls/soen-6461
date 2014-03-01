@@ -9,7 +9,7 @@
     <property name="connection.pool_size">1</property>
     <property name="hibernate.dialect"> org.hibernate.dialect.HSQLDialect</property>
     <property name="show_sql">true</property>
-   <!-- <property name="hbm2ddl.auto">create</property>-->
+   <!-- <property name="hbm2ddl.auto">create</property> -->
     <mapping class="com.concordia.SOEN6461.beans.Room"/>
     <mapping class="com.concordia.SOEN6461.beans.Clinic"/>
     <mapping class="com.concordia.SOEN6461.beans.appointment.Appointment"/>

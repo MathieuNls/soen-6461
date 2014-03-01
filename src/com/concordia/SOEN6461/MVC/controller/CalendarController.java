@@ -22,7 +22,6 @@
 package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.calendar.AbstractCalendarModel;
-import com.concordia.SOEN6461.MVC.model.calendar.CachedCalendarModel;
 import com.concordia.SOEN6461.MVC.view.calendar.CalendarVector;
 import com.concordia.SOEN6461.MVC.view.calendar.CalendarView;
 import java.awt.event.ActionEvent;
@@ -42,6 +41,16 @@ public class CalendarController implements IController{
      * Reference to the view
      */
     protected CalendarView view = new CalendarView();
+    
+    /**
+     * reference the clinic
+     */
+    protected int clinic_id;
+    
+    public CalendarController(int clinic_id){
+        this.clinic_id = clinic_id;
+        model.init(clinic_id);
+    }
 
     /**
      * Initialize the controller. Bind view & model, show the view

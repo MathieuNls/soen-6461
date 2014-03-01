@@ -34,10 +34,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 /**
  * Defines an Appointment
@@ -69,12 +67,12 @@ public class Appointment{
     private Room room;
     
     @Column(name="START_DATE")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date start;
+    private long start;
     
     @Column(name="TYPE") 
     @Enumerated(EnumType.ORDINAL) 
     private AppointmentDetails appointmentDetails;
+    
 
     public Appointment() {
     }
@@ -88,7 +86,7 @@ public class Appointment{
      * @param appointmentDetails 
      * @param clinic 
      */
-    public Appointment(Doctor doctor, Patient patient, Room room, Date start, AppointmentDetails appointmentDetails, Clinic clinic) {
+    public Appointment(Doctor doctor, Patient patient, Room room, long start, AppointmentDetails appointmentDetails, Clinic clinic) {
         this.doctor = doctor;
         this.patient = patient;
         this.room = room;
@@ -133,9 +131,7 @@ public class Appointment{
         if (this.room != other.room && (this.room == null || !this.room.equals(other.room))) {
             return false;
         }
-        if (this.start != other.start && (this.start == null || !this.start.equals(other.start))) {
-            return false;
-        }
+        
         return true;
     }
 
@@ -145,7 +141,6 @@ public class Appointment{
         hash = 97 * hash + (this.doctor != null ? this.doctor.hashCode() : 0);
         hash = 97 * hash + (this.patient != null ? this.patient.hashCode() : 0);
         hash = 97 * hash + (this.room != null ? this.room.hashCode() : 0);
-        hash = 97 * hash + (this.start != null ? this.start.hashCode() : 0);
         return hash;
     }
 
@@ -234,7 +229,7 @@ public class Appointment{
      * 
      * @return 
      */
-    public Date getStart() {
+    public long getStart() {
         return start;
     }
 
@@ -242,7 +237,7 @@ public class Appointment{
      * 
      * @param start 
      */
-    public void setStart(Date start) {
+    public void setStart(long start) {
         this.start = start;
     }
 
