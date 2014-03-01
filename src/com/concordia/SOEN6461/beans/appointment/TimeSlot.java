@@ -22,8 +22,6 @@
 
 package com.concordia.SOEN6461.beans.appointment;
 
-import com.concordia.SOEN6461.beans.Room;
-import com.concordia.SOEN6461.beans.human.Doctor;
 import java.util.List;
 
 /**
@@ -38,9 +36,9 @@ public class TimeSlot {
     
     private long time;
     
-    private List<Doctor> availableDoctors;
+    private List<Integer> availableDoctors;
     
-    private List<Room> availableRooms;
+    private List<Integer> availableRooms;
     
     
     /**
@@ -50,7 +48,7 @@ public class TimeSlot {
      * @param availableDoctors
      * @param availableRooms 
      */
-    public TimeSlot(boolean free, long time, List<Doctor> availableDoctors, List<Room> availableRooms) {
+    public TimeSlot(boolean free, long time, List<Integer> availableDoctors, List<Integer> availableRooms) {
         this.free = free;
         this.time = time;
         this.availableDoctors = availableDoctors;
@@ -93,7 +91,7 @@ public class TimeSlot {
      * 
      * @return Doctors
      */
-    public List<Doctor> getAvailableDoctors() {
+    public List<Integer> getAvailableDoctors() {
         return availableDoctors;
     }
 
@@ -101,7 +99,7 @@ public class TimeSlot {
      * 
      * @param availableDoctors 
      */
-    public void setAvailableDoctors(List<Doctor> availableDoctors) {
+    public void setAvailableDoctors(List<Integer> availableDoctors) {
         this.availableDoctors = availableDoctors;
     }
 
@@ -109,7 +107,7 @@ public class TimeSlot {
      * 
      * @return availableRooms
      */
-    public List<Room> getAvailableRooms() {
+    public List<Integer> getAvailableRooms() {
         return availableRooms;
     }
 
@@ -117,7 +115,7 @@ public class TimeSlot {
      * 
      * @param availableRooms 
      */
-    public void setAvailableRooms(List<Room> availableRooms) {
+    public void setAvailableRooms(List<Integer> availableRooms) {
         this.availableRooms = availableRooms;
     }
 

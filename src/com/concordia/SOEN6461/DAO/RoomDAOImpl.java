@@ -23,7 +23,10 @@
 package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.Room;
+import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.database.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -70,6 +73,30 @@ public class RoomDAOImpl{
         session.close();
         return count;
         
+    }
+    
+      public List<Room> freeRoomAtaGivenTime(int clinic_id, long givenTime){
+        
+         Session session = HibernateUtil.getSessionFactory().openSession();
+               
+        String query = "SELECT r_.ROOM_ID FROM ROOM r_ , CLINIC_ROOM cr_ WHERE " 
+                + "cr_.CLINIC_CLINIC_ID = " + clinic_id + " AND cr_.ROOMS_ROOM_ID = r_.ROOM_ID AND r_.ROOM_ID"
+                + " NOT IN (SELECT app.ROOM_ID FROM APPOINTMENT app WHERE START_DATE = "+givenTime
+                + " and app.CLINIC_ID = " + clinic_id + ")";
+        
+        List<Integer> rooms = session.createSQLQuery(query).list();
+        
+         List<Room> availableRoom = new ArrayList<Room>();
+        
+        for(Integer room : rooms){
+             String SQL_QUERY = " from Room where ROOM_ID =" + room;
+             Query query_sql = session.createQuery(SQL_QUERY);
+             availableRoom.add((Room)query_sql.list().get(0));
+        }
+        
+        session.close();
+        
+        return availableRoom;
     }
     
 

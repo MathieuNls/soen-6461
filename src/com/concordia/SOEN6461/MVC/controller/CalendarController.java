@@ -24,6 +24,8 @@ package com.concordia.SOEN6461.MVC.controller;
 import com.concordia.SOEN6461.MVC.model.calendar.AbstractCalendarModel;
 import com.concordia.SOEN6461.MVC.view.calendar.CalendarVector;
 import com.concordia.SOEN6461.MVC.view.calendar.CalendarView;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -45,11 +47,9 @@ public class CalendarController implements IController{
     /**
      * reference the clinic
      */
-    protected int clinic_id;
     
-    public CalendarController(int clinic_id){
-        this.clinic_id = clinic_id;
-        model.init(clinic_id);
+    public CalendarController(Clinic clinic, Patient patient){
+        model.init(clinic, patient);
     }
 
     /**

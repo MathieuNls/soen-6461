@@ -73,6 +73,14 @@ public class Patient implements Serializable{
     }
 
     /**
+     * Id based contruction
+     * @param sin 
+     */
+    public Patient(int sin){
+        this.sin = sin;
+    }
+    
+    /**
      * Default Constructor
      * @param birthdate
      * @param sin
@@ -237,6 +245,10 @@ public class Patient implements Serializable{
      @Override
     public String toString() {
         return "Patient{" + "date=" + birthdate + ", sin=" + sin + '}';
+    }
+    
+    public String toStringName(){
+        return this.givenName + " " + this.familyName;
     }
    
 

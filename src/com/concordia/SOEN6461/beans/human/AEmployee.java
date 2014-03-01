@@ -235,5 +235,12 @@ public abstract class AEmployee{
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "AEmployee{" + "familyName=" + familyName + ", givenName=" + givenName + ", adresse=" + adresse + ", login=" + login + ", password=" + password + ", planning=" + planning + ", id=" + id + '}';
+    }
+    
+    
     
 }

@@ -25,7 +25,7 @@ import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
-import java.util.Date;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -43,7 +43,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="APPOINTMENT")
-public class Appointment{
+public class Appointment implements Serializable{
     
     @Id
     @GeneratedValue
@@ -51,19 +51,19 @@ public class Appointment{
     private int id;
     
     @ManyToOne
-    @JoinColumn(name = "EMPLOYEE_ID")
+    @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
     private Doctor doctor;
     
     @OneToOne
-    @JoinColumn(name="PATIENT_ID")
+    @JoinColumn(name="PATIENT_ID", insertable = true)
     private Patient patient;
     
     @OneToOne
-    @JoinColumn(name="CLINIC_ID")
+    @JoinColumn(name="CLINIC_ID", insertable = true)
     private Clinic clinic;
     
     @OneToOne
-    @JoinColumn(name="ROOM_ID")
+    @JoinColumn(name="ROOM_ID", insertable = true)
     private Room room;
     
     @Column(name="START_DATE")

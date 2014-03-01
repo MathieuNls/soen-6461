@@ -21,7 +21,7 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans;
 
-import com.concordia.SOEN6461.beans.human.AEmployee;
+import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
@@ -32,6 +32,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -55,18 +56,18 @@ public class Clinic implements Serializable{
     @Column(name="name")
     private String name;
     
-    @OneToMany(targetEntity=Room.class)
+    @OneToMany(targetEntity=Room.class, fetch = FetchType.LAZY)
     private List<Room> rooms;
     
-    @OneToMany(targetEntity=Doctor.class)
+    @OneToMany(targetEntity=Doctor.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable=true)
     private List<Doctor> doctors;
     
-    @OneToMany(targetEntity=Nurse.class)
+    @OneToMany(targetEntity=Nurse.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable=true)
     private List<Nurse> nurses;
     
-    @ManyToMany(targetEntity=Patient.class)
+    @ManyToMany(targetEntity=Patient.class, fetch = FetchType.LAZY)
     private List<Patient> patients;
     
     @OneToMany(targetEntity=PaiementMethod.class)
@@ -74,6 +75,14 @@ public class Clinic implements Serializable{
     private List<PaiementMethod> paiementMethods;
 
     public Clinic() {
+    }
+    
+    /**
+     * Only id constructor
+     * @param id 
+     */
+    public Clinic(int id){
+        this.id = id;
     }
 
     /**
@@ -209,5 +218,6 @@ public class Clinic implements Serializable{
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+   
     
 }

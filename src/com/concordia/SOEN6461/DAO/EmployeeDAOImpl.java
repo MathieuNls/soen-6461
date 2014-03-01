@@ -23,10 +23,12 @@
 package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.database.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
@@ -117,16 +119,24 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     
     public List<Doctor> freeDoctorFromAClinicAtaGivenTime(int clinic_id, long givenTime){
         
-//         Session session = HibernateUtil.getSessionFactory().openSession();
-//       Integer count = new Integer(session.createCriteria(Clinic.class)
-//               .setProjection(Projections.count("rooms"))
-//               .add(Restrictions.eq("id", clinic_id))
-//       .list().get(0).toString());
-//                    
-//        session.close();
-//        return count;
+         Session session = HibernateUtil.getSessionFactory().openSession();
+               
+        String query = "SELECT emp.EMPLOYEE_ID FROM Employee emp where EMPLOYEE_TYPE = 'DOCTOR' and DOCTORS_CLINIC_ID = " + clinic_id 
+                + " and emp.EMPLOYEE_ID NOT IN (SELECT app.EMPLOYEE_ID FROM APPOINTMENT app WHERE START_DATE = "+givenTime
+                + " and app.CLINIC_ID = " + clinic_id + ")";
         
-        return null;
+        List<Integer> docs = session.createSQLQuery(query).list();
+        List<Doctor> availableDoctor = new ArrayList<Doctor>();
+        
+        for(Integer doc : docs){
+             String SQL_QUERY = " from AEmployee where EMPLOYEE_ID =" + doc;
+             Query query_sql = session.createQuery(SQL_QUERY);
+             availableDoctor.add((Doctor)query_sql.list().get(0));
+        }
+
+        session.close();
+        
+        return availableDoctor;
     }
 
     @Override

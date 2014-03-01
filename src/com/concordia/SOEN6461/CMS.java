@@ -22,6 +22,7 @@
 package com.concordia.SOEN6461;
 
 import com.concordia.SOEN6461.MVC.controller.CalendarController;
+import com.concordia.SOEN6461.MVC.controller.WelcomeController;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
@@ -52,13 +53,7 @@ public class CMS {
         
         // Login is math / math.
         
-        //init();
-       // System.out.println(new AppointmentDAOImpl().getAppointmentsByClinic(1).get(0).toString());
-        
-       new CalendarController(1).start();
-        
-        //new WelcomeController().start();
-        //new LoginController().start();
+        new WelcomeController().start();
         
     }
     

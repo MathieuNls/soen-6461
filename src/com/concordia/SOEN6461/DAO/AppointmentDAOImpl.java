@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -76,6 +77,31 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         return list;
         
     }
+    
+    public void persistAppointment(Appointment appointment){
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        System.out.println(appointment.toString());
+        session.save(appointment);
+        session.close();
+        tx.setTimeout(5);        
+    	tx.commit();
+    }
+    
+    public List<Appointment> getAppointmentsByClinicAtATime(int clinic_id, long from) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from Appointment a where a.clinic = " + clinic_id + " and a.start = '" + from;
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        List<Appointment> list = query.list();
+        
+        session.close();
+        return list;
+        
+    }
+    
     
     @Override
     public List<TimeSlot> getFreeAppointmentsByClinic(int clinic_id) {
@@ -127,7 +153,7 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         // Creates a new Calendar extended from <code>periodOfDays</code>
         Calendar calendarEnd = Calendar.getInstance();
         calendarEnd.setTime(calendar.getTime());
-        calendarEnd.add(Calendar.MINUTE, 60*periodOfDays);
+        calendarEnd.add(Calendar.MINUTE, 60*24*periodOfDays);
         
         List<TimeSlot> timeSlots = new ArrayList<TimeSlot>();
         
@@ -136,10 +162,11 @@ public class AppointmentDAOImpl implements AppointmentDAO{
 
             if(fullSpot.contains(calendar.getTimeInMillis())){ // FULL
                 timeSlots.add(new TimeSlot(false, calendar.getTimeInMillis(), null, null));
-                 System.out.println(calendar.getTimeInMillis() + " FULL");
             }else{
-                timeSlots.add(new TimeSlot(false, calendar.getTimeInMillis(), null, null));
-                System.out.println(calendar.getTimeInMillis() + " OK");
+                timeSlots.add(new TimeSlot(true, 
+                        calendar.getTimeInMillis(), 
+                       null, 
+                        null));
             }
             calendar.add(Calendar.MINUTE, lenghtAppointment);
         }

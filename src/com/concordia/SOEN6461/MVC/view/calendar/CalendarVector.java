@@ -15,7 +15,10 @@ import com.concordia.SOEN6461.util.calandar.CalendarPanel;
 import com.concordia.SOEN6461.MVC.model.calendar.AbstractCalendarModel;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarItem;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarModel;
+import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
+import com.concordia.SOEN6461.beans.appointment.TimeSlot;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -45,6 +48,10 @@ public class CalendarVector extends AbstractCalendarModel
         }
     }};
     
+    private Clinic clinic;
+    private Patient patient;
+    
+    
 
     /**
      * List of CalendarItems.
@@ -60,8 +67,12 @@ public class CalendarVector extends AbstractCalendarModel
         super();
     }
     
-    public void init(int clinic_id){
-       AppointmentDAOImpl.getInstance().getFreeAppointmentsByClinic(clinic_id);
+    public void init(Clinic clinic, Patient p){
+        
+        this.clinic = clinic;
+        this.patient = p;
+        
+       List<TimeSlot> slots = AppointmentDAOImpl.getInstance().getFreeAppointmentsByClinic(clinic.getId());
         
         Calendar calendar = Calendar.getInstance();
         Date lStartTime;
@@ -72,37 +83,34 @@ public class CalendarVector extends AbstractCalendarModel
         
         int colorAir = 0x00ffc0c0;
         int colorSelectAir = 0x00ffe0e0;
-        calendar.set(2013, 02, 28, 0, 0);
+        calendar.set(2014, 02, 27, 0, 0);
         lStartTime = calendar.getTime();
         calendar.add(Calendar.HOUR, 24);
         lEndTime = calendar.getTime();
         
       //  Date currentDate = appointments.get(0).getStart();
         
-        //Assuming no appointments
-        for(String time : times){
-             this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
-                    time,  null, null, null, colorHotel,  colorSelectHotel, 1));
-        } 
+        int possibleSlots = times.size();
+        int currentSlot = 0;
+        
+        for(TimeSlot slot : slots){
+            if(slot.isFree()){
+                 this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+                    times.get(currentSlot++),  null, null, null, colorHotel,  colorSelectHotel, 1));
+            }else{
+                this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+                    times.get(currentSlot++),  null, null, null, colorAir,  colorSelectAir, 1));
+            }
+            
+            if(currentSlot == possibleSlots){
+                calendar.add(Calendar.MINUTE, 2);
+                lStartTime = calendar.getTime();
+                calendar.add(Calendar.HOUR, 24);
+                lEndTime = calendar.getTime();
+                currentSlot= 0;
+            }
+        }
        
-        
-        
-//        for(Appointment appointment : appointments){
-//            // Change date;
-//            if((appointment.getStart().getTime() - currentDate.getTime()) / (24 * 60 * 60 * 1000) >= 1){
-//                 calendar.add(Calendar.HOUR, 24);
-//                 lStartTime = calendar.getTime();
-//                 calendar.add(Calendar.HOUR, 24);
-//                 lEndTime = calendar.getTime();
-//            }
-//             this.addElement(new CalendarProduct(this, lStartTime, 
-//                     lEndTime, 
-//                    label, 
-//                null, null, null, 
-//                     colorAir, 
-//                     colorSelectAir, 1));
-//            
-//        }
     }
     
     /**
@@ -168,4 +176,22 @@ public class CalendarVector extends AbstractCalendarModel
     {
         return m_vItemList.indexOf(item);
     }
+
+    public Clinic getClinic() {
+        return clinic;
+    }
+
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+    
+    
 }

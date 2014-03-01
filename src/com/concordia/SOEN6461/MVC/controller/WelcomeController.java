@@ -23,6 +23,8 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.WelcomeModel;
 import com.concordia.SOEN6461.MVC.view.WelcomeView;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -77,8 +79,11 @@ public class WelcomeController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) {
             List<String> userInputs = view.userInputs();
-            if(model.login(userInputs.get(0), userInputs.get(1)) != null){
+            Patient patient = model.login(userInputs.get(0), userInputs.get(1));
+            if(patient != null){
                 view.showMessage("Loggin Sucess");
+                view.setVisible(false);
+                new ChoicesController(patient, model.getClinic()).start();
             }else{
                 view.showMessage("Loggin Fail");
             }

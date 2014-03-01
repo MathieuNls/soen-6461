@@ -3,6 +3,7 @@
  */
 package com.concordia.SOEN6461.MVC.controller.calendar;
 
+import com.concordia.SOEN6461.MVC.controller.PopupDocController;
 import com.concordia.SOEN6461.MVC.view.calendar.JUnderlinedLabel;
 import com.concordia.SOEN6461.util.calandar.CalendarCache;
 import java.awt.Component;
@@ -12,7 +13,10 @@ import java.awt.event.MouseEvent;
 
 import com.concordia.SOEN6461.util.calandar.CalendarPanel;
 import com.concordia.SOEN6461.util.calendarpanel.dragNdrop.CalendarDnDMouseListener;
-import com.concordia.SOEN6461.MVC.view.calendar.PopupDoc;
+import com.concordia.SOEN6461.MVC.view.calendar.PopupDocView;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
+import com.concordia.SOEN6461.beans.human.Patient;
 
 
 /**
@@ -88,15 +92,19 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         		if (this.getCalendarPanel() != null)
         			this.getCalendarPanel().setStatusText(null); // Clear the status display
     }
+    
     /**
      * User clicked the mouse - Don't know it they are dragging or want the display screen
      */
     public void mousePressed(MouseEvent e)
     {
         super.mousePressed(e);    // Save the point
-        new PopupDoc(m_cacheItem.getItem().getStartDate()).setVisible(true);
+        
+        new PopupDocController(m_cacheItem.getItem().getStartDate().getTime(), new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
+        //new PopupDocView().setVisible(true);
         System.out.println(m_cacheItem.getLine(null));
     }
+    
     /**
      * User clicked the mouse - Don't know if they are dragging or want the display screen
      */
@@ -118,6 +126,7 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         }
         super.mouseReleased(e);
     }
+    
     /**
      * 0.5 seconds passed, select the item.
      */
