@@ -45,7 +45,7 @@ public class CalendarVector extends AbstractCalendarModel
     /**
      * List of CalendarItems.
      */
-    protected Vector<CalendarItem> m_vItemList = new Vector<CalendarItem>();
+    public static Vector<CalendarItem> m_vItemList = new Vector<CalendarItem>();
     
     /**
      * Called to start the applet.  You never need to call this directly; it
@@ -73,6 +73,10 @@ public class CalendarVector extends AbstractCalendarModel
                 hours++;
             }
         }};
+    }
+    
+    public static void receiptModification(){
+        System.out.println("qzdqzd");
     }
     
     public void init(Clinic clinic, Patient p, AppointmentDetails appointmentDetails){
@@ -123,26 +127,10 @@ public class CalendarVector extends AbstractCalendarModel
             calendar.add(Calendar.HOUR, 24);
             lEndTime = new Date(calendar.getTimeInMillis() - 1000);
         }
-        
-//        for(TimeSlot slot : slots){
-//            if(slot.isFree()){
-//                 this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
-//                    times.get(currentSlot++),  null, null, null, colorHotel,  colorSelectHotel, 1));
-//            }else{
-//                this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
-//                    times.get(currentSlot++),  null, null, null, colorAir,  colorSelectAir, 1));
-//            }
-//            
-//            if(currentSlot == possibleSlots){
-//                calendar.add(Calendar.SECOND, 1);
-//                lStartTime = calendar.getTime();
-//                calendar.add(Calendar.HOUR, 24);
-//                lEndTime = calendar.getTime();
-//                currentSlot= 0;
-//            }
-//        }
        
     }
+    
+    
     
     /**
      * Get the row count.

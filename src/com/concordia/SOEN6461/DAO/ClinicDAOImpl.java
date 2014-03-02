@@ -31,7 +31,7 @@ import org.hibernate.Session;
 /**
  * @author Mathieu Nayrolles
  */
-public class ClinicDAOImpl{
+public class ClinicDAOImpl implements ClinicDAO{
     
     /**
      * Singleton Design Pattern
@@ -62,6 +62,7 @@ public class ClinicDAOImpl{
      * @param clinic_id
      * @return 
      */
+    @Override
     public Clinic getClinicById(int clinic_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " from Clinic where id  = " + clinic_id;

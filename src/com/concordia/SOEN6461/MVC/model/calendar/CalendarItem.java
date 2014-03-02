@@ -70,4 +70,6 @@ public interface CalendarItem
      * Set the status of this item.
      */
     public int setStatus(int iStatus);
+    
+    public void setColor(int color);
 }

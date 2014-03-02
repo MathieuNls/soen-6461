@@ -189,4 +189,9 @@ public class CalendarProduct extends Object
         m_iStatus = iStatus;
         return m_iStatus;
     }
+
+    @Override
+    public void setColor(int color) {
+       this.m_colorSelect = color;
+    }
 }

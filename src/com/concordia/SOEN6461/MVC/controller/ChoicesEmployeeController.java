@@ -23,7 +23,10 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.ChoicesEmployeeModel;
 import com.concordia.SOEN6461.MVC.view.ChoicesEmployeeView;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.AEmployee;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,7 +68,8 @@ public class ChoicesEmployeeController implements IController{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-           
+           view.setVisible(true);
+           new CalendarController(new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
         }
         
     }

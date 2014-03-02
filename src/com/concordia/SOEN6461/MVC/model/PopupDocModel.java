@@ -44,13 +44,15 @@ public class PopupDocModel {
     Patient patient;
     Long time;
     Clinic clinic;
+    int indexSelected; 
     int selectedDoctor = -1;
     int selectedRoom = -1;
     
-    public void init(Clinic clinic, long given_time, Patient patient, AppointmentDetails appointmentDetails){
+    public void init(Clinic clinic, long given_time, Patient patient, AppointmentDetails appointmentDetails, int indexSelected){
         this.time = given_time;
         this.clinic = clinic;
         this.patient = patient;
+        this.indexSelected = indexSelected;
         this.availableDoctor = 
                 EmployeeDAOImpl.getInstance().freeDoctorFromAClinicAtaGivenTime(clinic.getId(), given_time);
         this.availableRoom = 
@@ -128,6 +130,22 @@ public class PopupDocModel {
 
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
+    }
+
+    public AppointmentDetails getAppointmentDetails() {
+        return appointmentDetails;
+    }
+
+    public void setAppointmentDetails(AppointmentDetails appointmentDetails) {
+        this.appointmentDetails = appointmentDetails;
+    }
+
+    public int getIndexSelected() {
+        return indexSelected;
+    }
+
+    public void setIndexSelected(int indexSelected) {
+        this.indexSelected = indexSelected;
     }
     
     

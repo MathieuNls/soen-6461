@@ -27,6 +27,7 @@ import com.concordia.SOEN6461.MVC.view.calendar.CalendarView;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
+import com.concordia.SOEN6461.messaging.Client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -58,8 +59,11 @@ public class CalendarController implements IController{
      */
     @Override
     public void start(){
+        
         this.view.setModel(model);
-        //this.view.addLoginListener(new SomeListener());
+        
+        new Client().start();
+ 
         this.view.run();
     }
     

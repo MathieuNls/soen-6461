@@ -188,44 +188,6 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         
-//        // Creates a new Calendar extended from <code>periodOfDays</code>   
-//        Calendar calendarEnd = Calendar.getInstance();      
-//        calendarEnd.setTime(calendar.getTime());
-//        calendarEnd.set(Calendar.HOUR, 0);
-//        calendarEnd.set(Calendar.AM_PM, Calendar.PM);
-//        calendarEnd.set(Calendar.MINUTE, 0);
-//        calendarEnd.set(Calendar.SECOND, 0);
-//        calendarEnd.set(Calendar.MILLISECOND, 0);
-//        calendarEnd.add(Calendar.MINUTE, 60*24*periodOfDays);
-//        
-//        List<TimeSlot> timeSlots = new ArrayList<TimeSlot>();
-//        
-//        // While we do not exceed a <code>periodOfDays</code>
-//        System.out.println(fullSpot);
-//        
-//        int generatedSlots = 0;
-//        
-//        while(calendar.compareTo(calendarEnd) < 0){
-//            
-//            Long time = calendar.getTimeInMillis();
-//            
-//            if(fullSpot.contains(time)){ // FULL
-//                System.out.println(time + "FULL");
-//                timeSlots.add(new TimeSlot(false, time, null, null));
-//            }else{
-//                timeSlots.add(new TimeSlot(true, time,  null,  null));
-//            }
-//            
-//            generatedSlots++;
-//            if(generatedSlots == (10*60)/lenghtAppointment){
-//                calendar.add(Calendar.HOUR, 24);
-//                calendar.set(Calendar.HOUR, 9);
-//                calendarEnd.set(Calendar.AM_PM, Calendar.AM);
-//                generatedSlots = 0;
-//            }else{
-//                 calendar.add(Calendar.MINUTE, lenghtAppointment);
-//            }
-//        }
         
         session.close();
         return fullSpot;

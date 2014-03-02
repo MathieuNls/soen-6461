@@ -22,12 +22,17 @@
 package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.PopupDocModel;
+import com.concordia.SOEN6461.MVC.model.calendar.CalendarVector;
 import com.concordia.SOEN6461.MVC.view.calendar.PopupDocView;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
+import com.concordia.SOEN6461.messaging.Server;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -46,9 +51,9 @@ public class PopupDocController implements IController{
     protected PopupDocView view = new PopupDocView();
     
     
-    public PopupDocController(long gievnTime, Clinic clinic, Patient patient, AppointmentDetails appointmentDetails){
-        this.model.init(clinic, gievnTime, patient, appointmentDetails);
-        System.out.println(gievnTime);
+    public PopupDocController(long gievnTime, Clinic clinic, Patient patient, AppointmentDetails appointmentDetails, int index){
+        this.model.init(clinic, gievnTime, patient, appointmentDetails, index);
+        System.out.println(gievnTime);   
     }
 
     /**
@@ -72,8 +77,21 @@ public class PopupDocController implements IController{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
             view.showMessage(model.persistAppointment());
-            view.setVisible(false);
+//            CalendarVector.m_vItemList.get(model.getIndexSelected()).setColor(0x00ffe0e0);
+//             
+            try {
+                
+                new Server(model.getIndexSelected()).start();
+               
+                
+            } catch (IOException ex) {
+                Logger.getLogger(PopupDocController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+             view.setVisible(false);
+            
             new ChoicesController(model.getPatient(), model.getClinic()).start();
         }
         

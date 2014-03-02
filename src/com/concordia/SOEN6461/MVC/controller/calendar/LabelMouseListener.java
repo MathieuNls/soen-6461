@@ -16,7 +16,6 @@ import com.concordia.SOEN6461.util.calandar.CalendarPanel;
 import com.concordia.SOEN6461.util.calendarpanel.dragNdrop.CalendarDnDMouseListener;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.human.Patient;
 import java.util.Calendar;
 
 
@@ -75,7 +74,6 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         		if (this.getCalendarPanel() != null)
                         {
         			this.getCalendarPanel().setStatusText(m_component.getTooltip()); // Change the status display
-                                System.out.println("zqd");
                         }
         
     }
@@ -113,8 +111,10 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         calendar.add(Calendar.MINUTE, 20 * m_cacheItem.getLine(null));
         calendar.add(Calendar.MINUTE, -20);      
         
-        System.out.println(calendar.getTimeInMillis());
-        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), CalendarVector.getPatient(), AppointmentDetails.NORMAL).start();
+        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), CalendarVector.getPatient(), AppointmentDetails.NORMAL, m_cacheItem.getIndex()).start();
+        
+        CalendarVector.m_vItemList.get(m_cacheItem.getIndex()).setColor(0x00ffe0e0);
+        
         System.out.println(m_cacheItem.getLine(null));
     }
     

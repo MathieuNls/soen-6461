@@ -53,7 +53,12 @@ public class CMS {
         // Login is math / math.
         
         new WelcomeController().start();
-        
+    }   
+    
+     public static void thread(Runnable runnable, boolean daemon) {
+        Thread brokerThread = new Thread(runnable);
+        brokerThread.setDaemon(daemon);
+        brokerThread.start();
     }
     
     public static void init(){

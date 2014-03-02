@@ -37,7 +37,7 @@ import org.hibernate.criterion.Restrictions;
 /**
  * @author Mathieu Nayrolles
  */
-public class RoomDAOImpl{
+public class RoomDAOImpl implements RoomDAO{
     
     /**
      * Singleton Design Pattern
@@ -63,6 +63,7 @@ public class RoomDAOImpl{
         return instance;
     }
     
+    @Override
     public int countRoomBy(int clinic_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
        Integer count = new Integer(session.createCriteria(Clinic.class)
@@ -75,6 +76,7 @@ public class RoomDAOImpl{
         
     }
     
+    @Override
       public List<Room> freeRoomAtaGivenTime(int clinic_id, long givenTime){
         
          Session session = HibernateUtil.getSessionFactory().openSession();
