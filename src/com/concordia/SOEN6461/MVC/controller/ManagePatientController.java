@@ -23,6 +23,7 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.ManagePatientModel;
 import com.concordia.SOEN6461.MVC.view.ManagePatientView;
+import com.concordia.SOEN6461.beans.Clinic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ListSelectionEvent;
@@ -41,6 +42,10 @@ public class ManagePatientController implements IController{
      * Reference to the view
      */
     protected ManagePatientView view = new ManagePatientView();
+    
+    public ManagePatientController(){
+        this.model.init();
+    }
 
     /**
      * Initialize the controller. Bind view & model, show the view
@@ -51,7 +56,6 @@ public class ManagePatientController implements IController{
         this.view.addDeleteListener(new DeleteButtonListener());
         this.view.addListSelectionChangeListener(null);
         this.view.addManageListener(new ManageButtonListener());
-        this.view.addUpdateInfoListener(new UpdateButtonListener());
         this.view.addListSelectionChangeListener(new ListChangeListner());
         this.view.run();
     }
@@ -105,7 +109,7 @@ public class ManagePatientController implements IController{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-            new ManageAppointmentController(model.getSelectedPatient()).start();
+            new ChoicesController(model.getSelectedPatient(), new Clinic(1)).start();
         }
         
     }

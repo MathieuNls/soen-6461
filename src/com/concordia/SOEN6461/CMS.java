@@ -21,7 +21,6 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461;
 
-import com.concordia.SOEN6461.MVC.controller.CalendarController;
 import com.concordia.SOEN6461.MVC.controller.WelcomeController;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;

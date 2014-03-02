@@ -130,11 +130,6 @@ public class ChoicesEmployeeView extends AbstractView{
     public void setModel(ChoicesEmployeeModel model) {
         this.model = model;
     }
-    
-    // EXAMPLE ON HOW TO ADD LISTENER
-    //    public void addLoginListener(ActionListener login) {
-    //        jButton1.addActionListener(login);
-    //    }
 
     public void addClinicButtonListener(ActionListener actionListener){
         this.clinicButton.addActionListener(actionListener);

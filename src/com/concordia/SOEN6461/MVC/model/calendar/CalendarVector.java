@@ -25,6 +25,7 @@ import com.concordia.SOEN6461.beans.human.Patient;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 
 public class CalendarVector extends AbstractCalendarModel
@@ -37,7 +38,7 @@ public class CalendarVector extends AbstractCalendarModel
     protected List<String> times;
     
     private Clinic clinic;
-    private Patient patient;
+    private static Patient patient;
     
     
 
@@ -59,7 +60,7 @@ public class CalendarVector extends AbstractCalendarModel
          times = new ArrayList<String>(){{
             int hours = 9; // Start at 9
             for(int i = 0; i < 10; i++){ // ten hours opening.
-                for(int y = 0; y < 60 / appointmentDetails.getDuration(); y++){ // 20 minutes spots
+                for(int y = 0; y < 60 / appointmentDetails.getDuration(); y++){ 
                     int startMinutes = appointmentDetails.getDuration() * y;
                     int endMinutes = appointmentDetails.getDuration() * (y+1);
                     int displayedHours = hours;
@@ -81,7 +82,7 @@ public class CalendarVector extends AbstractCalendarModel
         this.clinic = clinic;
         this.patient = p;
         
-       List<TimeSlot> slots = AppointmentDAOImpl.getInstance().getFreeAppointmentsByClinic(clinic.getId(), appointmentDetails);
+       List<Long> fullSlot = AppointmentDAOImpl.getInstance().getFreeAppointmentsByClinic(clinic.getId(), appointmentDetails);
         
         Calendar calendar = Calendar.getInstance();
         Date lStartTime;
@@ -102,30 +103,44 @@ public class CalendarVector extends AbstractCalendarModel
         
         lStartTime = calendar.getTime();
         calendar.add(Calendar.HOUR, 24);
-        lEndTime = calendar.getTime();
+        lEndTime = new Date(calendar.getTimeInMillis() - 1000);
         
-      //  Date currentDate = appointments.get(0).getStart();
-        
-        int possibleSlots = times.size();
-        int currentSlot = 0;
-        
-        for(TimeSlot slot : slots){
-            if(slot.isFree()){
-                 this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
-                    times.get(currentSlot++),  null, null, null, colorHotel,  colorSelectHotel, 1));
-            }else{
-                this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
-                    times.get(currentSlot++),  null, null, null, colorAir,  colorSelectAir, 1));
-            }
+        System.out.println(fullSlot);
+        for (int i = 0; i < 30; i++) {
             
-            if(currentSlot == possibleSlots){
-                calendar.add(Calendar.MINUTE, 2);
-                lStartTime = calendar.getTime();
-                calendar.add(Calendar.HOUR, 24);
-                lEndTime = calendar.getTime();
-                currentSlot= 0;
+            for (int j = 0; j < times.size(); j++) {
+                long realTime = lStartTime.getTime() + (9*60*60*1000) + (j * appointmentDetails.getDuration() * 60 * 1000);
+
+                if(fullSlot.contains(realTime)){
+                    this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+                        times.get(j),  null, null, null, colorAir,  colorSelectAir, 1));
+                }else{
+                     this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+                    times.get(j),  null, null, null, colorHotel,  colorSelectHotel, 1));
+                }
             }
+            lStartTime = calendar.getTime();
+            calendar.add(Calendar.HOUR, 24);
+            lEndTime = new Date(calendar.getTimeInMillis() - 1000);
         }
+        
+//        for(TimeSlot slot : slots){
+//            if(slot.isFree()){
+//                 this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+//                    times.get(currentSlot++),  null, null, null, colorHotel,  colorSelectHotel, 1));
+//            }else{
+//                this.addElement(new CalendarProduct(this, lStartTime, lEndTime, 
+//                    times.get(currentSlot++),  null, null, null, colorAir,  colorSelectAir, 1));
+//            }
+//            
+//            if(currentSlot == possibleSlots){
+//                calendar.add(Calendar.SECOND, 1);
+//                lStartTime = calendar.getTime();
+//                calendar.add(Calendar.HOUR, 24);
+//                lEndTime = calendar.getTime();
+//                currentSlot= 0;
+//            }
+//        }
        
     }
     
@@ -201,13 +216,13 @@ public class CalendarVector extends AbstractCalendarModel
         this.clinic = clinic;
     }
 
-    public Patient getPatient() {
+    public static Patient getPatient() {
         return patient;
     }
 
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    
+   
     
 }

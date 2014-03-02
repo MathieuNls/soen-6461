@@ -87,6 +87,8 @@ public class ManageAppointmentController implements IController{
                view.setVisible(false);
                new CalendarController(new Clinic(1), model.getPatient(), 
                        model.getSelectedAppointment().getAppointmentDetails()).start();
+            }else{
+                view.showMessage("You must select an appointment");
             }
         }
     }

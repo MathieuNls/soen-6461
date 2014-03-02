@@ -51,7 +51,9 @@ public class ChoicesEmployeeController implements IController{
     @Override
     public void start(){
         this.view.setModel(model);
-        //this.view.addLoginListener(new SomeListener());
+        this.view.addPatientButtonListener(new ManagePatientListener());
+        this.view.addClinicButtonListener(new ManageClinicListener());
+        this.view.addOverButtonListener(new OverviewListener());
         this.view.run();
     }
     
@@ -76,7 +78,8 @@ public class ChoicesEmployeeController implements IController{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-           
+            view.setVisible(false);
+           new ManagePatientController().start();
         }
         
     }

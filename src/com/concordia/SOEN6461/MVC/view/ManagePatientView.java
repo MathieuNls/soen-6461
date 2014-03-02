@@ -26,9 +26,10 @@ package com.concordia.SOEN6461.MVC.view;
 
 
 import com.concordia.SOEN6461.MVC.model.ManagePatientModel;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionListener;
 
 /**
@@ -56,7 +57,6 @@ public class ManagePatientView extends AbstractView{
         jScrollPane1 = new javax.swing.JScrollPane();
         patientList = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
-        updateButton = new javax.swing.JButton();
         manageButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
@@ -67,9 +67,7 @@ public class ManagePatientView extends AbstractView{
 
         jLabel1.setText("Patient List");
 
-        updateButton.setText("Update Info");
-
-        manageButton.setText("Manage Appointments");
+        manageButton.setText("Manage Patient");
 
         deleteButton.setText("Delete Patient");
 
@@ -82,16 +80,14 @@ public class ManagePatientView extends AbstractView{
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jLabel1)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 551, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
-                        .add(updateButton)
-                        .add(54, 54, 54)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(backButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(manageButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(manageButton)
+                        .add(60, 60, 60)
+                        .add(deleteButton)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(deleteButton)))
+                        .add(backButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 147, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jLabel1)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 551, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,11 +99,9 @@ public class ManagePatientView extends AbstractView{
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 220, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(updateButton)
                     .add(manageButton)
-                    .add(deleteButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(backButton)
+                    .add(deleteButton)
+                    .add(backButton))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -122,33 +116,31 @@ public class ManagePatientView extends AbstractView{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton manageButton;
     private javax.swing.JList patientList;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
     
 
     @Override
-    /**
-     * Use of Java Double Brace initialization
-     * http://c2.com/cgi/wiki?DoubleBraceInitialization
-     */
     public List<String> userInputs() {
-        return new ArrayList<String>() {{
-            add("Stuff");
-            add("Things");
-        }};
+        return null;
     }
 
     @Override
     public void setVisible() {
+        initList();
        this.setVisible(true);
+    }
+    
+    public void initList(){
+        DefaultListModel listModel = new DefaultListModel();
+        for(Patient patient : this.model.getPatients()){
+             listModel.addElement(patient.readableToString());
+        }
+        
+        patientList.setModel(listModel);
     }
 
     public void setModel(ManagePatientModel model) {
         this.model = model;
-    }
-    
-    public void addUpdateInfoListener(ActionListener actionListener){
-        this.updateButton.addActionListener(actionListener);
     }
     
      public void addDeleteListener(ActionListener actionListener){
@@ -166,6 +158,4 @@ public class ManagePatientView extends AbstractView{
     public int getSelectedPatient(){
         return this.patientList.getSelectedIndex();
     }
-
-
 }

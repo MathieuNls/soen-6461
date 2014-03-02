@@ -4,6 +4,7 @@
 package com.concordia.SOEN6461.MVC.controller.calendar;
 
 import com.concordia.SOEN6461.MVC.controller.PopupDocController;
+import com.concordia.SOEN6461.MVC.model.calendar.CalendarVector;
 import com.concordia.SOEN6461.MVC.view.calendar.JUnderlinedLabel;
 import com.concordia.SOEN6461.util.calandar.CalendarCache;
 import java.awt.Component;
@@ -105,16 +106,15 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         Calendar calendar = Calendar.getInstance();
         //calendar.setTime(new Date()); To uncomment after test
         calendar.setTimeInMillis(time);
-        int unroundedMinutes = calendar.get(Calendar.MINUTE);
-        int mod = unroundedMinutes % 20;
-        calendar.set(Calendar.MINUTE, unroundedMinutes + mod);
+        calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.add(Calendar.HOUR, 9); // Opening hours
         calendar.add(Calendar.MINUTE, 20 * m_cacheItem.getLine(null));
+        calendar.add(Calendar.MINUTE, -20);      
         
         System.out.println(calendar.getTimeInMillis());
-        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
+        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), CalendarVector.getPatient(), AppointmentDetails.NORMAL).start();
         System.out.println(m_cacheItem.getLine(null));
     }
     

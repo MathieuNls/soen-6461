@@ -278,4 +278,8 @@ public class Patient implements Serializable{
         return hash + super.hashCode();
     }
 
+    public Object readableToString() {
+        return this.sin + " " + this.familyName + " " + this.givenName;
+    }
+
 }
