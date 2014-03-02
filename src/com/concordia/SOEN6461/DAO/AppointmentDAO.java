@@ -23,6 +23,7 @@
 package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.appointment.Appointment;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.appointment.TimeSlot;
 import java.util.List;
 
@@ -34,6 +35,6 @@ public interface AppointmentDAO {
 
     public List<Appointment> getAppointmentsByClinic(int clinic_id, long from);
     
-    public List<TimeSlot> getFreeAppointmentsByClinic(int clinic_id);
+    public List<TimeSlot> getFreeAppointmentsByClinic(int clinic_id, AppointmentDetails appointmentDetails);
     
 }

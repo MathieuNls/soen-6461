@@ -13,10 +13,10 @@ import java.awt.event.MouseEvent;
 
 import com.concordia.SOEN6461.util.calandar.CalendarPanel;
 import com.concordia.SOEN6461.util.calendarpanel.dragNdrop.CalendarDnDMouseListener;
-import com.concordia.SOEN6461.MVC.view.calendar.PopupDocView;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
+import java.util.Calendar;
 
 
 /**
@@ -100,8 +100,21 @@ public class LabelMouseListener extends CalendarDnDMouseListener
     {
         super.mousePressed(e);    // Save the point
         
-        new PopupDocController(m_cacheItem.getItem().getStartDate().getTime(), new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
-        //new PopupDocView().setVisible(true);
+       long time = m_cacheItem.getItem().getStartDate().getTime();
+        // Creates a date rounded down to the last <code>lenghtAppointment</code>. 20h37 became 20h20.
+        Calendar calendar = Calendar.getInstance();
+        //calendar.setTime(new Date()); To uncomment after test
+        calendar.setTimeInMillis(time);
+        int unroundedMinutes = calendar.get(Calendar.MINUTE);
+        int mod = unroundedMinutes % 20;
+        calendar.set(Calendar.MINUTE, unroundedMinutes + mod);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.HOUR, 9); // Opening hours
+        calendar.add(Calendar.MINUTE, 20 * m_cacheItem.getLine(null));
+        
+        System.out.println(calendar.getTimeInMillis());
+        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
         System.out.println(m_cacheItem.getLine(null));
     }
     

@@ -115,21 +115,3 @@ public class CMS {
     }
     
 }
-
-//                Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
-//        
-//        
-//        AEmployee doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
-//        
-//    
-//          Session session = null;
-//    	Transaction tx = null;
-//         session = HibernateUtil.getSessionFactory().openSession();
-//    		tx = session.beginTransaction();
-//    		tx.setTimeout(5);
-//                
-//                session.save(a);
-//    		session.save(doctor);
-// 
-//    		tx.commit();
-

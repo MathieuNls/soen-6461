@@ -13,6 +13,7 @@ import javax.swing.table.AbstractTableModel;
 import com.concordia.SOEN6461.MVC.controller.calendar.MyListSelectionEvent;
 import com.concordia.SOEN6461.MVC.controller.calendar.MyListSelectionListener;
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
 
 
@@ -51,7 +52,7 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
         return null;
     }
     
-    public abstract void init(Clinic clinic, Patient p);
+   public abstract void init(Clinic clinic, Patient p, AppointmentDetails appointmentDetails);
     
     
     /**

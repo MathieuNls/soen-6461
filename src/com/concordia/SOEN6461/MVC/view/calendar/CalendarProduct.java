@@ -3,6 +3,7 @@
  */
 package com.concordia.SOEN6461.MVC.view.calendar;
 
+import com.concordia.SOEN6461.MVC.model.calendar.CalendarVector;
 import java.util.Date;
 
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarConstants;

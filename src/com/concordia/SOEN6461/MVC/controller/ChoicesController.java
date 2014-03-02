@@ -24,6 +24,7 @@ package com.concordia.SOEN6461.MVC.controller;
 import com.concordia.SOEN6461.MVC.model.ChoicesModel;
 import com.concordia.SOEN6461.MVC.view.ChoicesView;
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +53,9 @@ public class ChoicesController implements IController{
     @Override
     public void start(){
         this.view.setModel(model);
-        this.view.addMakeAppointmentListener(new MakeAppointment());
+        this.view.addMakeAppointmentListener(new MakeAppointment());       
+        this.view.addMakeCheckupListener(new MakeCheckup());
+        this.view.addManageAppointmentListener(new ManageAppointments());
         this.view.run();
     }
     
@@ -66,10 +69,42 @@ public class ChoicesController implements IController{
         public void actionPerformed(ActionEvent ae) {
            
             view.setVisible(false);
-            new CalendarController(model.getClinic(), model.getPatient()).start();
+            new CalendarController(model.getClinic(), model.getPatient(), AppointmentDetails.NORMAL).start();
            
         }
         
     }
-   
+     
+      /**
+     * Inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class MakeCheckup implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+            view.setVisible(false);
+            new CalendarController(model.getClinic(), model.getPatient(), AppointmentDetails.CHECKUP).start();
+           
+        }
+        
+    }
+     
+           /**
+     * Inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class ManageAppointments implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+            view.setVisible(false);
+            new ManageAppointmentController(model.getPatient()).start();
+
+        }
+        
+    }
+     
 }

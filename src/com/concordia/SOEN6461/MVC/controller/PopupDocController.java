@@ -72,6 +72,8 @@ public class PopupDocController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) {
             view.showMessage(model.persistAppointment());
+            view.setVisible(false);
+            new ChoicesController(model.getPatient(), model.getClinic()).start();
         }
         
     }

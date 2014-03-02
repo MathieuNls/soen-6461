@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarItem;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarModel;
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
 
 
@@ -126,7 +127,7 @@ public class CachedCalendarModel extends AbstractCalendarModel
     }
 
     @Override
-    public void init(Clinic clinic, Patient p) {
+    public void init(Clinic clinic, Patient p, AppointmentDetails appointmentDetails){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

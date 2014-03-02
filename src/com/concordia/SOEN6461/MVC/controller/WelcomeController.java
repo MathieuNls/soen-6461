@@ -23,7 +23,6 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.WelcomeModel;
 import com.concordia.SOEN6461.MVC.view.WelcomeView;
-import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

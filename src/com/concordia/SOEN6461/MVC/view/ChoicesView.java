@@ -137,5 +137,13 @@ public class ChoicesView extends AbstractView{
     public void addMakeAppointmentListener(ActionListener actionListener){
         this.book.addActionListener(actionListener);
     }
+    
+    public void addMakeCheckupListener(ActionListener actionListener){
+        this.Checkup.addActionListener(actionListener);
+    }
+    
+    public void addManageAppointmentListener(ActionListener actionListener){
+        this.manage.addActionListener(actionListener);
+    }
 
 }

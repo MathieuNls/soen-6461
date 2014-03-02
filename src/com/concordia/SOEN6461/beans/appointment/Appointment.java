@@ -26,6 +26,8 @@ import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -240,13 +242,14 @@ public class Appointment implements Serializable{
     public void setStart(long start) {
         this.start = start;
     }
+    
+    public String readableToString(){
+        return appointmentDetails.name() + "@" + room.toString() + " w/ " + doctor.getFamilyName() + " on " + new Date(start).toGMTString();
+    }
+    
 
     @Override
     public String toString() {
         return "Appointment{" + "id=" + id + ", doctor=" + doctor + ", patient=" + patient + ", clinic=" + clinic + ", room=" + room + ", start=" + start + ", appointmentDetails=" + appointmentDetails + '}';
     }
-    
-    
-    
-   
 }

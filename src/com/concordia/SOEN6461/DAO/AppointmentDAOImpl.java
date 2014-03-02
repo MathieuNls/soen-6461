@@ -23,10 +23,13 @@
 package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.appointment.Appointment;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.appointment.TimeSlot;
+import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +65,23 @@ public class AppointmentDAOImpl implements AppointmentDAO{
             }      
         }
         return instance;
+    }
+    
+    public void deleteAppointmentByID(int appointment_id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " delete Appointment where id = " + appointment_id;
+        Query q = session.createQuery(SQL_QUERY);
+        q.executeUpdate();
+    }
+    
+    public List<Appointment> getAppointmentsByPatient(int patient_id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from Appointment a where a.patient = " + patient_id;
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        List<Appointment> list = query.list();
+        session.close();
+        return list;
     }
 
     @Override
@@ -104,19 +124,18 @@ public class AppointmentDAOImpl implements AppointmentDAO{
     
     
     @Override
-    public List<TimeSlot> getFreeAppointmentsByClinic(int clinic_id) {
+    public List<TimeSlot> getFreeAppointmentsByClinic(int clinic_id, AppointmentDetails appointmentDetails) {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
    
         int totalRoom = RoomDAOImpl.getInstance().countRoomBy(clinic_id);
         int totalDoc = EmployeeDAOImpl.getInstance().countDoctorsByClinic(clinic_id);
-        int lenghtAppointment = 20;
-        int periodOfDays=20;
+        int lenghtAppointment = appointmentDetails.getDuration();
+        int periodOfDays=7;
         
         // Creates a date rounded down to the last <code>lenghtAppointment</code>. 20h37 became 20h20.
         Calendar calendar = Calendar.getInstance();
-        //calendar.setTime(new Date()); To uncomment after test
-        calendar.setTimeInMillis(1393522 * 1000000); // Thu Feb 27 2014 12:40:00 GMT-0500 (EST)
+        calendar.setTime(new Date()); 
         int unroundedMinutes = calendar.get(Calendar.MINUTE);
         int mod = unroundedMinutes % lenghtAppointment;
         calendar.set(Calendar.MINUTE, unroundedMinutes + mod);
@@ -127,8 +146,7 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         // All the appointments booked after the rounded date
         List<Appointment> list = getAppointmentsByClinic(clinic_id, calendar.getTimeInMillis()); 
         Map<Long, List<Appointment>> appointmentsByDate = new HashMap<Long, List<Appointment>>();
-        
-        
+
         
         // Group the appointments by timestamp
         for(Appointment ap : list){ 
@@ -159,14 +177,15 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         
         // While we do not exceed a <code>periodOfDays</code>
         while(calendar.compareTo(calendarEnd) < 0){
-
-            if(fullSpot.contains(calendar.getTimeInMillis())){ // FULL
+            
+            Long time = calendar.getTimeInMillis();
+            System.out.println(fullSpot);
+            System.out.println(time);
+            if(fullSpot.contains(time)){ // FULL
                 timeSlots.add(new TimeSlot(false, calendar.getTimeInMillis(), null, null));
             }else{
                 timeSlots.add(new TimeSlot(true, 
-                        calendar.getTimeInMillis(), 
-                       null, 
-                        null));
+                        calendar.getTimeInMillis(),  null,  null));
             }
             calendar.add(Calendar.MINUTE, lenghtAppointment);
         }
