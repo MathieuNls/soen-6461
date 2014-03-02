@@ -22,6 +22,7 @@
 
 package com.concordia.SOEN6461.MVC.model;
 
+import com.concordia.SOEN6461.DAO.AppointmentDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.human.Patient;
 
@@ -52,6 +53,10 @@ public class ChoicesModel {
 
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
+    }
+
+    public boolean isCheckupAuthorrized() {
+        return AppointmentDAOImpl.getInstance().isCheckupAuthorizedByPatient(patient.getSin());
     }
    
 }

@@ -30,11 +30,10 @@ import com.concordia.SOEN6461.DAO.PatientDAOImpl;
  */
 public class RegisterModel implements IModel{
     
-    PatientDAO patientDAO = new PatientDAOImpl();
     
      public String registerPatient(String sin, String familyName,
             String givernName, String birthdate, String phoneNumber, String gender) {
-         return this.patientDAO.registerPatient(sin, familyName, givernName, 
+         return PatientDAOImpl.getInstance().registerPatient(sin, familyName, givernName, 
                  birthdate, phoneNumber, gender);
      }
 }

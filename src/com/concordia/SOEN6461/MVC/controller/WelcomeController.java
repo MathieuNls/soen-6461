@@ -50,10 +50,23 @@ public class WelcomeController implements IController{
         this.view.setModel(model);
         this.view.addRegisterListener(new RegisterListener());        
         this.view.addLoginListener(new LoginListener());
+        this.view.addEmployeeLoginListener(new EmployeeLoginListener());
         this.view.run();
     }
     
-    
+     /**
+     * RegisterListener inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class EmployeeLoginListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            view.setVisible(false);
+            new LoginController().start();
+        }
+        
+    }
     
     /**
      * RegisterListener inner class. This is the most elegant way to delegate

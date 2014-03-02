@@ -23,6 +23,7 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.LoginModel;
 import com.concordia.SOEN6461.MVC.view.LoginVIew;
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -60,8 +61,11 @@ public class LoginController  implements IController{
         public void actionPerformed(ActionEvent ae) {
             System.out.println("In");
             List<String> userInputs = view.userInputs();
-            if(model.login(userInputs.get(0), userInputs.get(1)) != null){
+            AEmployee employee = model.login(userInputs.get(0), userInputs.get(1));
+            if(employee != null){
                 view.showMessage("Loggin Sucess");
+                view.setVisible(false);
+                new ChoicesEmployeeController(employee).start();
             }else{
                 view.showMessage("Loggin Fail");
             }

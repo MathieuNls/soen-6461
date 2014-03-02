@@ -24,11 +24,9 @@ package com.concordia.SOEN6461.MVC.controller;
 import com.concordia.SOEN6461.MVC.model.ManageAppointmentModel;
 import com.concordia.SOEN6461.MVC.view.ManageAppointmentView;
 import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -59,7 +57,21 @@ public class ManageAppointmentController implements IController{
         this.view.addListSelectionChangeListener(new ListChange());
         this.view.addUpdateListener(new UpdateAppointment());
         this.view.addDeleteListener(new DeleteAppointment());
+        this.view.addBackListener(new BackListener());
         this.view.run();
+    }
+    
+     /**
+     * Inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class BackListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            view.setVisible(false);
+            new ChoicesController(model.getPatient(), new Clinic(1)).start();
+        }
     }
 
     /**
@@ -113,7 +125,5 @@ public class ManageAppointmentController implements IController{
             }
         }
     }
-    
-    
     
 }

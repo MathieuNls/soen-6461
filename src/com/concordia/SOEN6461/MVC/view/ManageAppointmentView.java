@@ -121,22 +121,9 @@ public class ManageAppointmentView extends AbstractView{
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
     
-
-    @Override
-    /**
-     * Use of Java Double Brace initialization
-     * http://c2.com/cgi/wiki?DoubleBraceInitialization
-     */
-    public List<String> userInputs() {
-        return new ArrayList<String>() {{
-            add("Stuff");
-            add("Things");
-        }};
-    }
     
      private void updateAppointmentList(){
          
-        long generationTime = System.currentTimeMillis();
         
         DefaultListModel listModel = new DefaultListModel();
         
@@ -177,6 +164,11 @@ public class ManageAppointmentView extends AbstractView{
     
     public void addListSelectionChangeListener(ListSelectionListener listSelectionListener){
         this.appointmentsList.addListSelectionListener(listSelectionListener);
+    }
+
+    @Override
+    public List<String> userInputs() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
    
 

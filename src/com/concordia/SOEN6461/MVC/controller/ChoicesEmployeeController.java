@@ -23,9 +23,9 @@ package com.concordia.SOEN6461.MVC.controller;
 
 import com.concordia.SOEN6461.MVC.model.ChoicesEmployeeModel;
 import com.concordia.SOEN6461.MVC.view.ChoicesEmployeeView;
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 /**
  * @author Mathieu Nayrolles
@@ -40,6 +40,10 @@ public class ChoicesEmployeeController implements IController{
      * Reference to the view
      */
     protected ChoicesEmployeeView view = new ChoicesEmployeeView();
+    
+    public ChoicesEmployeeController(AEmployee aEmployee){
+        model.init(aEmployee);
+    }
 
     /**
      * Initialize the controller. Bind view & model, show the view
@@ -55,17 +59,40 @@ public class ChoicesEmployeeController implements IController{
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class SomeListener implements ActionListener{
+     private class OverviewListener implements ActionListener{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-            System.out.println("In");
-            List<String> userInputs = view.userInputs();
            
         }
         
     }
-    
+     
+      /**
+     * Inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class ManagePatientListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+        }
+        
+    }
+     
+       /**
+     * Inner class. This is the most elegant way to delegate
+     * click action from swing frame to controller.
+     */
+     private class ManageClinicListener implements ActionListener{
+            
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+        }
+        
+    }
     
     
 }

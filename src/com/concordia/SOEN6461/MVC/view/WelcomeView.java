@@ -25,6 +25,7 @@
 package com.concordia.SOEN6461.MVC.view;
 
 
+import com.concordia.SOEN6461.MVC.controller.WelcomeController;
 import com.concordia.SOEN6461.MVC.model.WelcomeModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class WelcomeView extends AbstractView{
         Login = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         RegisterButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        employeeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +73,8 @@ public class WelcomeView extends AbstractView{
 
         RegisterButton.setText("REGISTER");
 
+        employeeButton.setText("Employee");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,13 +82,15 @@ public class WelcomeView extends AbstractView{
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(jSeparator2)
                     .add(jSeparator1)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, SIN)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, Name)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, Login, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(RegisterButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                    .add(RegisterButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .add(employeeButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,7 +110,11 @@ public class WelcomeView extends AbstractView{
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(RegisterButton)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(employeeButton)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,9 +126,11 @@ public class WelcomeView extends AbstractView{
     private javax.swing.JTextField Name;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JTextField SIN;
+    private javax.swing.JButton employeeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
     
 
@@ -155,6 +168,8 @@ public class WelcomeView extends AbstractView{
     //        jButton1.addActionListener(login);
     //    }
 
-
+    public void addEmployeeLoginListener(ActionListener employeeLoginListener) {
+        this.employeeButton.addActionListener(employeeLoginListener);
+    }
 
 }

@@ -37,6 +37,30 @@ import org.hibernate.Transaction;
  * @author Mathieu Nayrolles
  */
 public class PatientDAOImpl implements PatientDAO{
+    
+     /**
+     * Singleton Design Pattern
+     */
+    private static PatientDAOImpl instance;
+    
+    /**
+     * private constructor. Singleton DP
+     */
+    private PatientDAOImpl(){}
+    
+    /**
+     * Synchronized getInstance method. 
+     * Multi thread proof singleton
+     * @return 
+     */
+    public static PatientDAOImpl getInstance(){
+        synchronized(AppointmentDAOImpl.class){
+            if (instance == null){
+                instance = new PatientDAOImpl();
+            }      
+        }
+        return instance;
+    }
 
     @Override
     public Patient getPatient(String sin, String name, String birthdate) {
@@ -53,6 +77,16 @@ public class PatientDAOImpl implements PatientDAO{
         }
         session.close();
         return null;
+    }
+    
+    public List<Patient> getPatients(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from Patient p";
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        List<Patient> list = query.list();
+        session.close();
+        return  list;
     }
 
     @Override
@@ -96,6 +130,13 @@ public class PatientDAOImpl implements PatientDAO{
         }
         session.close();
         return null;
+    }
+
+    public void deletePatient(int patient_id) {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " delete Patient where sin = " + patient_id;
+        Query q = session.createQuery(SQL_QUERY);
+        q.executeUpdate();
     }
 
 }

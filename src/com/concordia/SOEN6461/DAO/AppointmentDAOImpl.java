@@ -74,6 +74,18 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         q.executeUpdate();
     }
     
+    public boolean isCheckupAuthorizedByPatient(int patient_id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String SQL_QUERY = " from Appointment a where a.patient = " + patient_id +
+                " and a.appointmentDetails = " + AppointmentDetails.CHECKUP +
+                " and a.start > " + (System.currentTimeMillis() - 365*24*60*1000);
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        List<Appointment> list = query.list();
+        session.close();
+        return list.isEmpty();
+    }
+    
     public List<Appointment> getAppointmentsByPatient(int patient_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " from Appointment a where a.patient = " + patient_id;

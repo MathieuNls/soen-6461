@@ -240,6 +240,10 @@ public abstract class AEmployee{
     public String toString() {
         return "AEmployee{" + "familyName=" + familyName + ", givenName=" + givenName + ", adresse=" + adresse + ", login=" + login + ", password=" + password + ", planning=" + planning + ", id=" + id + '}';
     }
+
+    public String readableToString() {
+        return this.getClass().getSimpleName() + " " + familyName;
+    }
     
     
     

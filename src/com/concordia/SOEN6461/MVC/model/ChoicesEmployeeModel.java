@@ -22,9 +22,25 @@
 
 package com.concordia.SOEN6461.MVC.model;
 
+import com.concordia.SOEN6461.beans.human.AEmployee;
+
 /**
  * @author Mathieu Nayrolles
  */
 public class ChoicesEmployeeModel implements IModel{
+    
+    private AEmployee aEmployee;
+
+    public void init(AEmployee aEmployee) {
+        this.aEmployee = aEmployee;
+    }
+
+    public AEmployee getaEmployee() {
+        return aEmployee;
+    }
+
+    public void setaEmployee(AEmployee aEmployee) {
+        this.aEmployee = aEmployee;
+    }
 
 }
