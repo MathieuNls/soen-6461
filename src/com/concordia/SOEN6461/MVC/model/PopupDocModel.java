@@ -158,7 +158,8 @@ public class PopupDocModel  implements IModel{
     public String persistAppointment() {
         if(this.selectedDoctor == -1 || this.selectedRoom == -1){
             return "You must select a room and a doctor";
-        }else{
+        }
+        else{
              Appointment app = new Appointment(availableDoctor.get(selectedDoctor), 
                      patient , 
                      availableRoom.get(selectedRoom) , time, appointmentDetails, clinic);

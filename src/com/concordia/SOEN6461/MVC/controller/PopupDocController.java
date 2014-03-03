@@ -31,6 +31,7 @@ import com.concordia.SOEN6461.messaging.Server;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
@@ -78,21 +79,38 @@ public class PopupDocController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) {
             
-            view.showMessage(model.persistAppointment());
-            CalendarVector.m_vItemList.get(model.getIndexSelected()).setColor(0x00ffe0e0);
-             
-            try {
-                
-                new Server(model.getIndexSelected()).start();
-               
-                
-            } catch (IOException ex) {
-                Logger.getLogger(PopupDocController.class.getName()).log(Level.SEVERE, null, ex);
+            List<String> userInputs = view.userInputs();
+            Boolean validCredit = true;
+            
+            for(String str : userInputs){
+                if(str.isEmpty()){
+                    view.showMessage("There is something wrong with your credit card");
+                    validCredit = false;
+                    return;
+                }
             }
             
-             view.setVisible(false);
+            if(validCredit){
+                 view.showMessage(model.persistAppointment());
             
-            new ChoicesController(model.getPatient(), model.getClinic()).start();
+                CalendarVector.m_vItemList.get(model.getIndexSelected()).setColor(0x00ffe0e0);
+
+                try {
+
+                    // Let other clients know that we are updating the calendar
+                    new Server(model.getIndexSelected()).start();
+
+
+                } catch (IOException ex) {
+                    Logger.getLogger(PopupDocController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                 view.setVisible(false);
+
+                new ChoicesController(model.getPatient(), model.getClinic()).start();
+            }
+            
+           
         }
         
     }

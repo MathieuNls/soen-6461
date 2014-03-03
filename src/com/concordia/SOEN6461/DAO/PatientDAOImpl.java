@@ -115,7 +115,7 @@ public class PatientDAOImpl implements PatientDAO{
         
         
         Date d = new Date(birthdate);
-        if(d.after(new Date("03/03/1996"))){
+        if(d.before(new Date("03/03/1996"))){
              Session session;
     	Transaction tx;
         

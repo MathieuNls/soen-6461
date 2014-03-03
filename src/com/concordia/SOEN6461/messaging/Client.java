@@ -22,11 +22,7 @@
 
 package com.concordia.SOEN6461.messaging;
 
-import com.concordia.SOEN6461.MVC.controller.CalendarController;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarVector;
-import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.human.Patient;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
