@@ -26,6 +26,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Defines a room
@@ -33,6 +34,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Room")
+@XmlRootElement
 public class Room {
     
     @Id

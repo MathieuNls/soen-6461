@@ -36,7 +36,7 @@ public class CalendarVector extends AbstractCalendarModel
     private static final long serialVersionUID = 1L;
     protected List<Appointment> appointments;
     protected List<String> times;
-    
+    public static AppointmentDetails appointmentDetails;
     private Clinic clinic;
     private static Patient patient;
     
@@ -82,7 +82,7 @@ public class CalendarVector extends AbstractCalendarModel
     public void init(Clinic clinic, Patient p, AppointmentDetails appointmentDetails){
         
         this.initTimes(appointmentDetails);
-        
+        CalendarVector.appointmentDetails = appointmentDetails;
         this.clinic = clinic;
         this.patient = p;
         

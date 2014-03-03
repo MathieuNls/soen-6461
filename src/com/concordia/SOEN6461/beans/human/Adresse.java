@@ -27,12 +27,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Mathieu Nayrolles
  */
 @Entity
 @Table(name = "ADDRESS")
+@XmlRootElement
 public class Adresse implements Serializable {
     
     @Id

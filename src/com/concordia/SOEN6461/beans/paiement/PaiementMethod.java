@@ -27,6 +27,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * DifferentPaiementMethods. Paiement Method has fixed Fees (2$ per transaction)
@@ -35,6 +36,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PAIEMENTMETHOD")
+@XmlRootElement
 public class PaiementMethod implements Serializable {
     
     @Id

@@ -33,12 +33,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * @author Mathieu Nayrolles
  */
 @Entity
 @Table(name="PATIENT")
+@XmlRootElement
 public class Patient implements Serializable{
     
     @Column(name="BIRTH_DATE")
@@ -182,6 +186,8 @@ public class Patient implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Appointment> getAppointments() {
         return appointments;
     }
@@ -198,6 +204,8 @@ public class Patient implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Paiement> getPaiements() {
         return paiements;
     }

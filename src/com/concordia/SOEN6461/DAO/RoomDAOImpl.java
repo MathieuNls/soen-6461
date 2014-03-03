@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -74,6 +75,22 @@ public class RoomDAOImpl implements RoomDAO{
         session.close();
         return count;
         
+    }
+    
+    public Room addRoom(String name, String building, String floor, String number){
+        Transaction tx = null;
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+        
+        Room r = new Room(name, building, new Integer(floor), new Integer(number));
+        
+        session.save(r);
+        
+         tx.setTimeout(5);
+                
+    	tx.commit();
+        
+        return r;
     }
     
     @Override

@@ -21,43 +21,38 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
-import com.concordia.SOEN6461.MVC.model.ChoicesEmployeeModel;
-import com.concordia.SOEN6461.MVC.view.ChoicesEmployeeView;
+import com.concordia.SOEN6461.MVC.model.ManageClinicModel;
+import com.concordia.SOEN6461.MVC.view.ManageClinicView;
 import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.human.AEmployee;
-import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * @author Mathieu Nayrolles
  */
-public class ChoicesEmployeeController implements IController{
+public class ManageClinicController implements IController{
     
     /**
      * Reference to the model
      */
-    protected ChoicesEmployeeModel model = new ChoicesEmployeeModel();
+    protected ManageClinicModel model = new ManageClinicModel();
     /**
      * Reference to the view
      */
-    protected ChoicesEmployeeView view = new ChoicesEmployeeView();
+    protected ManageClinicView view = new ManageClinicView();
     
-    public ChoicesEmployeeController(AEmployee aEmployee){
-        model.init(aEmployee);
+    public ManageClinicController(Clinic clinic){
+        this.model.init(clinic);
     }
-
     /**
      * Initialize the controller. Bind view & model, show the view
      */
     @Override
     public void start(){
         this.view.setModel(model);
-        this.view.addPatientButtonListener(new ManagePatientListener());
-        this.view.addClinicButtonListener(new ManageClinicListener());
-        this.view.addOverButtonListener(new OverviewListener());
-        this.view.addClinicButtonListener(new ManageClinicListener());
+        this.view.addDoctorListener(new DoctorListener());
+        this.view.addRoomListener(new RoomListener());
         this.view.run();
     }
     
@@ -65,43 +60,31 @@ public class ChoicesEmployeeController implements IController{
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class OverviewListener implements ActionListener{
+     private class DoctorListener implements ActionListener{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-           view.setVisible(true);
-           new CalendarController(new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
+            List<String> doc = view.getDoctor();
+            model.addDoctor(doc.get(0), doc.get(1));
+            view.updateAll();
         }
         
     }
      
-      /**
+      
+    /**
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class ManagePatientListener implements ActionListener{
+     private class RoomListener implements ActionListener{
             
         @Override
         public void actionPerformed(ActionEvent ae) {
-            view.setVisible(false);
-           new ManagePatientController().start();
+            List<String> room = view.getRoom();
+            model.addRoom(room.get(0), room.get(1), room.get(2), room.get(3));
+            view.updateAll();
         }
         
     }
-     
-       /**
-     * Inner class. This is the most elegant way to delegate
-     * click action from swing frame to controller.
-     */
-     private class ManageClinicListener implements ActionListener{
-            
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-           view.setVisible(false);
-           new ManageClinicController(new Clinic(1)).start();
-        }
-        
-    }
-    
-    
+
 }

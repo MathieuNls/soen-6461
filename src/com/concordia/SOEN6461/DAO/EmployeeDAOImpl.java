@@ -25,14 +25,17 @@ package com.concordia.SOEN6461.DAO;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.human.AEmployee;
+import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
+import com.concordia.SOEN6461.beans.human.Planning;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -115,6 +118,29 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         int count = query.list().size();
         session.close();
         return count;
+    }
+    
+    public Doctor persistDoctor(String name, String lastname){
+        Transaction tx = null;
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+       
+        Adresse a = new Adresse(12, 0, "default", "MTL", "HZK3K9", "QC", "CA");
+      
+        session.save(a);
+        final Doctor doctor = new Doctor(name, lastname, name, lastname, a);
+
+        Planning pla = new Planning();
+       
+        session.save(pla);
+        doctor.setPlanning(pla);
+        
+        session.save(doctor);
+        tx.setTimeout(5);
+                
+    	tx.commit();
+        
+        return doctor;
     }
     
     public List<Doctor> freeDoctorFromAClinicAtaGivenTime(int clinic_id, long givenTime){

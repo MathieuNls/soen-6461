@@ -20,71 +20,56 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
 
-package com.concordia.SOEN6461.DAO;
+package com.concordia.SOEN6461.MVC.model;
 
+import com.concordia.SOEN6461.DAO.ClinicDAOImpl;
+import com.concordia.SOEN6461.DAO.EmployeeDAOImpl;
+import com.concordia.SOEN6461.DAO.RoomDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.database.HibernateUtil;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 
 /**
  * @author Mathieu Nayrolles
  */
-public class ClinicDAOImpl implements ClinicDAO{
+public class ManageClinicModel {
+
+    private Clinic clinic;
     
-    /**
-     * Singleton Design Pattern
-     */
-    private static ClinicDAOImpl instance;
-    
-    /**
-     * private constructor. Singleton DP
-     */
-    private ClinicDAOImpl(){}
-    
-    /**
-     * Synchronized getInstance method. 
-     * Multi thread proof singleton
-     * @return 
-     */
-    public static ClinicDAOImpl getInstance(){
-        synchronized(ClinicDAOImpl.class){
-            if (instance == null){
-                instance = new ClinicDAOImpl();
-            }      
-        }
-        return instance;
+    public void init(Clinic clinic){
+        this.clinic = ClinicDAOImpl.getInstance().getClinicById(clinic.getId());
     }
-    
-    /**
-     * 
-     * @param clinic_id
-     * @return 
-     */
-    @Override
-    public Clinic getClinicById(int clinic_id){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String SQL_QUERY = " from Clinic where id  = " + clinic_id;
-        System.out.println(SQL_QUERY);
-        Query query = session.createQuery(SQL_QUERY);
-        Clinic clinic = (Clinic) query.list().get(0);
-        session.close();
+
+    public Clinic getClinic() {
         return clinic;
     }
-    
-    /**
-     * 
-     * @param clinic
-     */
-    public void save(Clinic clinic){
+
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
+    }
+
+    public void addDoctor(String name, String lastname) {
         Transaction tx = null;
-         Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
-        session.save(clinic);
+        this.clinic.addDoc(EmployeeDAOImpl.getInstance().persistDoctor(name, lastname));
+        ClinicDAOImpl.getInstance().save(clinic);
         tx.setTimeout(5);        
     	tx.commit();
     }
+    
+    public void addRoom(String name, String building, String floor, String number){
+         Transaction tx = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+        this.clinic.addRoom(RoomDAOImpl.getInstance().addRoom(name, building, floor, number));
+        ClinicDAOImpl.getInstance().save(clinic);
+        ClinicDAOImpl.getInstance().save(clinic);
+        tx.setTimeout(5);        
+    	tx.commit();
+    }
+    
+    
     
 }

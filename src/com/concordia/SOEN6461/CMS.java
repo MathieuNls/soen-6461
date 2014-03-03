@@ -51,7 +51,6 @@ public class CMS {
         // run runServer.bat
         
         // Login is math / math.
-        
         new WelcomeController().start();
     }   
     
@@ -65,54 +64,19 @@ public class CMS {
         Session session = null;
     	Transaction tx = null;
          session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
-         Adresse a = new Adresse(12, 0, "sheppard", "MTL", "HZK3K9", "QC", "CA");
-      
-         session.save(a);
-         
-       final Doctor doctor = new Doctor("math", "math", "nayrolles", "mathieu", a);
-       doctor.setId(1);
-       Planning pla = new Planning();
-       
-       session.save(pla);
-        doctor.setPlanning(pla);
+         tx = session.beginTransaction();
         
-        session.save(doctor);
-        
-         final Nurse nurse = new Nurse("math_nurse", "math_nurse", "math_nurse", "math_nurse", a);
-                 pla = new Planning();
-       
-       session.save(pla);
-        nurse.setPlanning(pla);
-        
-        session.save(nurse);
-        
-        final Patient p = new Patient(1, "math", "math", new Date(1989, 8, 2), "male", "5146902063");
-        
-        session.save(p);
-        
-        final Room room = new Room("Rose", "Ev", 5, 514);
+        final Room room = new Room("Blue", "Ev", 5, 528);
         
         
         session.save(room);
         
-        final PaiementMethod paiementMethod = new PaiementMethod("Credit", 2, 0);
-        
-        session.save(paiementMethod);
-        
-        Clinic c = new Clinic("HFClinic", 
-                new ArrayList<Room>(){{add(room);}}, 
-                new ArrayList<Doctor>(){{add(doctor);}}, 
-                new ArrayList<Nurse>(){{add(nurse);}}, 
-                new ArrayList<Patient>(){{add(p);}}, 
-                new ArrayList<PaiementMethod>(){{add(paiementMethod);}});
+       
+        Clinic c = new Clinic(1);
+        c.addRoom(room);       
        
         session.save(c);
 
-        Appointment app = new Appointment(doctor, p, room , 1952760000, AppointmentDetails.NORMAL, c);
-        
-        session.save(app);
-        
         tx.setTimeout(5);
                 
     	tx.commit();

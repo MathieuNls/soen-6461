@@ -111,7 +111,7 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         calendar.add(Calendar.MINUTE, 20 * m_cacheItem.getLine(null));
         calendar.add(Calendar.MINUTE, -20);      
         
-        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), CalendarVector.getPatient(), AppointmentDetails.NORMAL, m_cacheItem.getIndex()).start();
+        new PopupDocController(calendar.getTimeInMillis(), new Clinic(1), CalendarVector.getPatient(), CalendarVector.appointmentDetails, m_cacheItem.getIndex()).start();
         
         CalendarVector.m_vItemList.get(m_cacheItem.getIndex()).setColor(0x00ffe0e0);
         

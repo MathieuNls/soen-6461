@@ -27,6 +27,7 @@ import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,6 +40,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Defines a clinic
@@ -46,6 +50,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CLINIC")
+@XmlRootElement
 public class Clinic implements Serializable{
     
     @Id
@@ -56,18 +61,18 @@ public class Clinic implements Serializable{
     @Column(name="name")
     private String name;
     
-    @OneToMany(targetEntity=Room.class, fetch = FetchType.LAZY)
-    private List<Room> rooms;
+    @OneToMany(targetEntity=Room.class)
+    private List<Room> rooms  = new ArrayList<Room>();
     
-    @OneToMany(targetEntity=Doctor.class, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity=Doctor.class)
     @JoinColumn(nullable=true)
-    private List<Doctor> doctors;
+    private List<Doctor> doctors = new ArrayList<Doctor>();
     
-    @OneToMany(targetEntity=Nurse.class, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity=Nurse.class)
     @JoinColumn(nullable=true)
-    private List<Nurse> nurses;
+    private List<Nurse> nurses  = new ArrayList<Nurse>();
     
-    @ManyToMany(targetEntity=Patient.class, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity=Patient.class)
     private List<Patient> patients;
     
     @OneToMany(targetEntity=PaiementMethod.class)
@@ -126,6 +131,8 @@ public class Clinic implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Doctor> getDoctors() {
         return doctors;
     }
@@ -142,6 +149,8 @@ public class Clinic implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Nurse> getNurses() {
         return nurses;
     }
@@ -175,6 +184,8 @@ public class Clinic implements Serializable{
      /* 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<PaiementMethod> getPaiementMethods() {
         return paiementMethods;
     }
@@ -191,6 +202,8 @@ public class Clinic implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Patient> getPatients() {
         return patients;
     }
@@ -207,6 +220,8 @@ public class Clinic implements Serializable{
      * 
      * @return 
      */
+    @XmlTransient
+    @JsonIgnore
     public List<Room> getRooms() {
         return rooms;
     }
@@ -217,6 +232,14 @@ public class Clinic implements Serializable{
      */
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+    
+    public void addDoc(Doctor doc){
+        this.doctors.add(doc);
+    }
+    
+    public void addRoom(Room room){
+        this.rooms.add(room);
     }
    
     

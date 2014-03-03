@@ -22,7 +22,6 @@
 
 package com.concordia.SOEN6461.DAO;
 
-import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.Date;
@@ -93,7 +92,10 @@ public class PatientDAOImpl implements PatientDAO{
     public String registerPatient(String sin, String familyName,
             String givernName, String birthdate, String phoneNumber, String gender) {
         
-        Session session;
+        
+        Date d = new Date(birthdate);
+        if(d.after(new Date("03/03/1996"))){
+             Session session;
     	Transaction tx;
         
         try {
@@ -114,6 +116,11 @@ public class PatientDAOImpl implements PatientDAO{
         } catch (HibernateException e) {
             return e.getMessage();
         }
+        }else{
+            return "You need to be over 18";
+        }
+        
+       
     }
 
     @Override
