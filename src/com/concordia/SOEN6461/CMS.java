@@ -49,17 +49,12 @@ public class CMS {
     public static void main(String[] args) {
         // TO START THE DATABASE GO TO LIB/HSQDL-2.3.2/hsqldb/bin and 
         // run runServer.bat
-        
-        // Login is math / math.
         new WelcomeController().start();
     }   
     
-     public static void thread(Runnable runnable, boolean daemon) {
-        Thread brokerThread = new Thread(runnable);
-        brokerThread.setDaemon(daemon);
-        brokerThread.start();
-    }
-    
+    /**
+     * To add new object until the manage clinic thing don't work
+     */
     public static void init(){
         Session session = null;
     	Transaction tx = null;

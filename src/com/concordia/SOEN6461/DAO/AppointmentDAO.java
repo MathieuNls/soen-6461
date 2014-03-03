@@ -29,11 +29,22 @@ import java.util.List;
 /**
  * @author Mathieu Nayrolles
  */
-public interface AppointmentDAO {
+public interface AppointmentDAO extends DAO{
    
-
+/**
+ * 
+ * @param clinic_id
+ * @param from
+ * @return 
+ */
     public List<Appointment> getAppointmentsByClinic(int clinic_id, long from);
     
+    /**
+     * 
+     * @param clinic_id
+     * @param appointmentDetails
+     * @return 
+     */
     public  List<Long> getFreeAppointmentsByClinic(int clinic_id, AppointmentDetails appointmentDetails);
     
 }

@@ -29,33 +29,55 @@ import java.util.List;
 /**
  * @author Mathieu Nayrolles
  */
-public class ManagePatientModel {
+public class ManagePatientModel  implements IModel{
     
     private Patient selectedPatient;
     private List<Patient> patients;
     
+    /**
+     * 
+     */
     public void init(){
         this.patients = PatientDAOImpl.getInstance().getPatients();
     }
 
+    /**
+     * 
+     */
     public void deletePatient() {
         this.patients.remove(selectedPatient);
         //TODO: DELETE CASCADE ON DAO
         //PatientDAOImpl.getInstance().deletePatient(this.selectedPatient.getSin());
     }
     
+    /**
+     * 
+     * @param patient_id 
+     */
     public void setSelectedPatient(int patient_id){
         this.selectedPatient = patients.get(patient_id);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Patient getSelectedPatient() {
         return selectedPatient;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Patient> getPatients() {
         return patients;
     }
 
+    /**
+     * 
+     * @param patients 
+     */
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }

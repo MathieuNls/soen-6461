@@ -28,9 +28,20 @@ import java.util.List;
 /**
  * @author Mathieu Nayrolles
  */
-public interface RoomDAO {
+public interface RoomDAO  extends DAO{
 
+    /**
+     * 
+     * @param clinic_id
+     * @return 
+     */
     int countRoomBy(int clinic_id);
 
+    /**
+     * 
+     * @param clinic_id
+     * @param givenTime
+     * @return 
+     */
     List<Room> freeRoomAtaGivenTime(int clinic_id, long givenTime);
 }

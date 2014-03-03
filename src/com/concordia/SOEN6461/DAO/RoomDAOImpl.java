@@ -64,6 +64,11 @@ public class RoomDAOImpl implements RoomDAO{
         return instance;
     }
     
+    /**
+     * 
+     * @param clinic_id
+     * @return 
+     */
     @Override
     public int countRoomBy(int clinic_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -77,6 +82,14 @@ public class RoomDAOImpl implements RoomDAO{
         
     }
     
+    /**
+     * 
+     * @param name
+     * @param building
+     * @param floor
+     * @param number
+     * @return 
+     */
     public Room addRoom(String name, String building, String floor, String number){
         Transaction tx = null;
          Session session = HibernateUtil.getSessionFactory().openSession();
@@ -93,6 +106,12 @@ public class RoomDAOImpl implements RoomDAO{
         return r;
     }
     
+    /**
+     * 
+     * @param clinic_id
+     * @param givenTime
+     * @return 
+     */
     @Override
       public List<Room> freeRoomAtaGivenTime(int clinic_id, long givenTime){
         

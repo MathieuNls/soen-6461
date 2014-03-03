@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author Mathieu Nayrolles
  */
-public class PopupDocModel {
+public class PopupDocModel  implements IModel{
     
     List<Doctor> availableDoctor;
     List<Room> availableRoom;
@@ -48,6 +48,14 @@ public class PopupDocModel {
     int selectedDoctor = -1;
     int selectedRoom = -1;
     
+    /**
+     * 
+     * @param clinic
+     * @param given_time
+     * @param patient
+     * @param appointmentDetails
+     * @param indexSelected 
+     */
     public void init(Clinic clinic, long given_time, Patient patient, AppointmentDetails appointmentDetails, int indexSelected){
         this.time = given_time;
         this.clinic = clinic;
@@ -60,49 +68,93 @@ public class PopupDocModel {
         this.appointmentDetails = appointmentDetails;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Doctor> getAvailableDoctor() {
         return availableDoctor;
     }
 
+    /**
+     * 
+     * @param availableDoctor 
+     */
     public void setAvailableDoctor(List<Doctor> availableDoctor) {
         this.availableDoctor = availableDoctor;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Room> getAvailableRoom() {
         return availableRoom;
     }
 
+    /**
+     * 
+     * @param availableRoom 
+     */
     public void setAvailableRoom(List<Room> availableRoom) {
         this.availableRoom = availableRoom;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Long getTime() {
         return time;
     }
 
+    /**
+     * 
+     * @param time 
+     */
     public void setTime(Long time) {
         this.time = time;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getSelectedDoctor() {
         return selectedDoctor;
     }
 
+    /**
+     * 
+     * @param selectedDoctor 
+     */
     public void setSelectedDoctor(int selectedDoctor) {
          
         this.selectedDoctor = selectedDoctor;
          System.out.println("doc " + selectedDoctor);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getSelectedRoom() {
         return selectedRoom;
     }
 
+    /**
+     * 
+     * @param selectedRoom 
+     */
     public void setSelectedRoom(int selectedRoom) {
         this.selectedRoom = selectedRoom;
          System.out.println("room " + selectedRoom);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String persistAppointment() {
         if(this.selectedDoctor == -1 || this.selectedRoom == -1){
             return "You must select a room and a doctor";
@@ -116,34 +168,66 @@ public class PopupDocModel {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * 
+     * @param patient 
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Clinic getClinic() {
         return clinic;
     }
 
+    /**
+     * 
+     * @param clinic 
+     */
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public AppointmentDetails getAppointmentDetails() {
         return appointmentDetails;
     }
 
+    /**
+     * 
+     * @param appointmentDetails 
+     */
     public void setAppointmentDetails(AppointmentDetails appointmentDetails) {
         this.appointmentDetails = appointmentDetails;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getIndexSelected() {
         return indexSelected;
     }
 
+    /**
+     * 
+     * @param indexSelected 
+     */
     public void setIndexSelected(int indexSelected) {
         this.indexSelected = indexSelected;
     }

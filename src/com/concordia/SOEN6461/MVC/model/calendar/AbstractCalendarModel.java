@@ -12,6 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 import com.concordia.SOEN6461.MVC.controller.calendar.MyListSelectionEvent;
 import com.concordia.SOEN6461.MVC.controller.calendar.MyListSelectionListener;
+import com.concordia.SOEN6461.MVC.model.IModel;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
 import com.concordia.SOEN6461.beans.human.Patient;
@@ -21,7 +22,7 @@ import com.concordia.SOEN6461.beans.human.Patient;
  * The abstract calendar model is a model that handles the basic functions for the calendar model.
  */
 public abstract class AbstractCalendarModel extends AbstractTableModel
-    implements CalendarModel
+    implements CalendarModel, IModel
 {
     /**
 	 * 

@@ -33,13 +33,25 @@ import com.concordia.SOEN6461.beans.human.Patient;
  */
 public class WelcomeModel implements IModel{
     
+    /**
+     * 
+     */
     Clinic clinic = ClinicDAOImpl.getInstance().getClinicById(1);
     
-    
+    /**
+     * 
+     * @param sin
+     * @param lastName
+     * @return 
+     */
     public Patient login(String sin, String lastName){
         return PatientDAOImpl.getInstance().login(sin, lastName);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Clinic getClinic() {
         return clinic;
     }

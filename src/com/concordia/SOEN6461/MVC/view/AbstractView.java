@@ -30,12 +30,22 @@ import javax.swing.JOptionPane;
  */
 public abstract class AbstractView extends javax.swing.JFrame {
     
+    /**
+     * 
+     * @param errMessage 
+     */
     public void showMessage(String errMessage) {
         JOptionPane.showMessageDialog(this, errMessage);
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public abstract List<String> userInputs(); 
     
+    /**
+     * 
+     */
     public void run(){
                 /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -70,6 +80,9 @@ public abstract class AbstractView extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * 
+     */
     public abstract void setVisible();
   
 }

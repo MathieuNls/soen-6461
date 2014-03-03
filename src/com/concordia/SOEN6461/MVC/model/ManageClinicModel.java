@@ -33,22 +33,39 @@ import org.hibernate.Transaction;
 /**
  * @author Mathieu Nayrolles
  */
-public class ManageClinicModel {
+public class ManageClinicModel  implements IModel{
 
     private Clinic clinic;
     
+    /**
+     * 
+     * @param clinic 
+     */
     public void init(Clinic clinic){
         this.clinic = ClinicDAOImpl.getInstance().getClinicById(clinic.getId());
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Clinic getClinic() {
         return clinic;
     }
 
+    /**
+     * 
+     * @param clinic 
+     */
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
     }
 
+    /**
+     * 
+     * @param name
+     * @param lastname 
+     */
     public void addDoctor(String name, String lastname) {
         Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,6 +76,13 @@ public class ManageClinicModel {
     	tx.commit();
     }
     
+    /**
+     * 
+     * @param name
+     * @param building
+     * @param floor
+     * @param number 
+     */
     public void addRoom(String name, String building, String floor, String number){
          Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();

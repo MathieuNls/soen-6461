@@ -67,6 +67,10 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         return instance;
     }
     
+    /**
+     * 
+     * @param appointment_id 
+     */
     public void deleteAppointmentByID(int appointment_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " delete Appointment where id = " + appointment_id;
@@ -74,6 +78,11 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         q.executeUpdate();
     }
     
+    /**
+     * 
+     * @param patient_id
+     * @return 
+     */
     public boolean isCheckupAuthorizedByPatient(int patient_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " from Appointment a where a.patient = " + patient_id +
@@ -86,6 +95,11 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         return list.isEmpty();
     }
     
+    /**
+     * 
+     * @param patient_id
+     * @return 
+     */
     public List<Appointment> getAppointmentsByPatient(int patient_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " from Appointment a where a.patient = " + patient_id;
@@ -96,6 +110,12 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         return list;
     }
 
+    /**
+     * 
+     * @param clinic_id
+     * @param from
+     * @return 
+     */
     @Override
     public List<Appointment> getAppointmentsByClinic(int clinic_id, long from) {
         
@@ -110,6 +130,10 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         
     }
     
+    /**
+     * 
+     * @param appointment 
+     */
     public void persistAppointment(Appointment appointment){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -121,6 +145,12 @@ public class AppointmentDAOImpl implements AppointmentDAO{
     	tx.commit();
     }
     
+    /**
+     * 
+     * @param clinic_id
+     * @param from
+     * @return 
+     */
     public List<Appointment> getAppointmentsByClinicAtATime(int clinic_id, long from) {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -134,7 +164,12 @@ public class AppointmentDAOImpl implements AppointmentDAO{
         
     }
     
-    
+    /**
+     * 
+     * @param clinic_id
+     * @param appointmentDetails
+     * @return 
+     */
     @Override
     public List<Long> getFreeAppointmentsByClinic(int clinic_id, AppointmentDetails appointmentDetails) {
         

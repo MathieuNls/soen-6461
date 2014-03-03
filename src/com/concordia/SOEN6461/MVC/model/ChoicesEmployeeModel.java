@@ -31,14 +31,26 @@ public class ChoicesEmployeeModel implements IModel{
     
     private AEmployee aEmployee;
 
+    /**
+     * 
+     * @param aEmployee 
+     */
     public void init(AEmployee aEmployee) {
         this.aEmployee = aEmployee;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public AEmployee getaEmployee() {
         return aEmployee;
     }
 
+    /**
+     * 
+     * @param aEmployee 
+     */
     public void setaEmployee(AEmployee aEmployee) {
         this.aEmployee = aEmployee;
     }

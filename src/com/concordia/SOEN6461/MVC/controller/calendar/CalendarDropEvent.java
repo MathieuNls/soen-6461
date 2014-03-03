@@ -20,6 +20,12 @@ public class CalendarDropEvent extends EventObject
      * Called to start the applet.  You never need to call this directly; it
      * is called when the applet's document is visited.
      */
+    /**
+     * 
+     * @param cacheItem
+     * @param ptDropped
+     * @param iAction 
+     */
     public CalendarDropEvent(CalendarCache cacheItem, Point ptDropped, int iAction)
     {
         super(cacheItem);
@@ -29,12 +35,20 @@ public class CalendarDropEvent extends EventObject
     /**
      * Get the point.
      */
+    /**
+     * 
+     * @return 
+     */
     public Point getPoint()
     {
         return m_ptDropped;
     }
     /**
      * Get the point.
+     */
+    /**
+     * 
+     * @return 
      */
     public int getID()
     {

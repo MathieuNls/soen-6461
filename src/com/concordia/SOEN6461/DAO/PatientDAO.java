@@ -28,13 +28,36 @@ import com.concordia.SOEN6461.beans.human.Patient;
  *
  * @author Mathieu Nayrolles
  */
-public interface PatientDAO {
+public interface PatientDAO  extends DAO{
     
+    /**
+     * 
+     * @param sin
+     * @param name
+     * @param birthdate
+     * @return 
+     */
     public Patient getPatient(String sin, String name, String birthdate);
     
+    /**
+     * 
+     * @param sin
+     * @param familyName
+     * @param givernName
+     * @param birthdate
+     * @param phoneNumber
+     * @param gender
+     * @return 
+     */
     public String registerPatient(String sin, String familyName,
             String givernName, String birthdate, String phoneNumber, String gender);
     
+    /**
+     * 
+     * @param sin
+     * @param lastname
+     * @return 
+     */
     public Patient login(String sin, String lastname);
 
 }

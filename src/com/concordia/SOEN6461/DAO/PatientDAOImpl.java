@@ -61,6 +61,13 @@ public class PatientDAOImpl implements PatientDAO{
         return instance;
     }
 
+    /**
+     * 
+     * @param sin
+     * @param name
+     * @param birthdate
+     * @return 
+     */
     @Override
     public Patient getPatient(String sin, String name, String birthdate) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -78,6 +85,10 @@ public class PatientDAOImpl implements PatientDAO{
         return null;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Patient> getPatients(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " from Patient p";
@@ -88,6 +99,16 @@ public class PatientDAOImpl implements PatientDAO{
         return  list;
     }
 
+    /**
+     * 
+     * @param sin
+     * @param familyName
+     * @param givernName
+     * @param birthdate
+     * @param phoneNumber
+     * @param gender
+     * @return 
+     */
     @Override
     public String registerPatient(String sin, String familyName,
             String givernName, String birthdate, String phoneNumber, String gender) {
@@ -123,6 +144,12 @@ public class PatientDAOImpl implements PatientDAO{
        
     }
 
+    /**
+     * 
+     * @param sin
+     * @param lastname
+     * @return 
+     */
     @Override
     public Patient login(String sin, String lastname) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -139,6 +166,10 @@ public class PatientDAOImpl implements PatientDAO{
         return null;
     }
 
+    /**
+     * 
+     * @param patient_id 
+     */
     public void deletePatient(int patient_id) {
          Session session = HibernateUtil.getSessionFactory().openSession();
         String SQL_QUERY = " delete Patient where sin = " + patient_id;

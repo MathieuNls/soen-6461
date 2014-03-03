@@ -30,24 +30,36 @@ import java.util.List;
 /**
  * @author Mathieu Nayrolles
  */
-public class ManageAppointmentModel {
+public class ManageAppointmentModel  implements IModel{
     
     private Patient patient;
     private List<Appointment> appointments;
     private Appointment selectedAppointment;
     
+    /**
+     * 
+     * @param patient 
+     */
     public void init(Patient patient){
         this.patient = patient;
         this.appointments = AppointmentDAOImpl.getInstance()
                 .getAppointmentsByPatient(patient.getSin());
     }
     
+    /**
+     * 
+     */
     public void deleteAppointment(){
         AppointmentDAOImpl.getInstance().deleteAppointmentByID(selectedAppointment.getId());
         this.appointments.remove(selectedAppointment);
         this.selectedAppointment = null;
     }
     
+    /**
+     * 
+     * @param selectedAppointment
+     * @return 
+     */
     public boolean setSelectedAppointment(int selectedAppointment){
         if(this.appointments.get(selectedAppointment).getStart() >= System.currentTimeMillis()){
              this.selectedAppointment = appointments.get(selectedAppointment);
@@ -56,26 +68,50 @@ public class ManageAppointmentModel {
         return false;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * 
+     * @param patient 
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
+    /**
+     * 
+     * @param appointments 
+     */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Appointment getSelectedAppointment() {
         return selectedAppointment;
     }
 
+    /**
+     * 
+     * @param selectedAppointment 
+     */
     public void setSelectedAppointment(Appointment selectedAppointment) {
         this.selectedAppointment = selectedAppointment;
     }

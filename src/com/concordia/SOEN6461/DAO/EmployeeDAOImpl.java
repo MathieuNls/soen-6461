@@ -36,9 +36,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-
 /**
  * @author Mathieu Nayrolles
  */
@@ -68,16 +65,28 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return instance;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public List<AEmployee> getAllEmployee() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public List<Doctor> getAllDoctor() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public List<Nurse> getAllNurses() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -93,6 +102,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @param login
+     * @param password
+     * @return 
+     */
     @Override
     public AEmployee login(String login, String password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -109,6 +124,11 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return null;
     }
     
+    /**
+     * 
+     * @param clinic_id
+     * @return 
+     */
     @Override
     public int countDoctorsByClinic(int clinic_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -120,6 +140,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return count;
     }
     
+    /**
+     * 
+     * @param name
+     * @param lastname
+     * @return 
+     */
     public Doctor persistDoctor(String name, String lastname){
         Transaction tx = null;
          Session session = HibernateUtil.getSessionFactory().openSession();
@@ -143,6 +169,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return doctor;
     }
     
+    /**
+     * 
+     * @param clinic_id
+     * @param givenTime
+     * @return 
+     */
     public List<Doctor> freeDoctorFromAClinicAtaGivenTime(int clinic_id, long givenTime){
         
          Session session = HibernateUtil.getSessionFactory().openSession();
@@ -165,11 +197,20 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return availableDoctor;
     }
 
+    /**
+     * 
+     * @param aEmployee
+     * @return 
+     */
     @Override
     public AEmployee updateEmployee(AEmployee aEmployee) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @param aEmployee 
+     */
     @Override
     public void deleteEmployee(AEmployee aEmployee) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

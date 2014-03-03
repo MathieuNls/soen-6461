@@ -29,16 +29,25 @@ import com.concordia.SOEN6461.beans.human.Patient;
 /**
  * @author Mathieu Nayrolles
  */
-public class ChoicesModel {
+public class ChoicesModel  implements IModel{
     
     private Patient patient;
     private Clinic clinic;
     
+    /**
+     * 
+     * @param patient
+     * @param clinic 
+     */
     public void init(Patient patient, Clinic clinic){
         this.patient = patient;
         this.clinic = clinic;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Patient getPatient() {
         return patient;
     }
@@ -47,14 +56,26 @@ public class ChoicesModel {
         this.patient = patient;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Clinic getClinic() {
         return clinic;
     }
 
+    /**
+     * 
+     * @param clinic 
+     */
     public void setClinic(Clinic clinic) {
         this.clinic = clinic;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean isCheckupAuthorrized() {
         return AppointmentDAOImpl.getInstance().isCheckupAuthorizedByPatient(patient.getSin());
     }

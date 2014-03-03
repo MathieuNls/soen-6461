@@ -27,7 +27,7 @@ import com.concordia.SOEN6461.beans.Clinic;
 /**
  * @author Mathieu Nayrolles
  */
-public interface ClinicDAO {
+public interface ClinicDAO  extends DAO{
 
     /**
      *

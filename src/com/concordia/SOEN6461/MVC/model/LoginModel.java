@@ -30,7 +30,12 @@ import com.concordia.SOEN6461.beans.human.AEmployee;
 public class LoginModel implements IModel{
     
   
-    
+    /**
+     * 
+     * @param login
+     * @param password
+     * @return 
+     */
     public AEmployee login(String login, String password){
         return EmployeeDAOImpl.getInstance().login(login, password);
     }
