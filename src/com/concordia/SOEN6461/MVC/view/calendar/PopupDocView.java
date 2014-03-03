@@ -66,8 +66,6 @@ public class PopupDocView extends AbstractView{
         date1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jScrollPane1.setViewportView(doctors);
 
         jLabel1.setText("Available Doctors ");

@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name="Room")
-@XmlRootElement
 public class Room {
     
     @Id

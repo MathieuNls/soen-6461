@@ -141,6 +141,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Name">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

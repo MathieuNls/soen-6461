@@ -62,6 +62,7 @@ public class CalendarController implements IController{
         
         this.view.setModel(model);
         
+        // Listen is someone, somewhere is modyfing the calendar
         new Client().start();
  
         this.view.run();

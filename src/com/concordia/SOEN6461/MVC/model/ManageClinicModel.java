@@ -26,6 +26,7 @@ import com.concordia.SOEN6461.DAO.ClinicDAOImpl;
 import com.concordia.SOEN6461.DAO.EmployeeDAOImpl;
 import com.concordia.SOEN6461.DAO.RoomDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -37,12 +38,21 @@ public class ManageClinicModel  implements IModel{
 
     private Clinic clinic;
     
+    
     /**
      * 
      * @param clinic 
      */
     public void init(Clinic clinic){
+          Transaction tx = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
         this.clinic = ClinicDAOImpl.getInstance().getClinicById(clinic.getId());
+        this.clinic.getDoctors();
+        this.clinic.getRooms();
+        this.clinic.getNurses();
+         session.save(clinic);
+    	tx.commit();
     }
 
     /**
@@ -84,13 +94,29 @@ public class ManageClinicModel  implements IModel{
      * @param number 
      */
     public void addRoom(String name, String building, String floor, String number){
-         Transaction tx = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
-        this.clinic.addRoom(RoomDAOImpl.getInstance().addRoom(name, building, floor, number));
-        ClinicDAOImpl.getInstance().save(clinic);
-        ClinicDAOImpl.getInstance().save(clinic);
-        tx.setTimeout(5);        
+            Session session = null;
+    	Transaction tx = null;
+         session = HibernateUtil.getSessionFactory().openSession();
+         tx = session.beginTransaction();
+        
+        final Room room = new Room(name, building, new Integer(floor), new Integer(number));
+        
+        
+        
+        session.save(room);
+        
+        Clinic clinic = ClinicDAOImpl.getInstance().getClinicById(this.clinic.getId());
+        
+        clinic.getDoctors();
+        clinic.getRooms();
+        clinic.getNurses();
+        
+        
+        clinic.addRoom(room);       
+       
+        session.save(clinic);
+
+                
     	tx.commit();
     }
     

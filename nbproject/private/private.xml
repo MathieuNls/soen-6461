@@ -4,43 +4,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/beans/appointment/Appointment.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/LoginModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/IController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/AppointmentDAOImpl.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/CalendarController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/view/AbstractView.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/PatientDAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/ChoicesEmployeeModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/AppointmentDAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/CMS.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/ClinicDAOImpl.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/ClinicDAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/ChoicesEmployeeController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/RegisterModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/EmployeeDAOImpl.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/ManageClinicController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/ManageAppointmentModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/LoginController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/WelcomeModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/RoomDAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/ChoicesController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/ChoicesModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/IModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/RoomDAOImpl.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/EmployeeDAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/calendar/CalendarDropEvent.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/beans/Clinic.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/DAO.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/ManageAppointmentController.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/PopupDocModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/controller/calendar/LabelMouseListener.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/calendar/AbstractCalendarModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/ManageClinicModel.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/DAO/PatientDAOImpl.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/calendar/CalendarVector.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/view/ChoicesEmployeeView.java</file>
-            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/model/ManagePatientModel.java</file>
+            <file>file:/home/math/NetBeansProjects/CMS/src/com/concordia/SOEN6461/MVC/view/WelcomeView.java</file>
         </group>
     </open-files>
 </project-private>

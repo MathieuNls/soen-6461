@@ -79,8 +79,8 @@ public class PopupDocController implements IController{
         public void actionPerformed(ActionEvent ae) {
             
             view.showMessage(model.persistAppointment());
-//            CalendarVector.m_vItemList.get(model.getIndexSelected()).setColor(0x00ffe0e0);
-//             
+            CalendarVector.m_vItemList.get(model.getIndexSelected()).setColor(0x00ffe0e0);
+             
             try {
                 
                 new Server(model.getIndexSelected()).start();

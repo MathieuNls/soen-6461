@@ -25,9 +25,7 @@
 package com.concordia.SOEN6461.MVC.view;
 
 
-import com.concordia.SOEN6461.MVC.controller.WelcomeController;
 import com.concordia.SOEN6461.MVC.model.WelcomeModel;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -193,7 +191,7 @@ public class WelcomeView extends AbstractView{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Login;
-    private javax.swing.JTextField Name;
+    private static javax.swing.JTextField Name;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JTextField SIN;
     private javax.swing.JButton employeeButton;
@@ -233,35 +231,27 @@ public class WelcomeView extends AbstractView{
         this.RegisterButton.addActionListener(register);
     }
     
-    // EXAMPLE ON HOW TO ADD LISTENER
-    //    public void addLoginListener(ActionListener login) {
-    //        jButton1.addActionListener(login);
-    //    }
+
 
     public void addEmployeeLoginListener(ActionListener employeeLoginListener) {
         this.employeeButton.addActionListener(employeeLoginListener);
     }
     
        public class MyActionListener implements ActionListener {
-
+           
+           
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
             System.out.println("clicked column --> " + btn.getClientProperty("column")
                     + ", row --> " + btn.getClientProperty("row")
                     + ", Key Typed --> " + btn.getClientProperty("key"));
+            WelcomeView.updateText(btn.getClientProperty("key").toString().toLowerCase());
         }
-
     }
        
-        public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-               WelcomeView view = new WelcomeView();
-               view.setVisible(true);
-            }
-        });
+    public static void updateText(String letter){
+       Name.setText(Name.getText() + letter);
     }
 
 }

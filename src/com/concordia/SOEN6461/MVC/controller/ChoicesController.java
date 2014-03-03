@@ -84,9 +84,10 @@ public class ChoicesController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) {
            
-            view.setVisible(false);
+          
             if(model.isCheckupAuthorrized()){
                  new CalendarController(model.getClinic(), model.getPatient(), AppointmentDetails.CHECKUP).start();
+                 view.setVisible(false);
             }else{
                 view.showMessage("You have the right to one checkup a year only.");
             }
