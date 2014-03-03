@@ -22,7 +22,11 @@
 
 package com.concordia.SOEN6461.messaging;
 
+import com.concordia.SOEN6461.MVC.controller.CalendarController;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarVector;
+import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
+import com.concordia.SOEN6461.beans.human.Patient;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -56,6 +60,8 @@ public class Client extends Thread{
                 System.err.println("New Appointment: " + received);
                 
                 CalendarVector.m_vItemList.get(new Integer(received)).setColor(0x00ffe0e0);
+                
+               // new CalendarController(new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
                 
             }
             
