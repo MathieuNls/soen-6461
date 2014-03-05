@@ -22,21 +22,7 @@
 package com.concordia.SOEN6461;
 
 import com.concordia.SOEN6461.MVC.controller.WelcomeController;
-import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.Room;
-import com.concordia.SOEN6461.beans.appointment.Appointment;
-import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.human.Adresse;
-import com.concordia.SOEN6461.beans.human.Doctor;
-import com.concordia.SOEN6461.beans.human.Nurse;
-import com.concordia.SOEN6461.beans.human.Patient;
-import com.concordia.SOEN6461.beans.human.Planning;
-import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
-import com.concordia.SOEN6461.database.HibernateUtil;
-import java.util.ArrayList;
-import java.util.Date;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hsqldb.Server;
 
 
 /**
@@ -46,35 +32,18 @@ import org.hibernate.Transaction;
 public class CMS {
 
     
-    public static void main(String[] args) {
-        // TO START THE DATABASE GO TO LIB/HSQDL-2.3.2/hsqldb/bin and 
-        // run runServer.bat
-        new WelcomeController().start();
-    }   
-    
-    /**
-     * To add new object until the manage clinic thing don't work
-     */
-    public static void init(){
-        Session session = null;
-    	Transaction tx = null;
-         session = HibernateUtil.getSessionFactory().openSession();
-         tx = session.beginTransaction();
-        
-        final Room room = new Room("Blue", "Ev", 5, 528);
-        
-        
-        session.save(room);
-        
+    public static void main(String[] args) throws InterruptedException {
        
-        Clinic c = new Clinic(1);
-        c.addRoom(room);       
-       
-        session.save(c);
+            
+            Server hsqlServer = new Server();
+            hsqlServer.setDatabaseName(0, "");
+            hsqlServer.setDatabasePath(0, "res:data/test");
 
-        tx.setTimeout(5);
-                
-    	tx.commit();
+            // Start the database!
+            hsqlServer.start();
+            
+           new WelcomeController().start();
+       
     }
-    
+   
 }

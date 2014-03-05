@@ -53,6 +53,7 @@ public class PopupDocController implements IController{
     
     
     public PopupDocController(long gievnTime, Clinic clinic, Patient patient, AppointmentDetails appointmentDetails, int index){
+        
         this.model.init(clinic, gievnTime, patient, appointmentDetails, index);
         System.out.println(gievnTime);   
     }

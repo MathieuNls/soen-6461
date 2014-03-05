@@ -26,8 +26,8 @@ package com.concordia.SOEN6461.beans.appointment;
  * @author Mathieu Nayrolles
  */
 public enum AppointmentDetails {
-    NORMAL(20, 0, 100),
-    CHECKUP(60, 0, 200);
+    NORMAL(20, 100, 100),
+    CHECKUP(60, 200, 200);
     
     private int price;
     private int priceUnattended;
