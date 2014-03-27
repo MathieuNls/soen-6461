@@ -98,7 +98,7 @@ public class ChoicesEmployeeController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) {
            view.setVisible(false);
-           new ManageClinicController(new Clinic(1)).start();
+           new ManageClinicController(new Clinic(1), model.getaEmployee()).start();
         }
         
     }

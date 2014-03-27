@@ -25,6 +25,7 @@
 package com.concordia.SOEN6461.MVC.view;
 
 
+import com.concordia.SOEN6461.MVC.controller.ManageClinicController;
 import com.concordia.SOEN6461.MVC.model.ManageClinicModel;
 import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
@@ -89,6 +90,7 @@ public class ManageClinicView extends AbstractView{
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +139,8 @@ public class ManageClinicView extends AbstractView{
         jLabel12.setText("First Name");
 
         jLabel9.setText("Last Name");
+
+        backButton.setText("Back");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,6 +213,10 @@ public class ManageClinicView extends AbstractView{
                         .add(0, 0, Short.MAX_VALUE))
                     .add(jSeparator2))
                 .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .add(172, 172, 172)
+                .add(backButton)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -277,7 +285,9 @@ public class ManageClinicView extends AbstractView{
                             .add(jLabel9)
                             .add(jLabel12))
                         .add(22, 22, 22)))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(backButton)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -289,6 +299,7 @@ public class ManageClinicView extends AbstractView{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JTextField building;
     private javax.swing.JToggleButton deleteNurse;
     private javax.swing.JToggleButton doctorButton;
@@ -339,31 +350,31 @@ public class ManageClinicView extends AbstractView{
 
     @Override
     public void setVisible() {
-        //updateAll();
+       updateAll();
        this.setVisible(true);
     }
     
     public void updateAll(){
-//        DefaultListModel listModel = new DefaultListModel();
-//        for(Doctor doc : this.model.getClinic().getDoctors()){
-//             listModel.addElement(doc.getGivenName() + " " + doc.getFamilyName());
-//        }
-//        
-//        this.doctorList.setModel(listModel);
-//        
-//         DefaultListModel listModelNurse = new DefaultListModel();
-//        for(Nurse nurse : this.model.getClinic().getNurses()){
-//             listModel.addElement(nurse.getGivenName() + " " + nurse.getFamilyName());
-//        }
-//        
-//        this.nursesList.setModel(listModelNurse);
-//        
-//        DefaultListModel listModelRoom = new DefaultListModel();
-//        for(Room room : this.model.getClinic().getRooms()){
-//             listModel.addElement(room.toString());
-//        }
-//        
-//        this.roomsList.setModel(listModelNurse);
+        DefaultListModel listModel = new DefaultListModel();
+        for(Doctor doc : this.model.getClinic().getDoctors()){
+             listModel.addElement(doc.getGivenName() + " " + doc.getFamilyName());
+        }
+        
+        this.doctorList.setModel(listModel);
+        
+         DefaultListModel listModelNurse = new DefaultListModel();
+        for(Nurse nurse : this.model.getClinic().getNurses()){
+             listModelNurse.addElement(nurse.getGivenName() + " " + nurse.getFamilyName());
+        }
+        
+        this.nursesList.setModel(listModelNurse);
+        
+        DefaultListModel listModelRoom = new DefaultListModel();
+        for(Room room : this.model.getClinic().getRooms()){
+             listModelRoom.addElement(room.toString());
+        }
+        
+        this.roomsList.setModel(listModelRoom);
     }
     
     public void addDoctorListener(ActionListener actionListener){
@@ -401,6 +412,9 @@ public class ManageClinicView extends AbstractView{
     //        jButton1.addActionListener(login);
     //    }
 
+    public void addBackListener(ActionListener backButtonListener) {
+        backButton.addActionListener(backButtonListener);
+    }
 
 
 }

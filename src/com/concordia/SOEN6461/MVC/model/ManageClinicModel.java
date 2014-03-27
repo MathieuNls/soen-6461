@@ -27,6 +27,7 @@ import com.concordia.SOEN6461.DAO.EmployeeDAOImpl;
 import com.concordia.SOEN6461.DAO.RoomDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -37,22 +38,19 @@ import org.hibernate.Transaction;
 public class ManageClinicModel  implements IModel{
 
     private Clinic clinic;
-    
+    private AEmployee aEmployee;
     
     /**
      * 
      * @param clinic 
      */
-    public void init(Clinic clinic){
-          Transaction tx = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+    public void init(Clinic clinic, AEmployee aEmployee){
+        this.aEmployee = aEmployee;
         this.clinic = ClinicDAOImpl.getInstance().getClinicById(clinic.getId());
         this.clinic.getDoctors();
         this.clinic.getRooms();
         this.clinic.getNurses();
-         session.save(clinic);
-    	tx.commit();
+
     }
 
     /**
@@ -105,12 +103,6 @@ public class ManageClinicModel  implements IModel{
         
         session.save(room);
         
-        Clinic clinic = ClinicDAOImpl.getInstance().getClinicById(this.clinic.getId());
-        
-        clinic.getDoctors();
-        clinic.getRooms();
-        clinic.getNurses();
-        
         
         clinic.addRoom(room);       
        
@@ -118,7 +110,20 @@ public class ManageClinicModel  implements IModel{
 
                 
     	tx.commit();
+        
+        session.close();
+        
     }
+
+    public AEmployee getaEmployee() {
+        return aEmployee;
+    }
+
+    public void setaEmployee(AEmployee aEmployee) {
+        this.aEmployee = aEmployee;
+    }
+    
+    
     
     
     

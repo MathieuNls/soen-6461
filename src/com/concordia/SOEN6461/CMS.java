@@ -37,8 +37,10 @@ public class CMS {
             
             Server hsqlServer = new Server();
             hsqlServer.setDatabaseName(0, "");
-            hsqlServer.setDatabasePath(0, "res:data/test");
+            //hsqlServer.setDatabasePath(0, "res:data/test");
 
+            hsqlServer.setDatabasePath(0, "data/lib/data/test");
+            
             // Start the database!
             hsqlServer.start();
             

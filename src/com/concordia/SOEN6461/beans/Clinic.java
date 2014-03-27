@@ -26,12 +26,13 @@ import com.concordia.SOEN6461.beans.human.Nurse;
 import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.beans.paiement.PaiementMethod;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -59,23 +60,23 @@ public class Clinic implements Serializable{
     @Column(name="name")
     private String name;
     
-    @OneToMany(targetEntity=Room.class)
-    private List<Room> rooms  = new ArrayList<Room>();
+    @OneToMany(targetEntity=Room.class, fetch=FetchType.EAGER)
+    private Set<Room> rooms  = new HashSet<Room>();
     
-    @OneToMany(targetEntity=Doctor.class)
+    @OneToMany(targetEntity=Doctor.class, fetch=FetchType.EAGER)
     @JoinColumn(nullable=true)
-    private List<Doctor> doctors = new ArrayList<Doctor>();
+    private Set<Doctor> doctors = new HashSet<Doctor>();
     
-    @OneToMany(targetEntity=Nurse.class)
+    @OneToMany(targetEntity=Nurse.class, fetch=FetchType.EAGER)
     @JoinColumn(nullable=true)
-    private List<Nurse> nurses  = new ArrayList<Nurse>();
+    private Set<Nurse> nurses  = new HashSet<Nurse>();
     
-    @ManyToMany(targetEntity=Patient.class)
-    private List<Patient> patients;
+    @ManyToMany(targetEntity=Patient.class, fetch=FetchType.EAGER)
+    private Set<Patient> patients;
     
     @OneToMany(targetEntity=PaiementMethod.class)
     @Enumerated(EnumType.ORDINAL) 
-    private List<PaiementMethod> paiementMethods;
+    private Set<PaiementMethod> paiementMethods;
 
     public Clinic() {
     }
@@ -98,8 +99,8 @@ public class Clinic implements Serializable{
      * @param patients
      * @param paiementMethods 
      */
-    public Clinic(String name, List<Room> rooms, List<Doctor> doctors, List<Nurse> nurses,
-            List<Patient> patients, List<PaiementMethod> paiementMethods) {
+    public Clinic(String name, Set<Room> rooms, Set<Doctor> doctors, Set<Nurse> nurses,
+            Set<Patient> patients, Set<PaiementMethod> paiementMethods) {
         this.name = name;
         this.rooms = rooms;
         this.doctors = doctors;
@@ -131,7 +132,7 @@ public class Clinic implements Serializable{
      */
     @XmlTransient
     @JsonIgnore
-    public List<Doctor> getDoctors() {
+    public Set<Doctor> getDoctors() {
         return doctors;
     }
 
@@ -139,7 +140,7 @@ public class Clinic implements Serializable{
      * 
      * @param doctors 
      */
-    public void setDoctors(List<Doctor> doctors) {
+    public void setDoctors(Set<Doctor> doctors) {
         this.doctors = doctors;
     }
 
@@ -149,7 +150,7 @@ public class Clinic implements Serializable{
      */
     @XmlTransient
     @JsonIgnore
-    public List<Nurse> getNurses() {
+    public Set<Nurse> getNurses() {
         return nurses;
     }
 
@@ -157,7 +158,7 @@ public class Clinic implements Serializable{
      * 
      * @param nurses 
      */
-    public void setNurses(List<Nurse> nurses) {
+    public void setNurses(Set<Nurse> nurses) {
         this.nurses = nurses;
     }
     
@@ -182,9 +183,7 @@ public class Clinic implements Serializable{
      /* 
      * @return 
      */
-    @XmlTransient
-    @JsonIgnore
-    public List<PaiementMethod> getPaiementMethods() {
+    public Set<PaiementMethod> getPaiementMethods() {
         return paiementMethods;
     }
 
@@ -192,7 +191,7 @@ public class Clinic implements Serializable{
      * 
      * @param paiementMethods 
      */
-    public void setPaiementMethods(List<PaiementMethod> paiementMethods) {
+    public void setPaiementMethods(Set<PaiementMethod> paiementMethods) {
         this.paiementMethods = paiementMethods;
     }
 
@@ -202,7 +201,7 @@ public class Clinic implements Serializable{
      */
     @XmlTransient
     @JsonIgnore
-    public List<Patient> getPatients() {
+    public Set<Patient> getPatients() {
         return patients;
     }
 
@@ -210,7 +209,7 @@ public class Clinic implements Serializable{
      * 
      * @param patients 
      */
-    public void setPatients(List<Patient> patients) {
+    public void setPatients(Set<Patient> patients) {
         this.patients = patients;
     }
 
@@ -220,7 +219,7 @@ public class Clinic implements Serializable{
      */
     @XmlTransient
     @JsonIgnore
-    public List<Room> getRooms() {
+    public Set<Room> getRooms() {
         return rooms;
     }
 
@@ -228,7 +227,7 @@ public class Clinic implements Serializable{
      * 
      * @param rooms 
      */
-    public void setRooms(List<Room> rooms) {
+    public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
     

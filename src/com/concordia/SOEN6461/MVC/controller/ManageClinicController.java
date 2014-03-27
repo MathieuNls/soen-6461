@@ -24,6 +24,7 @@ package com.concordia.SOEN6461.MVC.controller;
 import com.concordia.SOEN6461.MVC.model.ManageClinicModel;
 import com.concordia.SOEN6461.MVC.view.ManageClinicView;
 import com.concordia.SOEN6461.beans.Clinic;
+import com.concordia.SOEN6461.beans.human.AEmployee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -42,8 +43,8 @@ public class ManageClinicController implements IController{
      */
     protected ManageClinicView view = new ManageClinicView();
     
-    public ManageClinicController(Clinic clinic){
-        this.model.init(clinic);
+    public ManageClinicController(Clinic clinic, AEmployee aEmployee){
+        this.model.init(clinic, aEmployee);
     }
     /**
      * Initialize the controller. Bind view & model, show the view
@@ -53,6 +54,7 @@ public class ManageClinicController implements IController{
         this.view.setModel(model);
         this.view.addDoctorListener(new DoctorListener());
         this.view.addRoomListener(new RoomListener());
+        this.view.addBackListener(new BackButtonListener());
         this.view.run();
     }
     
@@ -71,6 +73,16 @@ public class ManageClinicController implements IController{
         
     }
      
+     private class BackButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            view.setVisible(false);
+            new ChoicesEmployeeController(model.getaEmployee()).start();
+        }
+         
+     }
+     
       
     /**
      * Inner class. This is the most elegant way to delegate
@@ -86,5 +98,7 @@ public class ManageClinicController implements IController{
         }
         
     }
+     
+     
 
 }
