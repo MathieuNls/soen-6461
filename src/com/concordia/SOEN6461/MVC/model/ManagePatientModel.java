@@ -35,14 +35,14 @@ public class ManagePatientModel  implements IModel{
     private List<Patient> patients;
     
     /**
-     * 
+     * initialization
      */
     public void init(){
         this.patients = PatientDAOImpl.getInstance().getPatients();
     }
 
     /**
-     * 
+     * deletePatient
      */
     public void deletePatient() {
         this.patients.remove(selectedPatient);

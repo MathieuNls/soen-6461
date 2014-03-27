@@ -26,7 +26,10 @@ import com.concordia.SOEN6461.MVC.view.PlanningView;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mathieu Nayrolles
@@ -42,6 +45,10 @@ public class PlanningController implements IController{
      */
     protected PlanningView view = new PlanningView();
     
+    /**
+     * Default constructor
+     * @param aEmployee 
+     */
     public PlanningController(AEmployee aEmployee){
         this.model.init(aEmployee);
     }
@@ -67,7 +74,11 @@ public class PlanningController implements IController{
         @Override
         public void actionPerformed(ActionEvent ae) { 
             List<String> userInputs = view.userInputs();
-            model.addPlanningSlice(userInputs.get(0), userInputs.get(1));
+            try {
+                model.addPlanningSlice(userInputs.get(0), userInputs.get(1));
+            } catch (ParseException ex) {
+                Logger.getLogger(PlanningController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             view.updateList();
         }
         

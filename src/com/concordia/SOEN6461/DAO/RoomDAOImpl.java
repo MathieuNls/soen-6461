@@ -24,7 +24,6 @@ package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.Room;
-import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;

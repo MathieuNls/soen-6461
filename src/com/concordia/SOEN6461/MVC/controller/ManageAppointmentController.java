@@ -44,6 +44,10 @@ public class ManageAppointmentController implements IController{
      */
     protected ManageAppointmentView view = new ManageAppointmentView();
     
+    /**
+     * Default Constructor
+     * @param patient 
+     */
     public ManageAppointmentController(Patient patient){
         this.model.init(patient);
     }

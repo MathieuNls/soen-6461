@@ -13,10 +13,14 @@ import java.util.EventListener;
 /** 
  *
  * @author  Administrator
+ * @author Mathieu Nayrolles
  * @version 1.0.0
  */
 public interface MyListSelectionListener extends EventListener {
-    
+    /**
+     * 
+     * @param evt 
+     */
     public void selectionChanged(MyListSelectionEvent evt);
 
 }

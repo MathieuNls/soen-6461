@@ -78,6 +78,9 @@ public class Clinic implements Serializable{
     @Enumerated(EnumType.ORDINAL) 
     private Set<PaiementMethod> paiementMethods;
 
+    /**
+     * default constructor clinic
+     */
     public Clinic() {
     }
     

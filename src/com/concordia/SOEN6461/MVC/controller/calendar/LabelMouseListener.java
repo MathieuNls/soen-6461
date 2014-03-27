@@ -37,16 +37,24 @@ public class LabelMouseListener extends CalendarDnDMouseListener
     {
         super();
     }
+
     /**
-     * Constructor.
+     * Constructor
+     * @param cacheItem
+     * @param component
+     * @param bEnableDnD 
      */
     public LabelMouseListener(CalendarCache cacheItem, JUnderlinedLabel component, boolean bEnableDnD)
     {
         this();
         this.init(cacheItem, component, bEnableDnD);
     }
+    
     /**
-     * Constructor.
+     * 
+     * @param cacheItem
+     * @param component
+     * @param bEnableDnD 
      */
     public void init(CalendarCache cacheItem, JUnderlinedLabel component, boolean bEnableDnD)
     {
@@ -55,9 +63,12 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         m_component = component;
         m_bEnableDnD = bEnableDnD;
     }
+    
     private javax.swing.Timer m_timer = null;
+    
     /**
-     * Mouse entered this label.
+     * Mouse entered here
+     * @param e 
      */
     public void mouseEntered(MouseEvent e)
     {
@@ -77,8 +88,10 @@ public class LabelMouseListener extends CalendarDnDMouseListener
                         }
         
     }
+  
     /**
-     * Mouse exited this label.
+     * 
+     * @param e 
      */
     public void mouseExited(MouseEvent e)
     {
@@ -92,9 +105,10 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         			this.getCalendarPanel().setStatusText(null); // Clear the status display
     }
     
-    /**
-     * User clicked the mouse - Don't know it they are dragging or want the display screen
-     */
+   /**
+    * 
+    * @param e 
+    */
     public void mousePressed(MouseEvent e)
     {
         super.mousePressed(e);    // Save the point
@@ -118,9 +132,10 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         System.out.println(m_cacheItem.getLine(null));
     }
     
-    /**
-     * User clicked the mouse - Don't know if they are dragging or want the display screen
-     */
+   /**
+    * 
+    * @param e 
+    */
     public void mouseReleased(MouseEvent e)
     {
         CalendarPanel parent = this.getCalendarPanel();
@@ -139,9 +154,10 @@ public class LabelMouseListener extends CalendarDnDMouseListener
         }
         super.mouseReleased(e);
     }
-    
+
     /**
-     * 0.5 seconds passed, select the item.
+     *  0.5 seconds passed, select the item.
+     * @param e 
      */
     public void actionPerformed(ActionEvent e)
     {

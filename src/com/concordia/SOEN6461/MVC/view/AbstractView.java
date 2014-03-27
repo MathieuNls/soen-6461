@@ -81,7 +81,7 @@ public abstract class AbstractView extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * setVisible
      */
     public abstract void setVisible();
   

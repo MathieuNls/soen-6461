@@ -30,6 +30,9 @@ package com.concordia.SOEN6461.MVC.controller;
  */
 public interface IController { 
 
+    /**
+     * Method responsible to init the view and the model. Then shows the view
+     */
     public void start();
 
 }

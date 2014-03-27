@@ -43,6 +43,11 @@ public class ChoicesController implements IController{
      */
     protected ChoicesView view = new ChoicesView();
     
+    /**
+     * Default constructor
+     * @param patient
+     * @param clinic 
+     */
     public ChoicesController(Patient patient, Clinic clinic){
         this.model.init(patient, clinic);
     }

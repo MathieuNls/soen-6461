@@ -31,14 +31,18 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
 	
 	/**
      * Returns the number of columns managed by the data source object.
+     * @return 
      */
+        @Override
     public int getColumnCount()
     {
         return CalendarModel.DESCRIPTION + 1;
     }
     /**
      * Returns the name of the column at columnIndex.
+     * @return 
      */
+        @Override
     public String getColumnName(int columnIndex)
     {
         switch (columnIndex)
@@ -58,7 +62,10 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
     
     /**
      *  Returns Object.class by default
+     * @param columnIndex
+     * @return 
      */
+        @Override
     public Class<?> getColumnClass(int columnIndex)
     {
         switch (columnIndex)
@@ -74,7 +81,10 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
     }
     /**
      *  This default implementation returns false for all cells
+     * @param columnIndex
+     * @return 
      */
+        @Override
     public boolean isCellEditable(int rowIndex, int columnIndex)
     {
         if (columnIndex == CalendarModel.START_TIME)
@@ -83,7 +93,11 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
     }
     /**
      * Returns an attribute value for the cell at columnIndex and rowIndex.
+     * @param rowIndex
+     * @param columnIndex
+     * @return 
      */
+        @Override
     public Object getValueAt(int rowIndex, int columnIndex)
     {
         CalendarItem item = this.getItem(rowIndex);
@@ -101,23 +115,34 @@ public abstract class AbstractCalendarModel extends AbstractTableModel
             return item.getDescription();
         return null;
     }
+  
     /**
-     *  This empty implementation is provided so users don't have to implement
+     * This empty implementation is provided so users don't have to implement
      *  this method if their data model is not editable.
+     * @param aValue
+     * @param rowIndex
+     * @param columnIndex 
      */
+        @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex)
     {
         super.setValueAt(aValue, rowIndex, columnIndex);
     }
+
     /**
      * Notify listeners this row is selected; pass a -1 to de-select all rows.
+     * @param source
+     * @param iRowIndex
+     * @param iSelectionType 
      */
+        @Override
     public void fireTableRowSelected(Object source,int iRowIndex,int iSelectionType)
     {
         this.fireMySelectionChanged(new MyListSelectionEvent(source, this, iRowIndex, iSelectionType));
     }
+    
     /**
-     * The listener list.
+     *  The listener list.
      */
     protected EventListenerList listenerList = new EventListenerList();
     /**

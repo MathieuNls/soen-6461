@@ -23,7 +23,6 @@
 package com.concordia.SOEN6461.MVC.model;
 
 import com.concordia.SOEN6461.DAO.ClinicDAOImpl;
-import com.concordia.SOEN6461.DAO.PatientDAO;
 import com.concordia.SOEN6461.DAO.PatientDAOImpl;
 import com.concordia.SOEN6461.beans.Clinic;
 import com.concordia.SOEN6461.beans.human.Patient;

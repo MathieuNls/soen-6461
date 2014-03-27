@@ -23,6 +23,10 @@ import com.concordia.SOEN6461.MVC.model.calendar.CalendarModel;
 import org.jbundle.util.jcalendarbutton.JCalendarButton;
 import org.jbundle.util.jcalendarbutton.JTimeButton;
 
+/**
+ * 
+ * @author Mathieu Nayrolles
+ */
 public class CalendarForm extends JPanel implements TableModelListener, MyListSelectionListener {
     private static final long serialVersionUID = 1L;
 

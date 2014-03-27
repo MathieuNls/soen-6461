@@ -116,6 +116,11 @@ public class Paiement{
         this.paiementMethod = paiementMethod;
     }
 
+    /**
+     * 
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -134,6 +139,10 @@ public class Paiement{
         return true;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -142,6 +151,10 @@ public class Paiement{
         return hash;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return "Paiement{" + "paiementMethod=" + paiementMethod + ", appointment=" + appointment + '}';

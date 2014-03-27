@@ -63,6 +63,12 @@ public class PlanningSlice implements Serializable {
     public PlanningSlice() {
     }
     
+    /**
+     * PlanningSlice
+     * @param from
+     * @param to
+     * @throws ParseException 
+     */
     public PlanningSlice(String from, String to) throws ParseException{
         //22/10/2014 09:20
         this.from_date = new SimpleDateFormat("d/M/y H:m", Locale.ENGLISH).parse(from);
@@ -70,33 +76,61 @@ public class PlanningSlice implements Serializable {
         this.to = new Date(to);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Date getFrom() {
         return from_date;
     }
 
+    /**
+     * 
+     * @param from 
+     */
     public void setFrom(Date from) {
         this.from_date = from;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Date getTo() {
         return to;
     }
 
+    /**
+     * 
+     * @param to 
+     */
     public void setTo(Date to) {
         this.to = to;
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
-        return "Available" + "from " + from_date + " to " + to + '}';
+        return "Available from " + from_date + " to " + to + '}';
     }
     
 }

@@ -22,14 +22,10 @@
 
 package com.concordia.SOEN6461.messaging;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Date;
 
 /**
  * @author Mathieu Nayrolles
@@ -39,16 +35,30 @@ public class Server extends Thread {
     protected DatagramSocket socket = null;
     protected Integer appointment;
  
+    /**
+     * 
+     * @param appointment
+     * @throws IOException 
+     */
     public Server(Integer appointment) throws IOException {
         this("messaging_server", appointment);
     }
  
+    /**
+     * 
+     * @param name
+     * @param appointment
+     * @throws IOException 
+     */
     public Server(String name, Integer appointment) throws IOException {
         super(name);
         socket = new DatagramSocket(4445);
         this.appointment = appointment;
     }
  
+    /**
+     * 
+     */
     @Override
     public void run() {
         

@@ -10,7 +10,10 @@ import com.concordia.SOEN6461.MVC.model.calendar.CalendarConstants;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarItem;
 import com.concordia.SOEN6461.MVC.model.calendar.CalendarModel;
 
-
+/**
+ * 
+ * @author math
+ */
 public class CalendarProduct extends Object
     implements CalendarItem
 {

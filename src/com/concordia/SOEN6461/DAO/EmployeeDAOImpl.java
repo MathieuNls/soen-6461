@@ -22,8 +22,6 @@
 
 package com.concordia.SOEN6461.DAO;
 
-import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;

@@ -24,8 +24,6 @@ package com.concordia.SOEN6461.DAO;
 
 import com.concordia.SOEN6461.beans.appointment.Appointment;
 import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
-import com.concordia.SOEN6461.beans.appointment.TimeSlot;
-import com.concordia.SOEN6461.beans.human.Patient;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Calendar;

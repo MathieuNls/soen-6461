@@ -51,7 +51,14 @@ public class PopupDocController implements IController{
      */
     protected PopupDocView view = new PopupDocView();
     
-    
+    /**
+     * Default constructor
+     * @param gievnTime
+     * @param clinic
+     * @param patient
+     * @param appointmentDetails
+     * @param index 
+     */
     public PopupDocController(long gievnTime, Clinic clinic, Patient patient, AppointmentDetails appointmentDetails, int index){
         
         this.model.init(clinic, gievnTime, patient, appointmentDetails, index);

@@ -26,7 +26,6 @@ import com.concordia.SOEN6461.beans.Room;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Patient;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -77,7 +76,9 @@ public class Appointment implements Serializable{
     @Enumerated(EnumType.ORDINAL) 
     private AppointmentDetails appointmentDetails;
     
-
+    /**
+     * Default constructor
+     */
     public Appointment() {
     }
 

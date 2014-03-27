@@ -28,6 +28,9 @@ import org.hibernate.cfg.AnnotationConfiguration;
  * @author Mathieu Nayrolles
  */
 public class HibernateUtil {
+        /**
+         * Singleton with early instantiation
+         */
 	private static final SessionFactory sessionFactory;
 	static {
 		try {
@@ -39,6 +42,10 @@ public class HibernateUtil {
 		}
 	}
 
+        /**
+         * 
+         * @return 
+         */
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

@@ -11,8 +11,6 @@ import java.util.EventObject;
 public class CalendarDropEvent extends EventObject
 {
     private static final long serialVersionUID = 1L;
-
-//?    private CalendarItem m_calendarItem = null;
     private Point m_ptDropped = null;
     private int m_iAction = -1;
 

@@ -54,7 +54,9 @@ public class PaiementMethod implements Serializable {
     private double variableFees;
     
     
-
+    /**
+     * Default constructor hivernate
+     */
     public PaiementMethod() {
     }
 
@@ -120,10 +122,18 @@ public class PaiementMethod implements Serializable {
         this.variableFees = variableFees;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(int id) {
         this.id = id;
     }

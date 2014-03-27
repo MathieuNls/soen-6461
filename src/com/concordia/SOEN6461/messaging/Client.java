@@ -37,7 +37,9 @@ public class Client extends Thread{
     
     public static boolean continueBoolean = true;
     
-
+    /**
+     * Network observer obersrvee
+     */
     @Override
     public void run() {
         try {

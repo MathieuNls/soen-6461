@@ -43,6 +43,11 @@ public class ManageClinicController implements IController{
      */
     protected ManageClinicView view = new ManageClinicView();
     
+    /**
+     * Degfault constructor
+     * @param clinic
+     * @param aEmployee 
+     */
     public ManageClinicController(Clinic clinic, AEmployee aEmployee){
         this.model.init(clinic, aEmployee);
     }

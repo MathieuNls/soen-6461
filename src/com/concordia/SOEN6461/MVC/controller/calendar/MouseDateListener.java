@@ -23,6 +23,10 @@ public class MouseDateListener extends MouseMotionAdapter
 //x   public JTextField m_componentDate = null;
     protected CalendarPanel m_calendarPanel = null;
     
+    /**
+     * 
+     * @param calendarPanel 
+     */
     public MouseDateListener(CalendarPanel calendarPanel)
     {
         super();

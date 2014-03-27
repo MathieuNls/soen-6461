@@ -43,6 +43,9 @@ public class ManagePatientController implements IController{
      */
     protected ManagePatientView view = new ManagePatientView();
     
+    /**
+     * Default constructor
+     */
     public ManagePatientController(){
         this.model.init();
     }

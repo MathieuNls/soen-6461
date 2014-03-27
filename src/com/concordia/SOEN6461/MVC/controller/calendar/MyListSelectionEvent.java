@@ -35,9 +35,13 @@ public class MyListSelectionEvent extends EventObject
     protected int m_iRowToSelect = -1;
     protected int m_iSelectType = -1;
     
-    /**
-     * Creates new MyListSelectionEvent
-     */
+   /**
+    * 
+    * @param source
+    * @param tableModel
+    * @param iRowToSelect
+    * @param iSelectType 
+    */
     public MyListSelectionEvent(Object source, TableModel tableModel, int iRowToSelect, int iSelectType)
     {
         super(source);
@@ -45,14 +49,26 @@ public class MyListSelectionEvent extends EventObject
         m_iRowToSelect = iRowToSelect;
         m_iSelectType = iSelectType;
     }
+    /**
+     * 
+     * @return 
+     */
     public int getType()
     {
         return m_iSelectType;
     }
+    /**
+     * 
+     * @return 
+     */
     public int getRow()
     {
         return m_iRowToSelect;
     }
+    /**
+     * 
+     * @return 
+     */
     public TableModel getModel()
     {
         return m_tableModel;

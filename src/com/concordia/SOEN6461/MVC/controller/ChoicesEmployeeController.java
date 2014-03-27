@@ -44,6 +44,10 @@ public class ChoicesEmployeeController implements IController{
      */
     protected ChoicesEmployeeView view = new ChoicesEmployeeView();
     
+    /**
+     * Default constructor
+     * @param aEmployee 
+     */
     public ChoicesEmployeeController(AEmployee aEmployee){
         model.init(aEmployee);
     }
