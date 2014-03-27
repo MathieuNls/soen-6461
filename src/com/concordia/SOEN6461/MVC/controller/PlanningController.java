@@ -21,31 +21,29 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.MVC.controller;
 
-import com.concordia.SOEN6461.MVC.model.ChoicesEmployeeModel;
-import com.concordia.SOEN6461.MVC.view.ChoicesEmployeeView;
-import com.concordia.SOEN6461.beans.Clinic;
-import com.concordia.SOEN6461.beans.appointment.AppointmentDetails;
+import com.concordia.SOEN6461.MVC.model.PlanningModel;
+import com.concordia.SOEN6461.MVC.view.PlanningView;
 import com.concordia.SOEN6461.beans.human.AEmployee;
-import com.concordia.SOEN6461.beans.human.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * @author Mathieu Nayrolles
  */
-public class ChoicesEmployeeController implements IController{
+public class PlanningController implements IController{
     
     /**
      * Reference to the model
      */
-    protected ChoicesEmployeeModel model = new ChoicesEmployeeModel();
+    protected PlanningModel model = new PlanningModel();
     /**
      * Reference to the view
      */
-    protected ChoicesEmployeeView view = new ChoicesEmployeeView();
+    protected PlanningView view = new PlanningView();
     
-    public ChoicesEmployeeController(AEmployee aEmployee){
-        model.init(aEmployee);
+    public PlanningController(AEmployee aEmployee){
+        this.model.init(aEmployee);
     }
 
     /**
@@ -54,47 +52,37 @@ public class ChoicesEmployeeController implements IController{
     @Override
     public void start(){
         this.view.setModel(model);
-        this.view.addPatientButtonListener(new ManagePatientListener());
-        this.view.addClinicButtonListener(new ManageClinicListener());
-        this.view.addOverButtonListener(new OverviewListener());
-        this.view.addCalendarButtonListener(new UpdatePlanning());
+        this.view.addAddListener(new AddListener());
+        this.view.addDeleteListener(new DeleteListener());
+        this.view.addBackListener(new BackListener());
         this.view.run();
-    }
-    
-    private class UpdatePlanning implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            view.setVisible(false);
-            new PlanningController(model.getaEmployee()).start();
-        }
-        
     }
     
     /**
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class OverviewListener implements ActionListener{
+     private class AddListener implements ActionListener{
             
         @Override
-        public void actionPerformed(ActionEvent ae) {
-           view.setVisible(true);
-           new CalendarController(new Clinic(1), new Patient(1), AppointmentDetails.NORMAL).start();
+        public void actionPerformed(ActionEvent ae) { 
+            List<String> userInputs = view.userInputs();
+            model.addPlanningSlice(userInputs.get(0), userInputs.get(1));
+            view.updateList();
         }
         
     }
      
-      /**
+     /**
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class ManagePatientListener implements ActionListener{
+     private class BackListener implements ActionListener{
             
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(ActionEvent ae) { 
             view.setVisible(false);
-           new ManagePatientController().start();
+            new ChoicesEmployeeController(model.getaEmployee()).start();
         }
         
     }
@@ -103,15 +91,13 @@ public class ChoicesEmployeeController implements IController{
      * Inner class. This is the most elegant way to delegate
      * click action from swing frame to controller.
      */
-     private class ManageClinicListener implements ActionListener{
-            
+     private class DeleteListener implements ActionListener{
+
         @Override
         public void actionPerformed(ActionEvent ae) {
-           view.setVisible(false);
-           new ManageClinicController(new Clinic(1), model.getaEmployee()).start();
-        }
-        
-    }
-    
-    
+           model.removeSlice(new Integer(view.userInputs().get(0)));
+           view.updateList();
+        }       
+     }
+     
 }

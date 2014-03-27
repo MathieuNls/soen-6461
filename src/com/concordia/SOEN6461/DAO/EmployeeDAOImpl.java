@@ -28,7 +28,8 @@ import com.concordia.SOEN6461.beans.human.AEmployee;
 import com.concordia.SOEN6461.beans.human.Adresse;
 import com.concordia.SOEN6461.beans.human.Doctor;
 import com.concordia.SOEN6461.beans.human.Nurse;
-import com.concordia.SOEN6461.beans.human.Planning;
+import com.concordia.SOEN6461.beans.human.planning.Planning;
+import com.concordia.SOEN6461.beans.human.planning.PlanningSlice;
 import com.concordia.SOEN6461.database.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -195,6 +196,41 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         session.close();
         
         return availableDoctor;
+    }
+    
+    /**
+     * 
+     * @param planningSlice
+     * @param planning
+     * @return 
+     */
+    public PlanningSlice createSlice(PlanningSlice planningSlice, Planning planning){
+        Transaction tx;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+        
+        session.persist(planningSlice);
+        
+        planning.addSlice(planningSlice);
+        
+        session.save(planningSlice);
+        
+        tx.commit();
+        return planningSlice;
+    }
+    
+    /**
+     * 
+     * @param planningSlice 
+     */
+    public void removeSlice(PlanningSlice planningSlice){
+        Transaction tx;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+        
+        session.delete(planningSlice);
+        
+        tx.commit();
     }
 
     /**

@@ -25,6 +25,7 @@
 package com.concordia.SOEN6461.MVC.view;
 
 
+import com.concordia.SOEN6461.MVC.controller.ChoicesEmployeeController;
 import com.concordia.SOEN6461.MVC.model.ChoicesEmployeeModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class ChoicesEmployeeView extends AbstractView{
         patientButton = new javax.swing.JButton();
         clinicButton = new javax.swing.JButton();
         hello = new javax.swing.JLabel();
+        calendar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,34 +69,42 @@ public class ChoicesEmployeeView extends AbstractView{
 
         hello.setText("Hello ");
 
+        calendar.setText("Calendar");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(patientButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(overviewButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(clinicButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(hello)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(patientButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(overviewButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(clinicButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(hello)
+                            .add(calendar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(hello)
                 .add(18, 18, 18)
                 .add(clinicButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(patientButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(calendar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(overviewButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +112,7 @@ public class ChoicesEmployeeView extends AbstractView{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton calendar;
     private javax.swing.JButton clinicButton;
     private javax.swing.JLabel hello;
     private javax.swing.JButton overviewButton;
@@ -110,15 +121,8 @@ public class ChoicesEmployeeView extends AbstractView{
     
 
     @Override
-    /**
-     * Use of Java Double Brace initialization
-     * http://c2.com/cgi/wiki?DoubleBraceInitialization
-     */
     public List<String> userInputs() {
-        return new ArrayList<String>() {{
-            add("Stuff");
-            add("Things");
-        }};
+        return new ArrayList<String>();
     }
 
     @Override
@@ -139,7 +143,11 @@ public class ChoicesEmployeeView extends AbstractView{
         this.overviewButton.addActionListener(actionListener);
     }
     
-       public void addPatientButtonListener(ActionListener actionListener){
+    public void addPatientButtonListener(ActionListener actionListener){
         this.patientButton.addActionListener(actionListener);
+    }
+
+    public void addCalendarButtonListener(ActionListener updatePlanning) {
+        this.calendar.addActionListener(updatePlanning);
     }
 }

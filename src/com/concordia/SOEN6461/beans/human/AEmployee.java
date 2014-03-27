@@ -21,6 +21,8 @@
 //THE SOFTWARE.
 package com.concordia.SOEN6461.beans.human;
 
+import com.concordia.SOEN6461.beans.human.planning.Planning;
+import com.concordia.SOEN6461.beans.human.planning.PlanningSlice;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -241,9 +243,30 @@ public abstract class AEmployee{
         return "AEmployee{" + "familyName=" + familyName + ", givenName=" + givenName + ", adresse=" + adresse + ", login=" + login + ", password=" + password + ", planning=" + planning + ", id=" + id + '}';
     }
 
+    /**
+     * 
+     * @return readableString
+     */
     public String readableToString() {
         return this.getClass().getSimpleName() + " " + familyName;
     }
+    
+    /**
+     * hide the information about the planning
+     * @param planningSlice 
+     */
+    public void addPlanningSlice(PlanningSlice planningSlice){
+        this.planning.addSlice(planningSlice);
+    }
+    
+    /**
+     * hide the information about the planning
+     * @param planningSlice 
+     */
+    public void removePlanningSlice(PlanningSlice planningSlice){
+        this.planning.deleteSlice(planningSlice);
+    }
+    
     
     
     

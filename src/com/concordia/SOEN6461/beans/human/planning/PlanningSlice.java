@@ -19,10 +19,14 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-package com.concordia.SOEN6461.beans.human;
+
+package com.concordia.SOEN6461.beans.human.planning;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,94 +40,63 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Mathieu Nayrolles
  */
 @Entity
-@Table(name = "PLANNING")
+@Table(name = "PLANNING_SLICE")
 @XmlRootElement
-public class Planning implements Serializable{
-    
+public class PlanningSlice implements Serializable {
+
     @Id
     @GeneratedValue
-    @Column(name="PLANNING_ID")
+    @Column(name="PLANNING_SLICE_ID")
     private int id;
     
-    @Column(name="FROM_DATE")
     @Temporal(TemporalType.DATE)
-    private Date from;
+    @Column(name="FROM_DATE")
+    private Date from_date;
     
     @Column(name="TO_DATE")
     @Temporal(TemporalType.DATE)
     private Date to;
+
+    /**
+     * default constructor for hibernate
+     */
+    public PlanningSlice() {
+    }
     
-    
-
-    public Planning() {
+    public PlanningSlice(String from, String to) throws ParseException{
+        //22/10/2014 09:20
+        this.from_date = new SimpleDateFormat("d/M/y H:m", Locale.ENGLISH).parse(from);
+        this.from_date = new Date(from);
+        this.to = new Date(to);
     }
 
-    /**
-     * Default constructor
-     * @param from
-     * @param to 
-     */
-    public Planning(Date from, Date to) {
-        this.from = from;
-        this.to = to;
-    }
-   
-
-    /**
-     * 
-     * @return 
-     */
-    public Date getFrom() {
-        return from;
-    }
-
-    /**
-     * 
-     * @param from 
-     */
-    public void setFrom(Date from) {
-        this.from = from;
-    }
-
-    /**
-     * 
-     * @return 
-     */
     public int getId() {
         return id;
     }
 
-    /**
-     * 
-     * @param id 
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * 
-     * @return 
-     */
+    public Date getFrom() {
+        return from_date;
+    }
+
+    public void setFrom(Date from) {
+        this.from_date = from;
+    }
+
     public Date getTo() {
         return to;
     }
 
-    /**
-     * 
-     * @param to 
-     */
     public void setTo(Date to) {
         this.to = to;
     }
 
-    /**
-     * 
-     * @return formatted String
-     */
     @Override
     public String toString() {
-        return "Planning{" + "id=" + id + ", from=" + from + ", to=" + to + '}';
+        return "Available" + "from " + from_date + " to " + to + '}';
     }
-
+    
 }
